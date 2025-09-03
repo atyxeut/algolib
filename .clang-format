@@ -1,0 +1,151 @@
+# clang-format style options: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+# misc settings
+Language: Cpp
+Standard: Latest
+ColumnLimit: 140
+IndentWidth: 2
+ContinuationIndentWidth: 2
+UseTab: Never
+MaxEmptyLinesToKeep: 1
+LineEnding: LF
+RemoveEmptyLinesInUnwrappedLines: true
+BreakAdjacentStringLiterals: true
+SortUsingDeclarations: Never
+
+# penalty, higher penalty = less priority
+PenaltyExcessCharacter: 600
+PenaltyBreakAssignment: 1000
+PenaltyBreakBeforeFirstCallParameter: 100
+PenaltyBreakBeforeMemberAccess: 5
+PenaltyBreakComment: 0
+PenaltyBreakFirstLessLess: 30
+PenaltyBreakOpenParenthesis: 10
+PenaltyBreakScopeResolution: 10000
+PenaltyBreakString: 500
+PenaltyBreakTemplateDeclaration: 3
+PenaltyIndentedWhitespace: 1
+PenaltyReturnTypeOnItsOwnLine: 20
+
+# comment
+AlignTrailingComments: Always
+SpacesBeforeTrailingComments: 1
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: 1
+
+#preprocesser / macro
+IndentPPDirectives: None
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossComments: false
+AlignEscapedNewlines: LeftWithLastLine
+SortIncludes: CaseInsensitive
+
+# declaration / initialization / assignment
+AlignConsecutiveDeclarations:
+  Enabled: false
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+# IntegerLiteralSeparator:  # This is a C++14 feature
+#   Decimal: 3
+#   DecimalMinDigits: 9
+#   Binary: 4
+PointerAlignment: Left
+ReferenceAlignment: Left
+AlignArrayOfStructures: Right
+
+# operator
+AlignOperands: Align
+BreakBinaryOperations: OnePerLine
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+
+# control statement
+AllowShortBlocksOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: true
+IndentCaseBlocks: false
+AllowShortCaseLabelsOnASingleLine: false
+AlignConsecutiveShortCaseStatements:
+  Enabled: false
+  AlignCaseColons: true
+AllowShortLoopsOnASingleLine: false
+IndentGotoLabels: false
+
+# function
+AlignAfterOpenBracket: BlockIndent
+AllowShortFunctionsOnASingleLine: Empty
+BinPackArguments: true
+AllowAllArgumentsOnNextLine: true
+BinPackParameters: BinPack
+AllowAllParametersOfDeclarationOnNextLine: true
+BreakAfterAttributes: Leave
+IndentWrappedFunctionNames: false
+SpaceAfterOperatorKeyword: false
+
+# lambda expression
+AllowShortLambdasOnASingleLine: All
+LambdaBodyIndentation: Signature
+
+# class
+IndentAccessModifiers: false
+ConstructorInitializerIndentWidth: 2
+PackConstructorInitializers: BinPack
+BreakConstructorInitializers: AfterColon
+SpaceBeforeCtorInitializerColon: true
+BreakInheritanceList: AfterColon
+SpaceBeforeInheritanceColon: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossComments: true
+BitFieldColonSpacing: Both
+AllowShortEnumsOnASingleLine: false
+
+#namespace / extern / export
+IndentExternBlock: false
+FixNamespaceComments: true
+ShortNamespaceLines: 1
+NamespaceIndentation: None
+IndentExportBlock: false
+CompactNamespaces: true
+WrapNamespaceBodyWithEmptyLines: Always
+AllowShortNamespacesOnASingleLine: false
+
+# template
+SpaceAfterTemplateKeyword: true
+BreakBeforeTemplateCloser: true
+BreakTemplateDeclarations: Leave
+BreakBeforeConceptDeclarations: Always
+IndentRequiresClause: false
+RequiresExpressionIndentation: OuterScope
+AllowShortCompoundRequirementOnASingleLine: true
+RequiresClausePosition: WithPreceding
+
+# parentheses / brace
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterControlStatement: Always
+  AfterExternBlock: false
+  AfterFunction: true
+  AfterClass: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterEnum: true
+  BeforeLambdaBody: false
+  BeforeElse: true
+  BeforeCatch: true
+Cpp11BracedListStyle: true
+BinPackLongBracedList: true
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterRequiresInClause: true
+  AfterRequiresInExpression: false

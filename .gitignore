@@ -1,0 +1,3 @@
+*
+!.clang-format
+!fmt_cpp_files.py
