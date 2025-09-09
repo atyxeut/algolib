@@ -1,0 +1,21 @@
+= src/integer_sequence.hpp
+
+Backports C++14 `std::integer_sequence` and its helpers, and provides custom helpers.
+
+== Required includes
+
+Custom headers: `src/aliases.hpp`.
+
+== Content
+
+=== Backports
+All the interfaces defined by the standard library are available, just replace the `std::` qualification with `aal::`.
+
+The implementation details are learned from link:https://en.cppreference.com/w/cpp/utility/integer_sequence.html[here].
+
+=== Custom helpers
+
+==== `aal::make_integer_sequence_from_1` and `aal::make_index_sequence_from_1`
+
+Similar to `std::make_integer_sequence` and `make_index_sequence`,
+but the sequence is `1, ... , N` instead of `0, ... , N - 1`.
