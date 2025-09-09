@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_ALIASES_HPP
 #define AAL_SRC_ALIASES_HPP
 
-/* https://github.com/atyxeut/algolib/src/aliases.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/aliases.hpp */
 
 #include "macros.hpp"
 #include <cstddef>

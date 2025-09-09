@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MACROS_HPP
 #define AAL_SRC_MACROS_HPP
 
-/* https://github.com/atyxeut/algolib/src/macros.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/macros.hpp */
 
 #if defined(__i386__) || defined(_M_IX86)
 #define AAL_ARCH_X86 1
