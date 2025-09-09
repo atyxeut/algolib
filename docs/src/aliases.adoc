@@ -1,0 +1,45 @@
+= src/aliases.hpp
+
+Provides aliases for built-in and standard library types.
+
+== Required includes
+
+Standard headers: `<cstddef>`, `<cstdint>`, `<limits>`.
+
+Other built-in headers: `<__msvc_int128.hpp>` (MSVC only).
+
+Custom headers: `src/macros.hpp`.
+
+== Content
+
+=== Fixed width integer type aliases
+
+`i8`, `u8`, `i16`, `u16`, `i32`, `u32`, `i64`, `u64` are aliases of standard types `std::int8_t`, `std::uint8_t`,
+`std::int16_t`, `std::uint16_t`, `std::int32_t`, `std::uint32_t`, `std::int64_t`, `std::uint64_t` respectively.
+
+`i128` and `u128` are 128-bit integer types provided by compiler extensions. For more information, click
+link:https://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html[here (GCC and Clang)] and
+link:https://stackoverflow.com/a/76440171/12192463[here (MSVC)]. Also, it is recommended to read
+link:https://quuxplusone.github.io/blog/2019/02/28/is-int128-integral/[this article],
+where some subtle behavior about the two types are discussed.
+
+=== Subscript type aliases
+
+`diff_t`, `size_t` are aliases of standard types `std::ptrdiff_t`, `std::size_t` respectively.
+
+=== Floating-point type aliases
+
+`f32`, `f64`, `f80` are aliases of standard types `float`, `double`, `long double` respectively.
+For MSVC, `f80` behaves the same as `f64`, but they are still different types, i.e. `std::is_same_v<f64, f80>` is false.
+
+`f128` is the quadruple precision floating-point type provided by GCC and Clang, see
+link:https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html[this] for details.
+MSVC does not provide such a type at all, so `f128` is always an incomplete type on MSVC.
+Also, it is an incomplete type if the target architecture is not x86 or x86_64.
+
+The precision of `f32` is 6 to 9 significant digits, of `f64` is 15 to 17 significant digits,
+of `f80` is 18 to 20 significant digits, and of `f128` is 33 to 35 significant digits.
+
+=== Other type aliases
+
+`lim<T>` is an alias of `std::numeric_limits<T>`.
