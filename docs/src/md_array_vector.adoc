@@ -1,0 +1,80 @@
+= src/md_array_vector.hpp
+
+Provides type aliases and helper functions to ease the creation of multidimentional (nested) `std::array` and `std::vector`.
+
+== Required includes
+
+Standard headers: `<array>`, `<utility>`, `<vector>`.
+
+Custom headers: `src/type_traits.hpp`.
+
+== Content
+
+=== Types
+
+==== `aal::array`
+
+A multidimentional `std::array` type.
+
+.Example
+[source, C++]
+----
+// same as std::array<std::array<std::array<int, 2>, 5>, 3> arr3d {};
+aal::array<int, 3, 5, 2> arr3d {};
+----
+
+==== `aal::vector`
+
+A multidimentional `std::vector` type.
+
+.Example
+[source, C++]
+----
+// same as std::vector<int> vec1d;
+aal::vector<int> vec1d;
+
+// same as std::vector<std::vector<std::vector<std::vector<int>>>> vec4d;
+aal::vector<int, 4> vec4d;
+----
+
+=== Helper functions
+
+==== `aal::fill_array`
+
+Sets the given value to every element of the target array.
+
+.Example
+[source, C++]
+----
+aal::array<int, 3, 5, 2, 10> arr4d;
+aal::fill_array(arr4d, -1);
+// now every element of arr4d is -1
+----
+
+==== `aal::make_array`
+
+Creates a `aal::array` object and calls `aal::fill_array` on it.
+
+.Example
+[source, C++]
+----
+// combines aal::array<int, 5, 8, 3, 2> arr4d;
+//      and aal::fill_array(arr4d, val);
+auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
+----
+
+==== `aal::make_vector`
+
+Directly obtains a `aal::vector` object.
+
+.Example
+[source, C++]
+----
+int x = 10, y = 5, z = 7;
+// same as:
+// auto vec3d = std::vector<std::vector<std::vector<int>>>(
+//                x,
+//                std::vector<std::vector<int>>(y, std::vector<int>(z, 1))
+//              );
+auto vec3d = aal::make_vector<int>(x, y, z, 1);
+----
