@@ -1,0 +1,34 @@
+= src/macros.hpp
+
+Predefines some macros for convenience.
+
+== Content
+
+=== Macros for testing target architectures
+
+`AAL_ARCH_X86` is defined with value 1 if the target architecture is x86.
+
+`AAL_ARCH_X86_64` is defined with value 1 if the target architecture is x86_64. 
+
+=== Macros for testing compilers
+
+`AAL_MSVC` is defined with value 1 if the compiler is MSVC.
+
+=== Macros for testing C++ standard versions (see link:https://en.cppreference.com/w/cpp/preprocessor/replace#Predefined_macros[this] for details)
+
+`AAL_CPP14`, `AAL_CPP17`, `AAL_CPP20`, `AAL_CPP23` are defined with value 1
+if the current specified C\++ standard is C\++14, C\++17, C\++20, C++23 respectively.
+
+=== Macros for conditionally applying the `constexpr` keyword
+
+`AAL_CONSTEXPR14` is replaced by `constexpr` if the current specified C\++ standard is C++14.
+
+`AAL_CONSTEXPR20` is replaced by `constexpr` if the current specified C\++ standard is C++20.
+
+`AAL_CONSTEXPR23` is replaced by `constexpr` if the current specified C\++ standard is C++23.
+
+=== Aliases for C++20 library feature-test macros (see link:https://en.cppreference.com/w/cpp/utility/feature_test.html[this] for details)
+
+`AAL_CPP20_FORMAT` is defined with value 1 if C++20 `<format>` header is available.
+
+`AAL_CPP23_FORMAT` is defined with value 1 if C++23 `<print>` header is available.
