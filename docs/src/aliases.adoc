@@ -42,4 +42,4 @@ of `f80` is 18 to 20 significant digits, and of `f128` is 33 to 35 significant d
 
 === Other type aliases
 
-`lim<T>` is an alias of `std::numeric_limits<T>`.
+`aal::lim<T>` is an alias of `std::numeric_limits<T>`.

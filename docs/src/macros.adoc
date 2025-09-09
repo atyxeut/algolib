@@ -31,4 +31,4 @@ if the current specified C\++ standard is C\++14, C\++17, C\++20, C++23 respecti
 
 `AAL_CPP20_FORMAT` is defined with value 1 if C++20 `<format>` header is available.
 
-`AAL_CPP23_FORMAT` is defined with value 1 if C++23 `<print>` header is available.
+`AAL_CPP23_PRINT` is defined with value 1 if C++23 `<print>` header is available.

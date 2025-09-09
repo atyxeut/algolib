@@ -17,5 +17,5 @@ The implementation details are learned from link:https://en.cppreference.com/w/c
 
 ==== `aal::make_integer_sequence_from_1` and `aal::make_index_sequence_from_1`
 
-Similar to `std::make_integer_sequence` and `make_index_sequence`,
+Similar to `std::make_integer_sequence` and `std::make_index_sequence`,
 but the sequence is `1, ... , N` instead of `0, ... , N - 1`.
