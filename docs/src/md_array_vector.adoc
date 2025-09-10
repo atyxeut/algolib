@@ -39,7 +39,7 @@ aal::vector<int, 4> vec4d;
 
 === Helper functions
 
-==== `aal::fill_array`
+==== `aal::fill_array` (`constexpr` since C++20)
 
 Sets the given value to every element of the target array.
 
@@ -51,7 +51,7 @@ aal::fill_array(arr4d, -1);
 // now every element of arr4d is -1
 ----
 
-==== `aal::make_array`
+==== `aal::make_array` (`constexpr` since C++20)
 
 Creates a `aal::array` object and calls `aal::fill_array` on it.
 
