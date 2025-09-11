@@ -48,7 +48,7 @@ using f128 = __float128;
 namespace aal {
 
 template <typename T>
-using lim = std::numeric_limits<T>;
+using lim = ::std::numeric_limits<T>;
 
 } // namespace aal
 

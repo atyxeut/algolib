@@ -19,38 +19,38 @@ struct integer_sequence
 };
 
 template <size_t... Ints>
-using index_sequence = ::aal::integer_sequence<size_t, Ints...>;
+using index_sequence = integer_sequence<size_t, Ints...>;
 
 namespace details {
 
 template <typename TInt, TInt Begin, TInt End, TInt... Ints>
 struct make_integer_sequence_impl
 {
-  using type = typename ::aal::details::make_integer_sequence_impl<TInt, Begin + 1, End, Ints..., Begin>::type;
+  using type = typename make_integer_sequence_impl<TInt, Begin + 1, End, Ints..., Begin>::type;
 };
 
 template <typename TInt, TInt End, TInt... Ints>
 struct make_integer_sequence_impl<TInt, End, End, Ints...>
 {
-  using type = ::aal::integer_sequence<TInt, Ints...>;
+  using type = integer_sequence<TInt, Ints...>;
 };
 
 } // namespace details
 
 template <typename TInt, TInt N>
-using make_integer_sequence = typename ::aal::details::make_integer_sequence_impl<TInt, 0, N>::type;
+using make_integer_sequence = typename details::make_integer_sequence_impl<TInt, 0, N>::type;
 
 template <typename TInt, TInt N>
-using make_integer_sequence_from_1 = typename ::aal::details::make_integer_sequence_impl<TInt, 1, N + 1>::type;
+using make_integer_sequence_from_1 = typename details::make_integer_sequence_impl<TInt, 1, N + 1>::type;
 
 template <size_t N>
-using make_index_sequence = ::aal::make_integer_sequence<size_t, N>;
+using make_index_sequence = make_integer_sequence<size_t, N>;
 
 template <size_t N>
-using make_index_sequence_from_1 = ::aal::make_integer_sequence_from_1<size_t, N>;
+using make_index_sequence_from_1 = make_integer_sequence_from_1<size_t, N>;
 
 template <typename... Ts>
-using index_sequence_for = ::aal::make_index_sequence<sizeof...(Ts)>;
+using index_sequence_for = make_index_sequence<sizeof...(Ts)>;
 
 } // namespace aal
 
