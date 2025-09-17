@@ -1,8 +1,7 @@
+#ifndef AAL_SRC_MATH_INT_OPS_HPP
+#define AAL_SRC_MATH_INT_OPS_HPP
 
-#ifndef AAL_SRC_MATH_OVERFLOW_DETECTION_HPP
-#define AAL_SRC_MATH_OVERFLOW_DETECTION_HPP
-
-/* https://github.com/atyxeut/algolib/blob/main/src/math/overflow_detection.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops.hpp */
 
 #include "../type_traits.hpp"
 #include <cassert>
@@ -25,6 +24,18 @@ AAL_CONSTEXPR14 bool imul_overflows(T1 lhs, T2 rhs) noexcept
   return rhs == 0 ? false : lhs > lim<TResult>::max() / rhs;
 }
 
+template <typename T>
+constexpr auto iabs(T n) noexcept -> t_enable_if_t<is_unsigned<T>, T>
+{
+  return n;
+}
+
+template <typename T>
+constexpr auto iabs(T n) noexcept -> typename t_enable_if_t<is_signed<T>, make_unsigned<T>>::type
+{
+  return n >= 0 ? n : ~static_cast<make_unsigned_t<T>>(n) + 1;
+}
+
 } // namespace aal
 
-#endif // AAL_SRC_MATH_OVERFLOW_DETECTION_HPP
+#endif // AAL_SRC_MATH_INT_OPS_HPP

@@ -1,0 +1,79 @@
+= src/math/int_ops.hpp
+:stem:
+
+Provides various helper functions for integer operations.
+
+== Required includes
+
+Standard headers: `<cassert>`.
+
+Custom headers: `src/type_traits.hpp`.
+
+== Content
+
+=== `aal::iadd_overflows` (`constexpr` since C++14, `noexcept`)
+
+Checks if the addition of two nonnegative integers will overflow the given result type.
+
+==== Example
+
+[source, C++]
+----
+// the program will terminate, since the result 2147483648 cannot be represented in type int
+assert(!aal::iadd_overflows<int>(1, 2147483647));
+----
+
+==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+
+If one of the integer arguments is negative, the behavior is undefined.
+
+=== `aal::imul_overflows` (`constexpr` since C++14, `noexcept`)
+
+Checks if the multiplication of two nonnegative integers will overflow the given result type.
+
+==== Example
+
+[source, C++]
+----
+// the program will terminate, since the result 1000000000000 cannot be represented in type int
+assert(!aal::imul_overflows<int>(1000000, 1000000));
+----
+
+==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+
+If one of the integer arguments is negative, the behavior is undefined.
+
+==== Rationales
+
+Let asciimath:[a, b] be nonnegative integers, and asciimath:[c] be the max value of the result type (also a nonnegative integer).
+If asciimath:[b = 0], the result never overflows, else the correctness relies on this proposition:
+
+[asciimath]
+++++
+a b <= c <=> a <= floor(c / b).
+++++
+
+If asciimath:[a b <= c], then we have asciimath:[a <= c / b = floor(c / b) + {c / b}], since asciimath:[a] is an integer,
+asciimath:[a <= floor(c / b)] obviously holds. Conversely, if asciimath:[a <= floor(c / b) = c / b - {c / b}],
+then asciimath:[a b <= c - b {c / b} <= c].
+
+=== `aal::iabs` (`constexpr`, `noexcept`)
+
+Similar to integral versions of `std::abs`, but supports unsigned integers and 128-bit integers, and the result is returned in the corresponding unsigned type.
+
+==== Example
+
+[source, C++]
+----
+// 2147483648, no signed int overflow
+unsigned int t = aal::iabs(-2147483647 - 1);
+----
+
+==== Rationales
+
+Let asciimath:[n] be an negative integer, if the bit representation of asciimath:[n] is two's complement, then `~n + 1`
+is the absolute value of asciimath:[n], i.e. asciimath:[-n]. To avoid overflow when asciimath:[n] has the signed minimum value,
+we need to cast the type to unsigned first.
+
+Luckily, GCC's implementation always uses two's complement, and preserves the original bit patterns during signed-unsigned conversions,
+see link:https://gcc.gnu.org/onlinedocs/gcc/Integers-implementation.html[this] (this becomes standard since C++20).
