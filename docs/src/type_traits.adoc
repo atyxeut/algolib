@@ -87,7 +87,8 @@ Extracts the cv-qualifiers of a type and apply them to another type.
 
 Its helper alias template is `aal::claim_cv_t`.
 
-.Example
+==== Example
+
 [source, C++]
 ----
 using T = aal::claim_cv_t<const volatile int, long long>; // T is const volatile long long
@@ -100,7 +101,8 @@ Checks if neither of the other given types is the same as the first given type.
 
 Helper variable template `aal::is_none_of_v` is available since C++14.
 
-.Example
+==== Example
+
 [source, C++]
 ----
 constexpr bool t1 = aal::is_none_of<int, long long, bool, char, void>; // t1 is true
@@ -187,7 +189,8 @@ cv-qualifiers and signedness are kept.
 
 Its helper alias template is `aal::make_larger_width_t`.
 
-.Example
+==== Example
+
 [source, C++]
 ----
 using T = aal::make_larger_width_t<unsigned char>; // T is u32
@@ -208,7 +211,8 @@ cv-qualifiers of the operands' types are removed. See the code comments for impl
 
 Its helper alias template is `aal::idiv_result_t`.
 
-.Example
+==== Example
+
 [source, C++]
 ----
 using T = aal::idiv_result_t<int, int>; // T is long long

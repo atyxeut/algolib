@@ -16,7 +16,8 @@ Custom headers: `src/type_traits.hpp`.
 
 A multidimentional `std::array` type.
 
-.Example
+===== Example
+
 [source, C++]
 ----
 // same as std::array<std::array<std::array<int, 2>, 5>, 3> arr3d {};
@@ -27,7 +28,8 @@ aal::array<int, 3, 5, 2> arr3d {};
 
 A multidimentional `std::vector` type.
 
-.Example
+===== Example
+
 [source, C++]
 ----
 // same as std::vector<int> vec1d;
@@ -43,7 +45,8 @@ aal::vector<int, 4> vec4d;
 
 Sets the given value to every element of the target array.
 
-.Example
+===== Example
+
 [source, C++]
 ----
 aal::array<int, 3, 5, 2, 10> arr4d;
@@ -55,7 +58,8 @@ aal::fill_array(arr4d, -1);
 
 Creates a `aal::array` object and calls `aal::fill_array` on it.
 
-.Example
+===== Example
+
 [source, C++]
 ----
 // combines aal::array<int, 5, 8, 3, 2> arr4d;
@@ -67,7 +71,8 @@ auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
 
 Directly obtains a `aal::vector` object.
 
-.Example
+===== Example
+
 [source, C++]
 ----
 int x = 10, y = 5, z = 7;
