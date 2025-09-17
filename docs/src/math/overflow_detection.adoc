@@ -1,0 +1,58 @@
+= src/math/overflow_detection.hpp
+:stem:
+
+Provides helper functions to detect if an arithmetic operation overflows.
+
+== Required includes
+
+Standard headers: `<cassert>`.
+
+Custom headers: `src/type_traits.hpp`.
+
+== Content
+
+=== `aal::iadd_overflows` (`constexpr` since C++14, `noexcept`)
+
+Checks if the addition of two nonnegative integers will overflow the given result type.
+
+==== Example
+
+[source, C++]
+----
+// the program will terminate, since the result 2147483648 cannot be represented in type int
+assert(!aal::iadd_overflows<int>(1, 2147483647));
+----
+
+==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+
+If one of the integer arguments is negative, the behavior is undefined.
+
+=== `aal::imul_overflows` (`constexpr` since C++14, `noexcept`)
+
+Checks if the multiplication of two nonnegative integers will overflow the given result type.
+
+==== Example
+
+[source, C++]
+----
+// the program will terminate, since the result 1000000000000 cannot be represented in type int
+assert(!aal::imul_overflows<int>(1000000, 1000000));
+----
+
+==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+
+If one of the integer arguments is negative, the behavior is undefined.
+
+==== Rationales
+
+Let asciimath:[a, b] be nonnegative integers, and asciimath:[c] be the max value of the result type (also a nonnegative integer).
+If asciimath:[b = 0], the result never overflows, else the correctness relies on this proposition:
+
+[asciimath]
+++++
+a b <= c <=> a <= floor(c / b).
+++++
+
+If asciimath:[a b <= c], then we have asciimath:[a <= c / b = floor(c / b) + {c / b}], since asciimath:[a] is an integer,
+asciimath:[a <= floor(c / b)] obviously holds. Conversely, if asciimath:[a <= floor(c / b) = c / b - {c / b}],
+then asciimath:[a b <= c - b {c / b} <= c].
