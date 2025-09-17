@@ -4,7 +4,7 @@ Backports part of the standard header `<type_traits>` to C++11 and provides cust
 
 == Required includes
 
-Standard headers: `<type_traits>`.
+Standard headers: `<type_traits>`, `<utility>`.
 
 Custom headers: `src/aliases.hpp`.
 
@@ -203,7 +203,8 @@ Its helper alias template is `aal::make_higher_precision_t`.
 
 === `aal::idiv_result`
 
-Obtains the most suitable result type for integer divisions. See the code comments for details.
+Obtains the most suitable result type for the result of integer divisions.
+cv-qualifiers of the operands' types are removed. See the code comments for implementation details.
 
 Its helper alias template is `aal::idiv_result_t`.
 
@@ -211,5 +212,6 @@ Its helper alias template is `aal::idiv_result_t`.
 [source, C++]
 ----
 using T = aal::idiv_result_t<int, int>; // T is long long
-using Y = aal::idiv_result_t<int, unsigned int>; // Y is int
+using T2 = aal::idiv_result_t<int, unsigned int>; // T2 is int
+using T3 = aal::idiv_result_t<unsigned int, int>; // T3 is long long
 ----

@@ -5,6 +5,7 @@
 
 #include "aliases.hpp"
 #include <type_traits>
+#include <utility>
 
 namespace aal {
 
@@ -420,13 +421,20 @@ struct idiv_result
 {
   static_assert(conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, "given two types must be nonbool integral");
 
-  // branch 1: T2 is signed, may require a signed result type whose size > sizeof(T1)
-  // e.g. T1 is signed: -2147483648 / -1 = 2147483648LL
-  // e.g. T1 is unsigned : 4294967295U / -1 = -4294967295LL
+  // cv-qualifiers are removed after integral promotion
+  using dividend_type = decltype(+::std::declval<T1>()); // the "type1" in the comments
+  using divisor_type  = decltype(+::std::declval<T2>()); // the "type2" in the comments
 
-  // branch 2: T2 is unsigned, the result never overflows
+  // branch 1: type2 is unsigned, i.e. the divisor is positive, the result never overflows type1
 
-  using type = t_conditional_t<is_signed<T2>, make_larger_width_t<make_signed_t<remove_cv_t<T1>>>, remove_cv_t<T1>>;
+  // branch 2: type2 is signed, the result type has to be a signed type larger than type1
+  //   e.g. -2147483648 (int) / -1 = 2147483648
+  //   e.g. 4294967295 (unsigned int) / -1 = -4294967295
+  //   both of the above require long long as the result type
+
+  using type = t_conditional_t<is_unsigned<divisor_type>, dividend_type, make_larger_width_t<make_signed_t<dividend_type>>>;
+
+  // if dividend_type is i/u128, then the potential overflow is inevitable when type2 is signed, since there's no larger type
 };
 
 template <typename T1, typename T2>
