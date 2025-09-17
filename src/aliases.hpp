@@ -8,26 +8,26 @@
 #include <cstdint>
 #include <limits>
 
-using i8  = std::int8_t;
-using u8  = std::uint8_t;
-using i16 = std::int16_t;
-using u16 = std::uint16_t;
-using i32 = std::int32_t;
-using u32 = std::uint32_t;
-using i64 = std::int64_t;
-using u64 = std::uint64_t;
+using i8  = ::std::int8_t;
+using u8  = ::std::uint8_t;
+using i16 = ::std::int16_t;
+using u16 = ::std::uint16_t;
+using i32 = ::std::int32_t;
+using u32 = ::std::uint32_t;
+using i64 = ::std::int64_t;
+using u64 = ::std::uint64_t;
 
 #if AAL_MSVC
 #include <__msvc_int128.hpp>
-using i128 = std::_Signed128;
-using u128 = std::_Unsigned128;
+using i128 = ::std::_Signed128;
+using u128 = ::std::_Unsigned128;
 #else
 using i128 = __int128;
 using u128 = unsigned __int128;
 #endif // MSVC
 
-using diff_t = std::ptrdiff_t;
-using size_t = std::size_t;
+using diff_t = ::std::ptrdiff_t;
+using size_t = ::std::size_t;
 
 using f32 = float;
 using f64 = double;
