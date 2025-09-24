@@ -36,6 +36,9 @@ struct type_identity
 template <typename T>
 using type_identity_t = typename type_identity<T>::type;
 
+template <typename...>
+using void_t = void;
+
 template <typename... Ts>
 using common_type_t = typename ::std::common_type<Ts...>::type;
 

@@ -32,6 +32,10 @@ of which the given type must have a member constant `value` that is convertible 
 
 Same as C++20 `std::type_identity` and `std::type_identity_t`.
 
+=== `aal::void_t`
+
+Same as C++17 `std::void_t`.
+
 === `aal::common_type_t`
 
 Same as C++14 `std::common_type_t`.
