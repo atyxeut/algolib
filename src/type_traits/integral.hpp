@@ -30,6 +30,7 @@ template <typename T>
 constexpr bool is_int128_v = is_int128<T>::value;
 #endif // C++14
 
+// 128-bit integers are considered integral
 template <typename T>
 struct is_integral : disjunction<::std::is_integral<T>, is_int128<T>>
 {
@@ -40,6 +41,7 @@ template <typename T>
 constexpr bool is_integral_v = is_integral<T>::value;
 #endif // C++14
 
+// std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
 struct is_standard_integral : conjunction<::std::is_integral<T>, negation<is_int128<T>>>
 {
@@ -50,6 +52,7 @@ template <typename T>
 constexpr bool is_standard_integral_v = is_standard_integral<T>::value;
 #endif // C++14
 
+// 128-bit integers are considered integral
 template <typename T>
 struct is_nonbool_integral : conjunction<is_integral<T>, negation<is_bool<T>>>
 {
@@ -60,6 +63,7 @@ template <typename T>
 constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
 #endif // C++14
 
+// i128 support is added
 template <typename T>
 struct is_signed : disjunction<::std::is_same<remove_cv_t<T>, i128>, ::std::is_signed<T>>
 {
@@ -70,6 +74,7 @@ template <typename T>
 constexpr bool is_signed_v = is_signed<T>::value;
 #endif // C++14
 
+// u128 support is added
 template <typename T>
 struct is_unsigned : disjunction<::std::is_same<remove_cv_t<T>, u128>, ::std::is_unsigned<T>>
 {
@@ -90,6 +95,7 @@ template <typename T>
 constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
 #endif // C++14
 
+// i128 support is added
 template <typename T>
 struct make_signed
 {
@@ -100,6 +106,7 @@ struct make_signed
 template <typename T>
 using make_signed_t = typename make_signed<T>::type;
 
+// u128 support is added
 template <typename T>
 struct make_unsigned
 {
@@ -142,6 +149,9 @@ struct make_larger_width_selector<T, sizeof(i128)>
 
 } // namespace details
 
+// for the given integer type, obtains i32 if its width is smaller than the width of i32,
+// otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
+// cv-qualifiers and signedness are kept
 template <typename T>
 struct make_larger_width
 {

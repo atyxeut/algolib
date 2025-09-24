@@ -60,6 +60,7 @@ struct claim_cv_selector<TFrom, TTo, false, false>
 
 } // namespace details
 
+// extracts the cv-qualifiers of a TFrom and apply them to TTo
 template <typename TFrom, typename TTo>
 struct claim_cv
 {

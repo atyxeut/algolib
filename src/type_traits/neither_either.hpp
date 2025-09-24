@@ -7,6 +7,7 @@
 
 namespace aal {
 
+// checks if neither of the other given types is the same as the first given type
 template <typename, typename...>
 struct is_none_of;
 
@@ -25,6 +26,7 @@ template <typename T, typename... Ts>
 constexpr bool is_none_of_v = is_none_of<T, Ts...>::value;
 #endif // C++14
 
+// checks if any of the other given types is the same as the first given type
 template <typename T, typename... Ts>
 struct is_any_of : negation<is_none_of<T, Ts...>>
 {

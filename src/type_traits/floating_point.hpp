@@ -19,6 +19,7 @@ template <typename T>
 constexpr bool is_f128_v = is_f128<T>::value;
 #endif // C++14
 
+// f128 is considered floating-point
 template <typename T>
 struct is_floating_point : disjunction<::std::is_floating_point<T>, is_f128<T>>
 {
@@ -29,6 +30,7 @@ template <typename T>
 constexpr bool is_floating_point_v = is_floating_point<T>::value;
 #endif // C++14
 
+// std::is_floating_point_v<f128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
 struct is_standard_floating_point : conjunction<::std::is_floating_point<T>, negation<is_f128<T>>>
 {
@@ -71,6 +73,9 @@ struct make_higher_precision_selector<T, f128>
 
 } // namespace details
 
+// for the given floating-point type, obtains a floating-point that has higher precision,
+// if there is no such a type, obtains the given type
+// cv-qualifiers are kept
 template <typename T>
 struct make_higher_precision
 {
