@@ -1,4 +1,4 @@
-= src/math/overflow_detection.hpp
+= src/math/int_ops/overflow_detection.hpp
 :stem:
 
 Provides helper functions to detect if an arithmetic operation overflows.
