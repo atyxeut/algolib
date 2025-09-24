@@ -3,7 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/md_array_vector.hpp */
 
-#include "type_traits.hpp"
+#include "macros/constexpr.hpp"
+#include "type_traits/integral.hpp"
+#include "type_traits/sfinae.hpp"
 #include <array>
 #include <utility>
 #include <vector>

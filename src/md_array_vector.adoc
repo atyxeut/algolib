@@ -6,7 +6,7 @@ Provides type aliases and helper functions to ease the creation of multidimentio
 
 Standard headers: `<array>`, `<utility>`, `<vector>`.
 
-Custom headers: `src/type_traits.hpp`.
+Custom headers: `src/macros/constexpr.hpp`, `src/type_traits/integral.hpp`, `src/type_traits/sfinae.hpp`.
 
 == Content
 
