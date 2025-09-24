@@ -2,21 +2,13 @@
 
 Provides type aliases and helper functions to ease the creation of multidimentional (nested) `std::array` and `std::vector`.
 
-== Required includes
+== Types
 
-Standard headers: `<array>`, `<utility>`, `<vector>`.
-
-Custom headers: `src/macros/constexpr.hpp`, `src/type_traits/integral.hpp`, `src/type_traits/sfinae.hpp`.
-
-== Content
-
-=== Types
-
-==== `aal::array`
+=== `aal::array`
 
 A multidimentional `std::array` type.
 
-===== Example
+==== Example
 
 [source, C++]
 ----
@@ -24,11 +16,11 @@ A multidimentional `std::array` type.
 aal::array<int, 3, 5, 2> arr3d {};
 ----
 
-==== `aal::vector`
+=== `aal::vector`
 
 A multidimentional `std::vector` type.
 
-===== Example
+==== Example
 
 [source, C++]
 ----
@@ -39,13 +31,13 @@ aal::vector<int> vec1d;
 aal::vector<int, 4> vec4d;
 ----
 
-=== Helper functions
+== Helper functions
 
-==== `aal::fill_array` (`constexpr` since C++20)
+=== `aal::fill_array` (`constexpr` since C++20)
 
 Sets the given value to every element of the target array.
 
-===== Example
+==== Example
 
 [source, C++]
 ----
@@ -54,11 +46,11 @@ aal::fill_array(arr4d, -1);
 // now every element of arr4d is -1
 ----
 
-==== `aal::make_array` (`constexpr` since C++20)
+=== `aal::make_array` (`constexpr` since C++20)
 
 Creates a `aal::array` object and calls `aal::fill_array` on it.
 
-===== Example
+==== Example
 
 [source, C++]
 ----
@@ -67,11 +59,11 @@ Creates a `aal::array` object and calls `aal::fill_array` on it.
 auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
 ----
 
-==== `aal::make_vector`
+=== `aal::make_vector`
 
 Directly obtains a `aal::vector` object.
 
-===== Example
+==== Example
 
 [source, C++]
 ----

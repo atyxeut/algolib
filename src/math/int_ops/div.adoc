@@ -1,41 +1,12 @@
-= src/math/int_ops.hpp
+= src/math/int_ops/div.hpp
 :stem:
 
-Provides various helper functions for integer operations.
+Provides functions `aal::idiv_floor` and `aal::idiv_ceil` (both `constexpr` since C++14, `noexcept`) to compute
+asciimath:[floor(a / b)] and asciimath:[ceil(a / b)] for integers asciimath:[a, b] without introducing floating-point numbers.
 
-== Required includes
+These functions can correctly handle operands that have different width and signedness.
 
-Custom headers: `src/math/operators.hpp`.
-
-== Content
-
-=== `aal::iabs` (`constexpr`, `noexcept`)
-
-Similar to integral versions of `std::abs`, but supports unsigned integers and 128-bit integers, and the result is returned in the corresponding unsigned type.
-
-==== Example
-
-[source, C++]
-----
-// 2147483648, no signed int overflow
-unsigned int t = aal::iabs(-2147483647 - 1);
-----
-
-==== Rationales
-
-Let asciimath:[n] be an negative integer, if the bit representation of asciimath:[n] is two's complement, then `~n + 1`
-is the absolute value of asciimath:[n], i.e. asciimath:[-n]. To avoid overflow when asciimath:[n] has the signed minimum value,
-we need to cast the type to unsigned first.
-
-Luckily, GCC's implementation always uses two's complement, and preserves the original bit patterns during signed-unsigned conversions,
-see link:https://gcc.gnu.org/onlinedocs/gcc/Integers-implementation.html[this] (this becomes standard since C++20).
-
-=== `aal::idiv_floor` and `aal::idiv_ceil` (both `constexpr` since C++14, `noexcept`)
-
-Used to compute asciimath:[floor(a / b)] and asciimath:[ceil(a / b)] for integers asciimath:[a, b] without introducing floating-point numbers.
-Can correctly handle operands that have different width and signedness.
-
-==== Example
+== Example
 
 [source, C++]
 ----
@@ -47,13 +18,13 @@ int ans = aal::idiv_ceil(5, 2)   // 3
 int ans = aal::idiv_ceil(-5, 2)  // -2
 ----
 
-==== Undefined behaviors (will be detected if macro `NDEBUG` is not defined)
+== Undefined behaviors (will be detected if macro `NDEBUG` is not defined)
 
 If the second arguments is 0, the behavior is undefined.
 
 If the result cannot be represented by the return type, the behavior is undefined (see code comments for details).
 
-==== Rationales
+== Rationales
 
 Let asciimath:[a, b, q, r] be the dividend, divisor, quotient and remainder respectively.
 With the theorem of link:https://en.wikipedia.org/wiki/Euclidean_division[Euclidean division],
@@ -69,11 +40,12 @@ When executing `a / b` in C++, the build-in `/` operator automatically drops the
 that is to say, it performs flooring, ceiling on the quotient when asciimath:[a b > 0], asciimath:[a b < 0].
 As a result, there are also special methods that only apply to a limited range of integers.
 
-==== A special method for asciimath:[floor(a / b)] when asciimath:[a b < 0]
+=== A special method for asciimath:[floor(a / b)] when asciimath:[a b < 0]
 
-Let asciimath:[q = floor(a / b)], if asciimath:[a < 0] and asciimath:[b > 0], then asciimath:[q = ceil((a + 1 - b) / b)]; if asciimath:[a > 0] and asciimath:[b < 0], then asciimath:[q = ceil((a - 1 - b) / b)].
+Let asciimath:[q = floor(a / b)], if asciimath:[a < 0] and asciimath:[b > 0], then asciimath:[q = ceil((a + 1 - b) / b)];
+if asciimath:[a > 0] and asciimath:[b < 0], then asciimath:[q = ceil((a - 1 - b) / b)].
 
-===== Proof
+==== Proof
 
 Under the hypothesis, asciimath:[a + 1 - b] is guaranteed to be negative, thus `(a + 1 - b) / b` in C++ performs ceiling on the quotient.
 
@@ -90,11 +62,12 @@ For the case when asciimath:[a > 0] and asciimath:[b < 0],
 we can prove it by replacing asciimath:[a, b] with latexmath:[-a, -b] in the former formula.
 The ceiling operation is still guaranteed, since asciimath:[a - 1 - b > 0] for asciimath:[a > 0] and asciimath:[b < 0].
 
-==== A special method for asciimath:[ceil(a / b)] when asciimath:[a b > 0]
+=== A special method for asciimath:[ceil(a / b)] when asciimath:[a b > 0]
 
-Let asciimath:[q = ceil(a / b)], if asciimath:[a > 0] and asciimath:[b > 0], then asciimath:[q = floor((a - 1 + b) / b)]; if asciimath:[a < 0] and asciimath:[b < 0], asciimath:[q = floor((a + 1 + b) / b)].
+Let asciimath:[q = ceil(a / b)], if asciimath:[a > 0] and asciimath:[b > 0], then asciimath:[q = floor((a - 1 + b) / b)];
+if asciimath:[a < 0] and asciimath:[b < 0], asciimath:[q = floor((a + 1 + b) / b)].
 
-===== Proof
+==== Proof
 
 Under the hypothesis, asciimath:[a - 1 + b > 0] is guaranteed, so `(a - 1 + b) / b` in C++ performs flooring on the quotient.
 

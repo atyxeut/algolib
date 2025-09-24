@@ -3,7 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/overflow_detection.hpp */
 
-#include "../type_traits.hpp"
+#include "../../aliases/numeric_limits.hpp"
+#include "../../macros/constexpr.hpp"
+#include "../../type_traits/integral.hpp"
 #include <cassert>
 
 namespace aal {

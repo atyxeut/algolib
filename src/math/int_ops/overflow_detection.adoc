@@ -3,19 +3,11 @@
 
 Provides helper functions to detect if an arithmetic operation overflows.
 
-== Required includes
-
-Standard headers: `<cassert>`.
-
-Custom headers: `src/type_traits.hpp`.
-
-== Content
-
-=== `aal::iadd_overflows` (`constexpr` since C++14, `noexcept`)
+== `aal::iadd_overflows` (`constexpr` since C++14, `noexcept`)
 
 Checks if the addition of two nonnegative integers will overflow the given result type.
 
-==== Example
+=== Example
 
 [source, C++]
 ----
@@ -23,15 +15,15 @@ Checks if the addition of two nonnegative integers will overflow the given resul
 assert(!aal::iadd_overflows<int>(1, 2147483647));
 ----
 
-==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+=== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
 
 If one of the integer arguments is negative, the behavior is undefined.
 
-=== `aal::imul_overflows` (`constexpr` since C++14, `noexcept`)
+== `aal::imul_overflows` (`constexpr` since C++14, `noexcept`)
 
 Checks if the multiplication of two nonnegative integers will overflow the given result type.
 
-==== Example
+=== Example
 
 [source, C++]
 ----
@@ -39,11 +31,11 @@ Checks if the multiplication of two nonnegative integers will overflow the given
 assert(!aal::imul_overflows<int>(1000000, 1000000));
 ----
 
-==== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
+=== Undefined behavior list (will be detected if macro `NDEBUG` is not defined)
 
 If one of the integer arguments is negative, the behavior is undefined.
 
-==== Rationales
+=== Rationales
 
 Let asciimath:[a, b] be nonnegative integers, and asciimath:[c] be the max value of the result type (also a nonnegative integer).
 If asciimath:[b = 0], the result never overflows, else the correctness relies on this proposition:

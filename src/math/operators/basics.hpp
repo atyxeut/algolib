@@ -1,7 +1,9 @@
-#ifndef AAL_SRC_MATH_OPERATORS_HPP
-#define AAL_SRC_MATH_OPERATORS_HPP
+#ifndef AAL_SRC_MATH_OPERATORS_BASICS_HPP
+#define AAL_SRC_MATH_OPERATORS_BASICS_HPP
 
-#include "overflow_detection.hpp"
+/* https://github.com/atyxeut/algolib/blob/main/src/math/operators/basics.hpp */
+
+#include "../../type_traits/sfinae.hpp"
 
 namespace aal { namespace ops {
 
@@ -35,4 +37,4 @@ enum class mode
 
 }} // namespace aal::ops
 
-#endif // AAL_SRC_MATH_OPERATORS_HPP
+#endif // AAL_SRC_MATH_OPERATORS_BASICS_HPP
