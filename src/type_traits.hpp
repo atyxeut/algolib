@@ -440,6 +440,28 @@ struct idiv_result
 template <typename T1, typename T2>
 using idiv_result_t = typename idiv_result<T1, T2>::type;
 
+namespace details {
+
+template <typename T, typename = t_enable_if_t<is_integral<T>>>
+struct integral_wrapper_impl;
+
+} // namespace details
+
+template <typename T>
+using integral_wrapper = details::integral_wrapper_impl<T>;
+
+template <typename>
+struct unwrap_integral;
+
+template <typename T>
+struct unwrap_integral<integral_wrapper<T>>
+{
+  using type = T;
+};
+
+template <typename T>
+using unwrap_integral_t = typename unwrap_integral<T>::type;
+
 } // namespace aal
 
 #endif // AAL_SRC_TYPE_TRAITS_HPP

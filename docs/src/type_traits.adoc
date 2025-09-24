@@ -219,3 +219,13 @@ using T = aal::idiv_result_t<int, int>; // T is long long
 using T2 = aal::idiv_result_t<int, unsigned int>; // T2 is int
 using T3 = aal::idiv_result_t<unsigned int, int>; // T3 is long long
 ----
+
+=== `aal::integral_wrapper`
+
+An incomplete type to wrap integer types.
+
+=== `aal::unwrap_integral`
+
+Extracts the type from a `aal::integral_wrapper`.
+
+Its helper alias template is `aal::unwrap_integral_t`.
