@@ -1,0 +1,10 @@
+= src/math/operators.hpp
+:stem:
+
+Provides operator types and helpers.
+
+== Required includes
+
+Custom headers: `src/math/overflow_detection.hpp`
+
+== Content
