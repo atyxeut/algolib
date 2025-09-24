@@ -3,7 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/integer_sequence.hpp */
 
-#include "aliases.hpp"
+// backports C++14 std::integer_sequence and its helpers, and add custom helpers
+// implementation details are learned from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
+
+#include "aliases/integral.hpp"
 
 namespace aal {
 
