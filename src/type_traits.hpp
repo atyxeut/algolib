@@ -443,9 +443,11 @@ struct idiv_result
 template <typename T1, typename T2>
 using idiv_result_t = typename idiv_result<T1, T2>::type;
 
+struct empty_integral;
+
 namespace details {
 
-template <typename T, typename = t_enable_if_t<is_integral<T>>>
+template <typename T, typename = t_enable_if_t<disjunction<is_integral<T>, ::std::is_same<T, empty_integral>>>>
 struct integral_wrapper_impl;
 
 } // namespace details
@@ -453,14 +455,51 @@ struct integral_wrapper_impl;
 template <typename T>
 using integral_wrapper = details::integral_wrapper_impl<T>;
 
+using empty_integral_wrapper = integral_wrapper<empty_integral>;
+
 template <typename>
-struct unwrap_integral;
+struct is_integral_wrapper : ::std::false_type
+{
+};
 
 template <typename T>
-struct unwrap_integral<integral_wrapper<T>>
+struct is_integral_wrapper<integral_wrapper<T>> : ::std::true_type
+{
+};
+
+#if CPP14
+template <typename T>
+constexpr bool is_integral_wrapper_v = is_integral_wrapper<T>::value;
+#endif // C++14
+
+template <typename T>
+struct is_empty_integral_wrapper : ::std::is_same<T, empty_integral_wrapper>
+{
+};
+
+#if CPP14
+template <typename T>
+constexpr bool is_empty_integral_wrapper_v = is_empty_integral_wrapper<T>::value;
+#endif // C++14
+
+namespace details {
+
+template <typename>
+struct unwrap_integral_impl;
+
+template <>
+struct unwrap_integral_impl<empty_integral_wrapper>;
+
+template <typename T>
+struct unwrap_integral_impl<integral_wrapper<T>>
 {
   using type = T;
 };
+
+} // namespace details
+
+template <typename T>
+using unwrap_integral = details::unwrap_integral_impl<T>;
 
 template <typename T>
 using unwrap_integral_t = typename unwrap_integral<T>::type;

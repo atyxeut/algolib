@@ -224,12 +224,30 @@ using T2 = aal::idiv_result_t<int, unsigned int>; // T2 is int
 using T3 = aal::idiv_result_t<unsigned int, int>; // T3 is long long
 ----
 
+=== `aal::empty_integral`
+
+An incomplete type representing an empty integer type.
+
 === `aal::integral_wrapper`
 
 An incomplete type to wrap integer types.
 
+Particularly for `aal::integral_wrapper<aal::empty_integral>`, there is an alias `aal::empty_integral_wrapper`.
+
+=== `aal::is_integral_wrapper`
+
+Checks if the given type is `aal::integral_wrapper`.
+
+Helper variable template `aal::is_integral_wrapper_v` is available since C++14.
+
+=== `aal::is_empty_integral_wrapper`
+
+Checks if the given type is `aal::empty_integral_wrapper`.
+
+Helper variable template `aal::is_empty_integral_wrapper_v` is available since C++14.
+
 === `aal::unwrap_integral`
 
-Extracts the type from a `aal::integral_wrapper`.
+Extracts the type from a `aal::integral_wrapper`. Note that there is no type to extract from `aal::empty_integral_wrapper`.
 
 Its helper alias template is `aal::unwrap_integral_t`.
