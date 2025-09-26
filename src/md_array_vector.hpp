@@ -5,7 +5,6 @@
 
 #include "macros/constexpr.hpp"
 #include "type_traits/integral.hpp"
-#include "type_traits/sfinae.hpp"
 #include <array>
 #include <utility>
 #include <vector>
@@ -51,13 +50,13 @@ template <typename T, size_t DimCnt = 1>
 using vector = typename details::vector_impl<T, DimCnt>::type;
 
 template <typename TElem, size_t Dim, typename T>
-AAL_CONSTEXPR20 auto fill_array(::std::array<TElem, Dim>& arr, const T& val) -> enable_if_t<::std::is_convertible<T, TElem>::value>
+AAL_CONSTEXPR20 auto fill_array(::std::array<TElem, Dim>& arr, const T& val) -> typename ::std::enable_if<::std::is_convertible<T, TElem>::value>::type
 {
   arr.fill(val);
 }
 
 template <typename TElem, size_t Dim, typename T>
-AAL_CONSTEXPR20 auto fill_array(::std::array<TElem, Dim>& arr, const T& val) -> enable_if_t<!::std::is_convertible<T, TElem>::value>
+AAL_CONSTEXPR20 auto fill_array(::std::array<TElem, Dim>& arr, const T& val) -> typename ::std::enable_if<!::std::is_convertible<T, TElem>::value>::type
 {
   for (auto& inner_arr : arr)
     fill_array(inner_arr, val);
