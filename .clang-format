@@ -141,6 +141,9 @@ BraceWrapping:
   BeforeLambdaBody: true
   BeforeElse: true
   BeforeCatch: true
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
 Cpp11BracedListStyle: true
 BinPackLongBracedList: true
 SpaceBeforeCpp11BracedList: true
