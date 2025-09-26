@@ -68,8 +68,8 @@ BreakBeforeBinaryOperators: None
 BreakBeforeTernaryOperators: true
 
 # control statement
-AllowShortBlocksOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
 IndentCaseLabels: true
 IndentCaseBlocks: false
 AllowShortCaseLabelsOnASingleLine: false
@@ -81,26 +81,26 @@ IndentGotoLabels: false
 
 # function
 AlignAfterOpenBracket: BlockIndent
-AllowShortFunctionsOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: None
 BinPackArguments: true
 AllowAllArgumentsOnNextLine: true
 BinPackParameters: BinPack
 AllowAllParametersOfDeclarationOnNextLine: true
 BreakAfterAttributes: Leave
 IndentWrappedFunctionNames: false
-SpaceAfterOperatorKeyword: false
+SpaceAfterOperatorKeyword: true
 
 # lambda expression
-AllowShortLambdasOnASingleLine: All
+AllowShortLambdasOnASingleLine: Inline
 LambdaBodyIndentation: Signature
 
 # class
 IndentAccessModifiers: false
 ConstructorInitializerIndentWidth: 2
 PackConstructorInitializers: BinPack
-BreakConstructorInitializers: AfterColon
+BreakConstructorInitializers: BeforeColon
 SpaceBeforeCtorInitializerColon: true
-BreakInheritanceList: AfterColon
+BreakInheritanceList: BeforeColon
 SpaceBeforeInheritanceColon: true
 AlignConsecutiveBitFields:
   Enabled: true
@@ -111,7 +111,7 @@ AllowShortEnumsOnASingleLine: false
 #namespace / extern / export
 IndentExternBlock: false
 FixNamespaceComments: true
-ShortNamespaceLines: 1
+ShortNamespaceLines: 0
 NamespaceIndentation: None
 IndentExportBlock: false
 CompactNamespaces: true
@@ -131,14 +131,14 @@ RequiresClausePosition: WithPreceding
 # parentheses / brace
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterControlStatement: Always
+  AfterControlStatement: Never
   AfterExternBlock: false
   AfterFunction: true
   AfterClass: true
   AfterStruct: true
   AfterUnion: true
   AfterEnum: true
-  BeforeLambdaBody: false
+  BeforeLambdaBody: true
   BeforeElse: true
   BeforeCatch: true
 Cpp11BracedListStyle: true
