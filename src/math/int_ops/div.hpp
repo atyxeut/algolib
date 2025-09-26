@@ -52,26 +52,21 @@ AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<
   // idiv_result<T1, T2>::type guarantees a type that can represent the result,
   // overflow occurs only when there's no such a type, i.e. the result requires a type larger than i/u128
 
-  if (q > 0) // no way to overflow if q = 0
-  {
-    if (!modify_quotient) // in this case, |ans| = q
-    {
+  if (q > 0) { // no way to overflow if q = 0
+    if (!modify_quotient) { // in this case, |ans| = q
       if (is_quotient_negative) // the answer is -q, so q must be <= result_max + 1
         assert(!iadd_overflows<result_type>(q - 1, 0) && "the result cannot be represented");
       else // the answer is q, so q must be <= result_max
         assert(!iadd_overflows<result_type>(q, 0) && "the result cannot be represented");
     }
-    else // in this case, r != 0, then |rhs| >= 2 is guaranteed, so q is at most floor(uresult_max / 2) = result_max
-    {
-      if (is_quotient_negative)
-      {
+    else { // in this case, r != 0, then |rhs| >= 2 is guaranteed, so q is at most floor(uresult_max / 2) = result_max
+      if (is_quotient_negative) {
         if (Mode == ops::mode::floor) // the answer is -q - 1, so q + 1 must be <= result_max + 1, which is always satisfied
           ;
         if (Mode == ops::mode::ceil) // the answer is -q + 1, so q - 1 must be <= result_max + 1, which is always satisfied
           ;
       }
-      else
-      {
+      else {
         if (Mode == ops::mode::floor) // the answer is q, so q must be <= result_max, which is always satisfied
           ;
         if (Mode == ops::mode::ceil) // the answer is q + 1, so q + 1 must be <= result_max

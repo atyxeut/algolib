@@ -60,9 +60,7 @@ template <typename TElem, size_t Dim, typename T>
 AAL_CONSTEXPR20 auto fill_array(::std::array<TElem, Dim>& arr, const T& val) -> enable_if_t<!::std::is_convertible<T, TElem>::value>
 {
   for (auto& inner_arr : arr)
-  {
     fill_array(inner_arr, val);
-  }
 }
 
 template <typename TElem, size_t... Dims, typename T>

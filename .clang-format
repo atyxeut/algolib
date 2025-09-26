@@ -28,7 +28,7 @@ PenaltyIndentedWhitespace: 1
 PenaltyReturnTypeOnItsOwnLine: 20
 
 # comment
-AlignTrailingComments: Always
+AlignTrailingComments: Leave
 SpacesBeforeTrailingComments: 1
 SpacesInLineCommentPrefix:
   Minimum: 1
