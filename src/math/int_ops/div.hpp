@@ -28,7 +28,7 @@ struct idiv_result
   //   e.g. 4294967295 (unsigned int) / -1 = -4294967295
   //   both of the above require long long as the result type
 
-  using type = t_conditional_t<is_unsigned<divisor_type>, dividend_type, make_larger_width_t<make_signed_t<dividend_type>>>;
+  using type = typename ::std::conditional<is_unsigned<divisor_type>::value, dividend_type, make_larger_width_t<make_signed_t<dividend_type>>>::type;
 
   // if dividend_type is i/u128, then the potential overflow is inevitable when type2 is signed, since there's no larger type
 };

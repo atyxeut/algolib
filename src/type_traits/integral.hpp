@@ -4,7 +4,6 @@
 /* https://github.com/atyxeut/algolib/blob/main/src/type_traits/integral.hpp */
 
 #include "../aliases/integral.hpp"
-#include "conditional.hpp"
 #include "cvref.hpp"
 #include "logical.hpp"
 
@@ -100,7 +99,7 @@ template <typename T>
 struct make_signed
 {
   // lazy evaluation of std::make_signed<T>::type to avoid compilation error
-  using type = typename t_conditional_t<is_int128<T>, claim_cv<T, i128>, ::std::make_signed<T>>::type;
+  using type = typename ::std::conditional<is_int128<T>::value, claim_cv<T, i128>, ::std::make_signed<T>>::type::type;
 };
 
 template <typename T>
@@ -111,7 +110,7 @@ template <typename T>
 struct make_unsigned
 {
   // lazy evaluation of std::make_unsigned<T>::type to avoid compilation error
-  using type = typename t_conditional_t<is_int128<T>, claim_cv<T, u128>, ::std::make_unsigned<T>>::type;
+  using type = typename ::std::conditional<is_int128<T>::value, claim_cv<T, u128>, ::std::make_unsigned<T>>::type::type;
 };
 
 template <typename T>
@@ -119,26 +118,26 @@ using make_unsigned_t = typename make_unsigned<T>::type;
 
 namespace details {
 
-// use specialization to avoid nested conditional_t
+// use specialization to avoid nested std::conditional
 template <typename T, size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
 struct make_larger_width_selector;
 
 template <typename T>
 struct make_larger_width_selector<T, 0>
 {
-  using type = t_conditional_t<is_signed<T>, claim_cv_t<T, i32>, claim_cv_t<T, u32>>;
+  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i32>, claim_cv_t<T, u32>>::type;
 };
 
 template <typename T>
 struct make_larger_width_selector<T, sizeof(i32)>
 {
-  using type = t_conditional_t<is_signed<T>, claim_cv_t<T, i64>, claim_cv_t<T, u64>>;
+  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i64>, claim_cv_t<T, u64>>::type;
 };
 
 template <typename T>
 struct make_larger_width_selector<T, sizeof(i64)>
 {
-  using type = t_conditional_t<is_signed<T>, claim_cv_t<T, i128>, claim_cv_t<T, u128>>;
+  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i128>, claim_cv_t<T, u128>>::type;
 };
 
 template <typename T>
