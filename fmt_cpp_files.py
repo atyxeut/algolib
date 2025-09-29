@@ -2,7 +2,6 @@
 
 from pathlib import Path
 import subprocess
-import time
 
 
 def fmt(path: Path, dep: int = 0) -> None:
@@ -15,9 +14,5 @@ def fmt(path: Path, dep: int = 0) -> None:
         subprocess.run(["clang-format", "-style=file", "-i", path])
 
 
-begin_time_point = time.perf_counter()
-
 fmt(Path(".").resolve())
-
-end_time_point = time.perf_counter()
-print(f"Done in {end_time_point - begin_time_point:.2f}s")
+print("Done.")

@@ -19,7 +19,7 @@ struct idiv_result
 
   // cv-qualifiers are removed after integral promotion
   using dividend_type = decltype(+::std::declval<T1>()); // the "type1" in the comments
-  using divisor_type  = decltype(+::std::declval<T2>()); // the "type2" in the comments
+  using divisor_type = decltype(+::std::declval<T2>()); // the "type2" in the comments
 
   // branch 1: type2 is unsigned, i.e. the divisor is positive, the result never overflows type1
 
@@ -45,7 +45,7 @@ AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<
   auto lhs_abs = iabs(lhs);
   auto rhs_abs = iabs(rhs);
 
-  auto q               = lhs_abs / rhs_abs;
+  auto q = lhs_abs / rhs_abs;
   bool modify_quotient = lhs_abs % rhs_abs != 0;
 
 #ifndef NDEBUG

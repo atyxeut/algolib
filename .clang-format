@@ -48,7 +48,7 @@ AlignConsecutiveDeclarations:
   AcrossEmptyLines: false
   AcrossComments: false
 AlignConsecutiveAssignments:
-  Enabled: true
+  Enabled: false
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: true

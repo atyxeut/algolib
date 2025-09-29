@@ -59,7 +59,7 @@ AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename ::std::enable_if<is_n
 {
   assert(x >= 0 && "the given operand must be nonnegative");
 
-  using unsigned_T          = make_unsigned_t<T>;
+  using unsigned_T = make_unsigned_t<T>;
   using unsigned_promoted_T = make_unsigned_t<decltype(+x)>;
   return x == 0 ? ::std::numeric_limits<unsigned_T>::digits : details::countl_zero_impl<::std::numeric_limits<unsigned_promoted_T>::digits>(x);
 }
