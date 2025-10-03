@@ -11,12 +11,12 @@
 namespace aal {
 
 template <typename T, typename = void>
-struct can_call_std_begin : ::std::false_type
+struct can_call_std_begin : std::false_type
 {
 };
 
 template <typename T>
-struct can_call_std_begin<T, void_t<decltype(::std::begin(::std::declval<T&>()))>> : ::std::true_type
+struct can_call_std_begin<T, void_t<decltype(std::begin(std::declval<T&>()))>> : std::true_type
 {
 };
 
@@ -26,12 +26,12 @@ constexpr bool can_call_std_begin_v = can_call_std_begin<T>::value;
 #endif // C++14
 
 template <typename T, typename = void>
-struct can_call_std_end : ::std::false_type
+struct can_call_std_end : std::false_type
 {
 };
 
 template <typename T>
-struct can_call_std_end<T, void_t<decltype(::std::end(::std::declval<T&>()))>> : ::std::true_type
+struct can_call_std_end<T, void_t<decltype(std::end(std::declval<T&>()))>> : std::true_type
 {
 };
 

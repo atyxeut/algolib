@@ -8,7 +8,7 @@
 namespace aal {
 
 template <bool B, typename TTrue, typename TFalse>
-using conditional_t = typename ::std::conditional<B, TTrue, TFalse>::type;
+using conditional_t = typename std::conditional<B, TTrue, TFalse>::type;
 
 // same as conditional_t, except that the first template parameter is a type parameter
 // the given type must have a member constant value that is convertible to bool

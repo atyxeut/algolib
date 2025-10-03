@@ -9,7 +9,7 @@
 namespace aal {
 
 template <typename T>
-struct negation : ::std::integral_constant<bool, !static_cast<bool>(T::value)>
+struct negation : std::integral_constant<bool, !static_cast<bool>(T::value)>
 {
 };
 
@@ -19,17 +19,17 @@ constexpr bool negation_v = negation<T>::value;
 #endif // C++14
 
 template <typename...>
-struct conjunction : ::std::true_type
+struct conjunction : std::true_type
 {
 };
 
 template <typename T>
-struct conjunction<T> : ::std::integral_constant<bool, static_cast<bool>(T::value)>
+struct conjunction<T> : std::integral_constant<bool, static_cast<bool>(T::value)>
 {
 };
 
 template <typename T, typename... Ts>
-struct conjunction<T, Ts...> : ::std::conditional<static_cast<bool>(T::value), conjunction<Ts...>, conjunction<T>>::type
+struct conjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), conjunction<Ts...>, conjunction<T>>::type
 {
 };
 
@@ -39,17 +39,17 @@ constexpr bool conjunction_v = conjunction<Ts...>::value;
 #endif // C++14
 
 template <typename...>
-struct disjunction : ::std::false_type
+struct disjunction : std::false_type
 {
 };
 
 template <typename T>
-struct disjunction<T> : ::std::integral_constant<bool, static_cast<bool>(T::value)>
+struct disjunction<T> : std::integral_constant<bool, static_cast<bool>(T::value)>
 {
 };
 
 template <typename T, typename... Ts>
-struct disjunction<T, Ts...> : ::std::conditional<static_cast<bool>(T::value), disjunction<T>, disjunction<Ts...>>::type
+struct disjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), disjunction<T>, disjunction<Ts...>>::type
 {
 };
 

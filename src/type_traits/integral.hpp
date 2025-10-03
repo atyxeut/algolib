@@ -10,7 +10,7 @@
 namespace aal {
 
 template <typename T>
-struct is_bool : ::std::is_same<remove_cv_t<T>, bool>
+struct is_bool : std::is_same<remove_cv_t<T>, bool>
 {
 };
 
@@ -20,7 +20,7 @@ constexpr bool is_bool_v = is_bool<T>::value;
 #endif // C++14
 
 template <typename T>
-struct is_int128 : disjunction<::std::is_same<remove_cv_t<T>, i128>, ::std::is_same<remove_cv_t<T>, u128>>
+struct is_int128 : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_same<remove_cv_t<T>, u128>>
 {
 };
 
@@ -31,7 +31,7 @@ constexpr bool is_int128_v = is_int128<T>::value;
 
 // 128-bit integers are considered integral
 template <typename T>
-struct is_integral : disjunction<::std::is_integral<T>, is_int128<T>>
+struct is_integral : disjunction<std::is_integral<T>, is_int128<T>>
 {
 };
 
@@ -42,7 +42,7 @@ constexpr bool is_integral_v = is_integral<T>::value;
 
 // std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_integral : conjunction<::std::is_integral<T>, negation<is_int128<T>>>
+struct is_standard_integral : conjunction<std::is_integral<T>, negation<is_int128<T>>>
 {
 };
 
@@ -64,7 +64,7 @@ constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
 
 // i128 support is added
 template <typename T>
-struct is_signed : disjunction<::std::is_same<remove_cv_t<T>, i128>, ::std::is_signed<T>>
+struct is_signed : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_signed<T>>
 {
 };
 
@@ -75,7 +75,7 @@ constexpr bool is_signed_v = is_signed<T>::value;
 
 // u128 support is added
 template <typename T>
-struct is_unsigned : disjunction<::std::is_same<remove_cv_t<T>, u128>, ::std::is_unsigned<T>>
+struct is_unsigned : disjunction<std::is_same<remove_cv_t<T>, u128>, std::is_unsigned<T>>
 {
 };
 
@@ -99,7 +99,7 @@ template <typename T>
 struct make_signed
 {
   // lazy evaluation of std::make_signed<T>::type to avoid compilation error
-  using type = typename ::std::conditional<is_int128<T>::value, claim_cv<T, i128>, ::std::make_signed<T>>::type::type;
+  using type = typename std::conditional<is_int128<T>::value, claim_cv<T, i128>, std::make_signed<T>>::type::type;
 };
 
 template <typename T>
@@ -110,7 +110,7 @@ template <typename T>
 struct make_unsigned
 {
   // lazy evaluation of std::make_unsigned<T>::type to avoid compilation error
-  using type = typename ::std::conditional<is_int128<T>::value, claim_cv<T, u128>, ::std::make_unsigned<T>>::type::type;
+  using type = typename std::conditional<is_int128<T>::value, claim_cv<T, u128>, std::make_unsigned<T>>::type::type;
 };
 
 template <typename T>
@@ -125,19 +125,19 @@ struct make_larger_width_selector;
 template <typename T>
 struct make_larger_width_selector<T, 0>
 {
-  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i32>, claim_cv_t<T, u32>>::type;
+  using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i32>, claim_cv_t<T, u32>>::type;
 };
 
 template <typename T>
 struct make_larger_width_selector<T, sizeof(i32)>
 {
-  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i64>, claim_cv_t<T, u64>>::type;
+  using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i64>, claim_cv_t<T, u64>>::type;
 };
 
 template <typename T>
 struct make_larger_width_selector<T, sizeof(i64)>
 {
-  using type = typename ::std::conditional<is_signed<T>::value, claim_cv_t<T, i128>, claim_cv_t<T, u128>>::type;
+  using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i128>, claim_cv_t<T, u128>>::type;
 };
 
 template <typename T>
@@ -165,7 +165,7 @@ struct empty_integral;
 
 namespace details {
 
-template <typename T, typename = typename ::std::enable_if<disjunction<is_integral<T>, ::std::is_same<T, empty_integral>>::value>::type>
+template <typename T, typename = typename std::enable_if<disjunction<is_integral<T>, std::is_same<T, empty_integral>>::value>::type>
 struct integral_wrapper_impl;
 
 } // namespace details
@@ -176,12 +176,12 @@ using integral_wrapper = details::integral_wrapper_impl<T>;
 using empty_integral_wrapper = integral_wrapper<empty_integral>;
 
 template <typename>
-struct is_integral_wrapper : ::std::false_type
+struct is_integral_wrapper : std::false_type
 {
 };
 
 template <typename T>
-struct is_integral_wrapper<integral_wrapper<T>> : ::std::true_type
+struct is_integral_wrapper<integral_wrapper<T>> : std::true_type
 {
 };
 
@@ -191,7 +191,7 @@ constexpr bool is_integral_wrapper_v = is_integral_wrapper<T>::value;
 #endif // C++14
 
 template <typename T>
-struct is_empty_integral_wrapper : ::std::is_same<T, empty_integral_wrapper>
+struct is_empty_integral_wrapper : std::is_same<T, empty_integral_wrapper>
 {
 };
 

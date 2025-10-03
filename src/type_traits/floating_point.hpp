@@ -10,7 +10,7 @@
 namespace aal {
 
 template <typename T>
-struct is_f128 : ::std::is_same<remove_cv_t<T>, f128>
+struct is_f128 : std::is_same<remove_cv_t<T>, f128>
 {
 };
 
@@ -21,7 +21,7 @@ constexpr bool is_f128_v = is_f128<T>::value;
 
 // f128 is considered floating-point
 template <typename T>
-struct is_floating_point : disjunction<::std::is_floating_point<T>, is_f128<T>>
+struct is_floating_point : disjunction<std::is_floating_point<T>, is_f128<T>>
 {
 };
 
@@ -32,7 +32,7 @@ constexpr bool is_floating_point_v = is_floating_point<T>::value;
 
 // std::is_floating_point_v<f128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_floating_point : conjunction<::std::is_floating_point<T>, negation<is_f128<T>>>
+struct is_standard_floating_point : conjunction<std::is_floating_point<T>, negation<is_f128<T>>>
 {
 };
 

@@ -8,7 +8,7 @@
 namespace aal {
 
 template <typename... Ts>
-using common_type_t = typename ::std::common_type<Ts...>::type;
+using common_type_t = typename std::common_type<Ts...>::type;
 
 } // namespace aal
 

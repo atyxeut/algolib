@@ -12,7 +12,7 @@ template <typename, typename...>
 struct is_none_of;
 
 template <typename T, typename T0>
-struct is_none_of<T, T0> : negation<::std::is_same<T, T0>>
+struct is_none_of<T, T0> : negation<std::is_same<T, T0>>
 {
 };
 

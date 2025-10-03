@@ -8,13 +8,13 @@
 namespace aal {
 
 template <typename T>
-constexpr auto iabs(T n) noexcept -> typename ::std::enable_if<is_unsigned<T>::value, T>::type
+constexpr auto iabs(T n) noexcept -> typename std::enable_if<is_unsigned<T>::value, T>::type
 {
   return n;
 }
 
 template <typename T>
-constexpr auto iabs(T n) noexcept -> typename ::std::enable_if<is_signed<T>::value, make_unsigned<T>>::type::type
+constexpr auto iabs(T n) noexcept -> typename std::enable_if<is_signed<T>::value, make_unsigned<T>>::type::type
 {
   // for negative n, ~n + 1 is |n| if the bit representation is two's complement
   return n >= 0 ? n : ~static_cast<make_unsigned_t<T>>(n) + 1;

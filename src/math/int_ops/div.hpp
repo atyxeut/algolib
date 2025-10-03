@@ -18,8 +18,8 @@ struct idiv_result
   static_assert(conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, "given two types must be nonbool integral");
 
   // cv-qualifiers are removed after integral promotion
-  using dividend_type = decltype(+::std::declval<T1>()); // the "type1" in the comments
-  using divisor_type = decltype(+::std::declval<T2>()); // the "type2" in the comments
+  using dividend_type = decltype(+std::declval<T1>()); // the "type1" in the comments
+  using divisor_type = decltype(+std::declval<T2>()); // the "type2" in the comments
 
   // branch 1: type2 is unsigned, i.e. the divisor is positive, the result never overflows type1
 
@@ -28,7 +28,7 @@ struct idiv_result
   //   e.g. 4294967295 (unsigned int) / -1 = -4294967295
   //   both of the above require long long as the result type
 
-  using type = typename ::std::conditional<is_unsigned<divisor_type>::value, dividend_type, make_larger_width_t<make_signed_t<dividend_type>>>::type;
+  using type = typename std::conditional<is_unsigned<divisor_type>::value, dividend_type, make_larger_width_t<make_signed_t<dividend_type>>>::type;
 
   // if dividend_type is i/u128, then the potential overflow is inevitable when type2 is signed, since there's no larger type
 };
@@ -51,7 +51,6 @@ AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<
 #ifndef NDEBUG
   // idiv_result<T1, T2>::type guarantees a type that can represent the result,
   // overflow occurs only when there's no such a type, i.e. the result requires a type larger than i/u128
-
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_quotient) { // in this case, |ans| = q
       if (is_quotient_negative) // the answer is -q, so q must be <= result_max + 1
