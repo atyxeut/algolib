@@ -7,6 +7,8 @@
 #include <cassert>
 #include <limits>
 
+// https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html
+// https://learn.microsoft.com/en-us/cpp/intrinsics/bitscanreverse-bitscanreverse64?view=msvc-170
 #if AAL_MSVC
 #include <intrin.h>
 #endif // MSVC
@@ -18,13 +20,13 @@ namespace details {
 template <size_t Width, typename T>
 AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u32>::digits, int>::type
 {
-  using unsigned_T = make_unsigned_t<T>;
+  constexpr int max_digits = std::numeric_limits<make_unsigned_t<T>>::digits;
 #if AAL_MSVC
   unsigned long ret;
   _BitScanReverse(&ret, x);
-  return std::numeric_limits<unsigned_T>::digits - ret - 1;
+  return max_digits - ret - 1;
 #else
-  return std::numeric_limits<unsigned_T>::digits + __builtin_clz(x) - Width;
+  return max_digits + __builtin_clz(x) - Width;
 #endif // MSVC
 }
 
@@ -57,17 +59,14 @@ template <typename T>
 AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
 {
   assert(x >= 0 && "the given operand must be nonnegative");
-  using unsigned_T = make_unsigned_t<T>;
-  using unsigned_promoted_T = make_unsigned_t<decltype(+x)>;
-  return x == 0 ? std::numeric_limits<unsigned_T>::digits : details::countl_zero_impl<std::numeric_limits<unsigned_promoted_T>::digits>(x);
+  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : details::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
 }
 
 template <typename T>
 AAL_CONSTEXPR14 auto bit_width(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
 {
   assert(x >= 0 && "the given operand must be nonnegative");
-  using unsigned_T = make_unsigned_t<T>;
-  return std::numeric_limits<unsigned_T>::digits - countl_zero(x);
+  return std::numeric_limits<make_unsigned_t<T>>::digits - countl_zero(x);
 }
 
 template <typename T>
