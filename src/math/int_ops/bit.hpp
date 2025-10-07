@@ -5,7 +5,6 @@
 #include "../../macros/constexpr.hpp"
 #include "../../type_traits/integral.hpp"
 #include <cassert>
-#include <cstddef>
 #include <limits>
 
 #if AAL_MSVC
@@ -66,6 +65,7 @@ AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename std::enable_if<is_non
 template <typename T>
 AAL_CONSTEXPR14 auto bit_width(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
 {
+  assert(x >= 0 && "the given operand must be nonnegative");
   using unsigned_T = make_unsigned_t<T>;
   return std::numeric_limits<unsigned_T>::digits - countl_zero(x);
 }
@@ -73,6 +73,7 @@ AAL_CONSTEXPR14 auto bit_width(T x) noexcept -> typename std::enable_if<is_nonbo
 template <typename T>
 AAL_CONSTEXPR14 auto ilog2(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
 {
+  assert(x >= 0 && "the given operand must be nonnegative");
   return bit_width(x) - 1;
 }
 
