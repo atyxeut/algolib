@@ -17,8 +17,12 @@ We will prove that this is functional for our purpose when $a \ge 1$.
 Let $r := \lfloor\sqrt{a}\rfloor$, we have $1 \le r \le \sqrt{a} < r + 1 \Rightarrow r^2 \le a < (r + 1)^2$, thus
 
 $$
-  r \le \frac{a}{r} < \frac{(r + 1)^2}{r} = r + 2 + \frac{1}{r} \Rightarrow r \le \left\lfloor\frac{a}{r}\right\rfloor \le r + 2, \\
+  r \le \frac{a}{r} < \frac{(r + 1)^2}{r} = r + 2 + \frac{1}{r} \Rightarrow r \le \left\lfloor\frac{a}{r}\right\rfloor \le r + 2,
+$$
 
+and
+
+$$
   \frac{r^2}{r + 1} = r - 1 + \frac{1}{r + 1} \le \frac{a}{r + 1} < r + 1 \Rightarrow r \le \left\lfloor\frac{a}{r + 1}\right\rfloor < r + 1 \Rightarrow \left\lfloor\frac{a}{r + 1}\right\rfloor = r.
 $$
 
@@ -31,8 +35,12 @@ $$
 We have
 
 $$
-  F(r) \ge \left\lfloor\frac{1}{2}(r + r)\right\rfloor = r, \\
+  F(r) \ge \left\lfloor\frac{1}{2}(r + r)\right\rfloor = r,
+$$
 
+and
+
+$$
   F(r) \le \frac{1}{2}\left(r + \left\lfloor\frac{a}{r}\right\rfloor\right) \le \frac{1}{2}(r + r + 2) = r + 1.
 $$
 
