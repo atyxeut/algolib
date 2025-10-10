@@ -43,14 +43,8 @@ struct make_integer_sequence_impl<TInt, End, End, Ints...>
 template <typename TInt, TInt N>
 using make_integer_sequence = typename details::make_integer_sequence_impl<TInt, 0, N>::type;
 
-template <typename TInt, TInt N>
-using make_integer_sequence_from_1 = typename details::make_integer_sequence_impl<TInt, 1, N + 1>::type;
-
 template <std::size_t N>
 using make_index_sequence = make_integer_sequence<std::size_t, N>;
-
-template <std::size_t N>
-using make_index_sequence_from_1 = make_integer_sequence_from_1<std::size_t, N>;
 
 template <typename... Ts>
 using index_sequence_for = make_index_sequence<sizeof...(Ts)>;
