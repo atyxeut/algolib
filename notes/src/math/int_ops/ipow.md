@@ -1,4 +1,3 @@
-
 ## Rationale for integer fast power algorithm
 
 Every decimal integer has a binary form, so we can split an integer into different powers of $2$. For example,

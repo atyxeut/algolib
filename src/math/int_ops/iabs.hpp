@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_MATH_INT_OPS_ABS_HPP
-#define AAL_SRC_MATH_INT_OPS_ABS_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_IABS_HPP
+#define AAL_SRC_MATH_INT_OPS_IABS_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/abs.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/iabs.hpp */
 
 #include "../../type_traits/integral.hpp"
 
@@ -16,4 +16,4 @@ constexpr auto iabs(T n) noexcept -> make_unsigned_t<T>
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_ABS_HPP
+#endif // AAL_SRC_MATH_INT_OPS_IABS_HPP

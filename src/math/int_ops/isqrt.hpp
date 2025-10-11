@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_MATH_INT_OPS_SQRT_HPP
-#define AAL_SRC_MATH_INT_OPS_SQRT_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_ISQRT_HPP
+#define AAL_SRC_MATH_INT_OPS_ISQRT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/sqrt.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/isqrt.hpp */
 
 #include "../../macros/constexpr.hpp"
 #include "../../type_traits/integral.hpp"
@@ -30,4 +30,4 @@ AAL_CONSTEXPR14 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_i
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_SQRT_HPP
+#endif // AAL_SRC_MATH_INT_OPS_ISQRT_HPP

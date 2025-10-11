@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_MATH_INT_OPS_POW_HPP
-#define AAL_SRC_MATH_INT_OPS_POW_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_IPOW_HPP
+#define AAL_SRC_MATH_INT_OPS_IPOW_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/pow.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/ipow.hpp */
 
 #include "overflow_detection.hpp"
 
@@ -36,4 +36,4 @@ AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_POW_HPP
+#endif // AAL_SRC_MATH_INT_OPS_IPOW_HPP
