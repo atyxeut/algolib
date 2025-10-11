@@ -1,6 +1,6 @@
 ## Rationale for `aal::isqrt(x)`
 
-We have [_Newton's method_]("https://en.wikipedia.org/wiki/Newton%27s_method") for real number square root $\sqrt{a}$ (the root of $f(x) = x^2 - a$):
+We have [<u>*Newton's method*</u>]("https://en.wikipedia.org/wiki/Newton%27s_method") for real number square root $\sqrt{a}$ (the root of $f(x) = x^2 - a$):
 
 $$
   x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)} = \frac{1}{2}\left(x_n + \frac{a}{x_n}\right).
@@ -29,7 +29,7 @@ $$
 Let
 
 $$
-  F(x) := \left\lfloor\frac{1}{2}\left(x_n + \left\lfloor\frac{a}{x_n}\right\rfloor\right)\right\rfloor.
+  F(x) := \left\lfloor\frac{1}{2}\left(x + \left\lfloor\frac{a}{x}\right\rfloor\right)\right\rfloor.
 $$
 
 We have
@@ -54,7 +54,7 @@ $$
 
 That is to say, if $r$ or $r + 1$ is reachable during the computation, then either the result is $r$, or the result jumps between $r, r + 1$, for example, $a = 4, 10, 16$ conform to the former case, $a = 8, 15, 24$ conform to the latter case.
 
-Then we prove that $F(x)$ "converges" to ${r, r + 1}$ for any initial integer $x > 0$.
+Then we prove that $F(x)$ "converges" to $\{r, r + 1\}$ for any initial integer $x > 0$.
 
 If $x < r$, since $a \ge r^2$ and $(r - 1)(r + 1) = r^2 - 1$, we have
 
