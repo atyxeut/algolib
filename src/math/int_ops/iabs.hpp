@@ -8,7 +8,7 @@
 namespace aal {
 
 template <typename T>
-constexpr auto iabs(T n) noexcept -> make_unsigned_t<T>
+constexpr auto iabs(T n) noexcept -> make_unsigned_t<T> // implies is_integral<T>::value == true
 {
   // for negative n, ~n + 1 is |n| if the bit representation is two's complement
   return n >= 0 ? n : ~static_cast<make_unsigned_t<T>>(n) + 1;
