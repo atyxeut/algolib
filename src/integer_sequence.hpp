@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/integer_sequence.hpp */
 
-// backports C++14 std::integer_sequence and its helpers, and add custom helpers
+// backports C++14 std::integer_sequence and its helpers
 // implementation details from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
 
 #include <cstddef>
