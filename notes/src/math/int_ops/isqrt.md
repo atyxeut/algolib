@@ -1,6 +1,6 @@
 ## Rationale for `aal::isqrt(x)`
 
-We have [<u>*Newton's method*</u>]("https://en.wikipedia.org/wiki/Newton%27s_method") for real number square root $\sqrt{a}$ (the root of $f(x) = x^2 - a$):
+We have [<u>Newton's method</u>]("https://en.wikipedia.org/wiki/Newton%27s_method") for real number square root $\sqrt{a}$ (the root of $f(x) = x^2 - a$):
 
 $$
   x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)} = \frac{1}{2}\left(x_n + \frac{a}{x_n}\right).
