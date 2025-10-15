@@ -119,7 +119,7 @@ using make_unsigned_t = typename make_unsigned<T>::type;
 namespace details {
 
 // use specialization to avoid nested std::conditional
-template <typename T, size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
+template <typename T, std::size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
 struct make_larger_width_selector;
 
 template <typename T>

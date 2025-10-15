@@ -4,7 +4,6 @@
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/integral.hpp */
 
 #include "../macros/compiler_test.hpp"
-#include <cstddef>
 #include <cstdint>
 
 using i8 = std::int8_t;
@@ -15,9 +14,6 @@ using i32 = std::int32_t;
 using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
-
-using diff_t = std::ptrdiff_t;
-using size_t = std::size_t;
 
 // 128-bit integer types are provided by compilers, and are not supported by standard type traits
 #if AAL_MSVC
