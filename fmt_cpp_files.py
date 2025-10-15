@@ -1,5 +1,3 @@
-# format every .cpp/.hpp file using clang-format(21+), see .clang-format for format details
-
 from pathlib import Path
 import subprocess
 
