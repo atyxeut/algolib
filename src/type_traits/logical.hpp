@@ -8,16 +8,19 @@
 
 namespace aal {
 
+// backports C++17 std::negation
 template <typename T>
 struct negation : std::integral_constant<bool, !static_cast<bool>(T::value)>
 {
 };
 
+// backports C++17 std::negation_v
 #if CPP14
 template <typename T>
 constexpr bool negation_v = negation<T>::value;
 #endif // C++14
 
+// backports C++17 std::conjunction
 template <typename...>
 struct conjunction : std::true_type
 {
@@ -33,11 +36,13 @@ struct conjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), con
 {
 };
 
+// backports C++17 std::conjunction_v
 #if CPP14
 template <typename... Ts>
 constexpr bool conjunction_v = conjunction<Ts...>::value;
 #endif // C++14
 
+// backports C++17 std::disjunction
 template <typename...>
 struct disjunction : std::false_type
 {
@@ -53,6 +58,7 @@ struct disjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), dis
 {
 };
 
+// backports C++17 std::disjunction_v
 #if CPP14
 template <typename... Ts>
 constexpr bool disjunction_v = disjunction<Ts...>::value;

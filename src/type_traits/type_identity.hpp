@@ -7,12 +7,14 @@
 
 namespace aal {
 
+// backports C++20 std::type_identity
 template <typename T>
 struct type_identity
 {
   using type = T;
 };
 
+// backports C++20 std::type_identity_t
 template <typename T>
 using type_identity_t = typename type_identity<T>::type;
 

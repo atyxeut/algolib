@@ -7,10 +7,13 @@
 #include "../../macros/constexpr.hpp"
 #include "../../type_traits/integral.hpp"
 #include <cassert>
+#include <cstddef>
 #include <limits>
 
+// compiler built-in bit operation docs:
 // https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html
 // https://learn.microsoft.com/en-us/cpp/intrinsics/bitscanreverse-bitscanreverse64?view=msvc-170
+
 #if AAL_MSVC
 #include <intrin.h>
 #endif // MSVC
@@ -19,7 +22,7 @@ namespace aal {
 
 namespace details {
 
-template <size_t Width, typename T>
+template <std::size_t Width, typename T>
 AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u32>::digits, int>::type
 {
   constexpr int max_digits = std::numeric_limits<make_unsigned_t<T>>::digits;
@@ -32,7 +35,7 @@ AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<W
 #endif // MSVC
 }
 
-template <size_t Width, typename T>
+template <std::size_t Width, typename T>
 AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u64>::digits, int>::type
 {
 #if AAL_MSVC
@@ -44,7 +47,7 @@ AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<W
 #endif // MSVC
 }
 
-template <size_t Width, typename T>
+template <std::size_t Width, typename T>
 AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u128>::digits, int>::type
 {
 #if AAL_MSVC

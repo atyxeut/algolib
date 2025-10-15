@@ -7,6 +7,7 @@
 
 namespace aal {
 
+// backports C++14 std::conditional_t
 template <bool B, typename TTrue, typename TFalse>
 using conditional_t = typename std::conditional<B, TTrue, TFalse>::type;
 

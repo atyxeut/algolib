@@ -7,6 +7,7 @@
 
 namespace aal {
 
+// backports C++14 std::common_type_t
 template <typename... Ts>
 using common_type_t = typename std::common_type<Ts...>::type;
 

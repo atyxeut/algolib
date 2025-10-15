@@ -18,9 +18,11 @@ template <typename T>
 constexpr bool is_cv_v = is_cv<T>::value;
 #endif // C++14
 
+// backports C++14 std::remove_cv_t
 template <typename T>
 using remove_cv_t = typename std::remove_cv<T>::type;
 
+// backports C++14 std::add_cv_t
 template <typename T>
 using add_cv_t = typename std::add_cv<T>::type;
 
@@ -70,21 +72,26 @@ struct claim_cv
 template <typename TFrom, typename TTo>
 using claim_cv_t = typename claim_cv<TFrom, TTo>::type;
 
+// backports C++14 std::remove_reference_t
 template <typename T>
 using remove_ref_t = typename std::remove_reference<T>::type;
 
+// backports C++20 std::remove_cvref
 template <typename T>
 struct remove_cvref
 {
   using type = remove_cv_t<remove_ref_t<T>>;
 };
 
+// backports C++20 std::remove_cvref_t
 template <typename T>
 using remove_cvref_t = typename remove_cvref<T>::type;
 
+// backports C++14 std::add_lvalue_reference_t
 template <typename T>
 using add_lref_t = typename std::add_lvalue_reference<T>::type;
 
+// backports C++14 std::add_rvalue_reference_t
 template <typename T>
 using add_rref_t = typename std::add_rvalue_reference<T>::type;
 
