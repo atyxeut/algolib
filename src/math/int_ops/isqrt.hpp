@@ -11,7 +11,7 @@
 namespace aal {
 
 template <typename T>
-AAL_CONSTEXPR14 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+AAL_CONSTEXPR14 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
   assert(x >= 0 && "the operand must be nonnegative");
 
