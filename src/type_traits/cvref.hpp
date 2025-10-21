@@ -22,10 +22,6 @@ constexpr bool is_cv_v = is_cv<T>::value;
 template <typename T>
 using remove_cv_t = typename std::remove_cv<T>::type;
 
-// backports C++14 std::add_cv_t
-template <typename T>
-using add_cv_t = typename std::add_cv<T>::type;
-
 namespace details {
 
 // use specialization to avoid nested conditional_t
@@ -36,7 +32,7 @@ struct claim_cv_selector;
 template <typename TFrom, typename TTo>
 struct claim_cv_selector<TFrom, TTo, true, true>
 {
-  using type = add_cv_t<TTo>;
+  using type = typename std::add_cv<TTo>::type;
 };
 
 // branch 2: has only const qualifier
