@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_MACROS_CPP_VERSION_TEST_HPP
-#define AAL_SRC_MACROS_CPP_VERSION_TEST_HPP
+#ifndef AAL_SRC_MACROS_CPP_VERSION_HPP
+#define AAL_SRC_MACROS_CPP_VERSION_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/macros/cpp_version_test.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/macros/cpp_version.hpp */
 
 // see https://en.cppreference.com/w/cpp/preprocessor/replace#Predefined_macros for details
 
@@ -21,4 +21,4 @@
 #define AAL_CPP23 1
 #endif // test if the current C++ version is C++23
 
-#endif // AAL_SRC_MACROS_CPP_VERSION_TEST_HPP
+#endif // AAL_SRC_MACROS_CPP_VERSION_HPP
