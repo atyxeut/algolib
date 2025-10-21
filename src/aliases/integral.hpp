@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/integral.hpp */
 
-#include "../macros/compiler_test.hpp"
+#include "../macros/target.hpp"
 #include <cstdint>
 
 using i8 = std::int8_t;

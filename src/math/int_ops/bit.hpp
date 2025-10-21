@@ -3,8 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/bit.hpp */
 
-#include "../../macros/compiler_test.hpp"
 #include "../../macros/constexpr.hpp"
+#include "../../macros/target.hpp"
 #include "../../type_traits/integral.hpp"
 #include <cassert>
 #include <cstddef>

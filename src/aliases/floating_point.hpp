@@ -3,8 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/floating_point.hpp */
 
-#include "../macros/architecture_test.hpp"
-#include "../macros/compiler_test.hpp"
+#include "../macros/target.hpp"
 
 // precision (significant digits)
 // f32: 6 to 9, f64: 15 to 17, f80: 18 to 20, f128: 33 to 35
