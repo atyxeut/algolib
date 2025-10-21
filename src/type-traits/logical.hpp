@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_LOGICAL_HPP
 #define AAL_SRC_TYPE_TRAITS_LOGICAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/logical.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/logical.hpp */
 
 #include "../macros/cpp_version.hpp"
 #include <type_traits>

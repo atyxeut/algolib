@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_FLOATING_POINT_HPP
 #define AAL_SRC_TYPE_TRAITS_FLOATING_POINT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/floating_point.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/floating_point.hpp */
 
 #include "../aliases/floating_point.hpp"
 #include "cvref.hpp"

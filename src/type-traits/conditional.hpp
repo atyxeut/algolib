@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_CONDITIONAL_HPP
 #define AAL_SRC_TYPE_TRAITS_CONDITIONAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/conditional.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/conditional.hpp */
 
 #include <type_traits>
 

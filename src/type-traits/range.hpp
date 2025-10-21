@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_RANGE_HPP
 #define AAL_SRC_TYPE_TRAITS_RANGE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/range.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/range.hpp */
 
 #include "logical.hpp"
 #include "sfinae.hpp"

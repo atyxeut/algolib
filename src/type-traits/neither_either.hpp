@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_NEITHER_EITHER_HPP
 #define AAL_SRC_TYPE_TRAITS_NEITHER_EITHER_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/neither_either.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/neither_either.hpp */
 
 #include "logical.hpp"
 

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_IDIV_HPP
 #define AAL_SRC_MATH_INT_OPS_IDIV_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/idiv.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/idiv.hpp */
 
 #include "iabs.hpp"
 #include "overflow_detection.hpp"

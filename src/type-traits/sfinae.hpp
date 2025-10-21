@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_SFINAE_HPP
 #define AAL_SRC_TYPE_TRAITS_SFINAE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type_traits/sfinae.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/sfinae.hpp */
 
 #include <type_traits>
 

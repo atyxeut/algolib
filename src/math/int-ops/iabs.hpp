@@ -1,9 +1,9 @@
 #ifndef AAL_SRC_MATH_INT_OPS_IABS_HPP
 #define AAL_SRC_MATH_INT_OPS_IABS_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/iabs.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/iabs.hpp */
 
-#include "../../type_traits/integral.hpp"
+#include "../../type-traits/integral.hpp"
 
 namespace aal {
 

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_IPOW_HPP
 #define AAL_SRC_MATH_INT_OPS_IPOW_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/ipow.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/ipow.hpp */
 
 #include "overflow_detection.hpp"
 

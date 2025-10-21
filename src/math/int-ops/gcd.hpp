@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_GCD_HPP
 #define AAL_SRC_MATH_INT_OPS_GCD_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/gcd.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/gcd.hpp */
 
 #include "../operator/categories.hpp"
 #include "iabs.hpp"
