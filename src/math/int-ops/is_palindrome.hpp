@@ -11,7 +11,7 @@ namespace aal {
 template <typename T>
 AAL_CONSTEXPR14 bool is_palindrome(T n) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
 
   if (n == 0)
     return true;

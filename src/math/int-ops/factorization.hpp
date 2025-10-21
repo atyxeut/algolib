@@ -11,8 +11,8 @@ namespace aal { namespace get_divisor {
 template <typename T>
 auto all(T n) -> std::vector<T>
 {
-  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
-  assert(n > 0 && "the argument must be positive");
+  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  assert(n > 0 && "argument must be positive");
 
   // divisors are in pairs, let n = a * b, let a be the smaller one, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
   std::vector<T> info;
@@ -31,8 +31,8 @@ auto all(T n) -> std::vector<T>
 template <typename T>
 auto prime(T n) -> std::vector<std::array<T, 2>>
 {
-  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
-  assert(n > 0 && "the argument must be positive");
+  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  assert(n > 0 && "argument must be positive");
 
   // if there exists a prime p of n that is > sqrt(n), then its the only, and its count is exactly 1, otherwise the total product exceeds n
   std::vector<std::array<T, 2>> info;
@@ -51,8 +51,8 @@ auto prime(T n) -> std::vector<std::array<T, 2>>
 template <typename T>
 auto prime(T n, const std::vector<T>& minp) -> std::vector<std::array<T, 2>>
 {
-  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
-  assert(n > 0 && "the argument must be positive");
+  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  assert(n > 0 && "argument must be positive");
 
   // when the smallest prime divisor of every number is known, the time complexity can be reduced to O(logn)
   // because the worst case is n = pow(2, k), where k = log_2 n, any other case costs less computations

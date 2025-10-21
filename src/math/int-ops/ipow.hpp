@@ -10,9 +10,9 @@ namespace aal {
 template <typename T1, typename T2>
 AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept -> make_unsigned_t<typename std::common_type<T1, T2>::type>
 {
-  static_assert(conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, "operands must be nonbool integers");
-  assert(a >= 0 && n >= 0 && "operands must be nonnegative");
-  assert(a != 0 || n != 0 && "operands can not be both 0");
+  static_assert(conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, "arguments must be nonbool integers");
+  assert(a >= 0 && n >= 0 && "arguments must be nonnegative");
+  assert(a != 0 || n != 0 && "arguments can not be both 0");
 
   if (a == 0)
     return 0;
