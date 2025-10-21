@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int_ops/gcd.hpp */
 
-#include "../../type_traits/common_type.hpp"
 #include "../operator/categories.hpp"
 #include "iabs.hpp"
 #include "overflow_detection.hpp"
@@ -13,13 +12,14 @@ namespace aal {
 
 namespace op {
 
-template <typename T>
-struct gcd
+namespace details {
+
+template <typename T, typename = std::enable_if<is_nonbool_integral<T>::value>>
+struct gcd_impl
 {
 // clang-format off
   using category     = binary_operator_tag;
-  using operand_type = typename std::enable_if<is_nonbool_integral<T>::value, T>::type;
-  
+  using operand_type = T;
   static constexpr T identity_elem  = 0; // gcd(0, a) = a
   static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
 // clang-format on
@@ -35,40 +35,49 @@ struct gcd
   }
 };
 
-template <typename T>
-struct lcm
+template <typename T, typename = std::enable_if<is_nonbool_integral<T>::value>>
+struct lcm_impl
 {
 // clang-format off
   using category     = binary_operator_tag;
-  using operand_type = typename std::enable_if<is_nonbool_integral<T>::value, T>::type;
-  
+  using operand_type = T;
   static constexpr T identity_elem  = 1; // lcm(1, a) = a
   static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
 // clang-format on
 
   AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
   {
-    assert(!imul_overflows<T>(a / gcd<T> {}(a, b), b) && "the lcm cannot be represented");
-    return a / gcd<T> {}(a, b) * b;
+    assert(!imul_overflows<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
+    return a / gcd_impl<T> {}(a, b) * b;
   }
 };
+
+} // namespace details
+
+template <typename T>
+using gcd = details::gcd_impl<T>;
+
+template <typename T>
+using lcm = details::lcm_impl<T>;
 
 } // namespace op
 
 namespace details {
 
-template <typename TOp, typename... Ts, typename TResult = typename std::enable_if<sizeof...(Ts) >= 2, typename TOp::operand_type>::type>
-AAL_CONSTEXPR14 TResult gcd_lcm_selector(Ts&&... nums) noexcept
+template <typename TOp, typename... Ts>
+AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename TOp::operand_type
 {
-  make_unsigned_t<TResult> mags[sizeof...(Ts)] {iabs(nums)...};
+  static_assert(sizeof...(Ts) >= 2, "must give at least 2 operands");
+  using result_type = typename TOp::operand_type;
+  make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
 
 #ifndef NDEBUG
   for (auto i : mags)
-    assert(static_cast<TResult>(i) >= 0 && "not all magnitudes can be represented in the common type");
+    assert(static_cast<result_type>(i) >= 0 && "not all magnitudes can be represented in the common type");
 #endif // NDEBUG
 
   TOp op;
-  TResult ans = *mags;
+  result_type ans = *mags;
   for (auto iter = mags + 1, end = mags + sizeof...(Ts); iter != end; ++iter) {
     if (*iter == op.absorbing_elem)
       return op.absorbing_elem;
@@ -81,16 +90,20 @@ AAL_CONSTEXPR14 TResult gcd_lcm_selector(Ts&&... nums) noexcept
 
 } // namespace details
 
-template <typename... Ts, typename TResult = typename std::enable_if<conjunction<is_nonbool_integral<Ts>...>::value, common_type_t<remove_cv_t<Ts>...>>::type>
-AAL_CONSTEXPR14 TResult gcd(Ts&&... nums) noexcept
+template <typename... Ts>
+AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {
-  return details::gcd_lcm_selector<op::gcd<TResult>>(std::forward<Ts>(nums)...);
+  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "operands must be nonbool integers");
+  using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
+  return details::gcd_lcm_selector<op::gcd<result_type>>(std::forward<Ts>(nums)...);
 }
 
-template <typename... Ts, typename TResult = typename std::enable_if<conjunction<is_nonbool_integral<Ts>...>::value, common_type_t<remove_cv_t<Ts>...>>::type>
-AAL_CONSTEXPR14 TResult lcm(Ts&&... nums) noexcept
+template <typename... Ts>
+AAL_CONSTEXPR14 auto lcm(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {
-  return details::gcd_lcm_selector<op::lcm<TResult>>(std::forward<Ts>(nums)...);
+  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "operands must be nonbool integers");
+  using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
+  return details::gcd_lcm_selector<op::lcm<result_type>>(std::forward<Ts>(nums)...);
 }
 
 } // namespace aal

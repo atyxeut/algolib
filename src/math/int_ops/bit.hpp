@@ -61,22 +61,25 @@ AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<W
 } // namespace details
 
 template <typename T>
-AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+AAL_CONSTEXPR14 int countl_zero(T x) noexcept
 {
+  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
   assert(x >= 0 && "the given operand must be nonnegative");
   return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : details::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
 }
 
 template <typename T>
-AAL_CONSTEXPR14 auto bit_width(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+AAL_CONSTEXPR14 int bit_width(T x) noexcept
 {
+  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
   assert(x >= 0 && "the given operand must be nonnegative");
   return std::numeric_limits<make_unsigned_t<T>>::digits - countl_zero(x);
 }
 
 template <typename T>
-AAL_CONSTEXPR14 auto ilog2(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+AAL_CONSTEXPR14 int ilog2(T x) noexcept
 {
+  static_assert(is_nonbool_integral<T>::value, "operand must be nonbool integer");
   assert(x >= 0 && "the given operand must be nonnegative");
   return bit_width(x) - 1;
 }

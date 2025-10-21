@@ -17,14 +17,13 @@ enum class idiv_mode
   ceil
 };
 
-template <typename Dividend, typename Divisor>
+template <typename TDividend, typename TDivisor>
 struct idiv_result
 {
-  static_assert(conjunction<is_nonbool_integral<Dividend>, is_nonbool_integral<Divisor>>::value, "given two types must be nonbool integral");
-
+  static_assert(conjunction<is_nonbool_integral<TDividend>, is_nonbool_integral<TDivisor>>::value, "given two types must be nonbool integral");
   // cv-qualifiers are removed after integral promotion
-  using type1 = decltype(+std::declval<Dividend>());
-  using type2 = decltype(+std::declval<Divisor>());
+  using type1 = decltype(+std::declval<TDividend>());
+  using type2 = decltype(+std::declval<TDivisor>());
 
   // branch 1: type2 is unsigned, then the divisor is always positive, so the result never overflows type1
 
@@ -32,22 +31,20 @@ struct idiv_result
   //   e.g. -2147483648 (int) / -1 = 2147483648 (requires long long)
   //   e.g. 4294967295 (unsigned int) / -1 = -4294967295 (requires long long)
 
-  // obtains a type that guarantees to represent the result, unless there is no such type
+  // obtains a type that guarantees to be able to represent the result, unless there is no such type
   using type = typename std::conditional<is_unsigned<type2>::value, type1, make_larger_width_t<make_signed_t<type1>>>::type;
 };
 
-template <details::idiv_mode Mode, typename T1, typename T2>
-AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename details::idiv_result<T1, T2>::type
+template <idiv_mode Mode, typename T1, typename T2>
+AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<T1, T2>::type
 {
   assert(rhs != 0 && "divisor cannot be 0");
-  using result_type = typename details::idiv_result<T1, T2>::type;
+  using result_type = typename idiv_result<T1, T2>::type;
 
   // -0 = 0, so no need to consider lhs = 0, rhs < 0 and lhs < 0, rhs = 0 cases
   bool is_ans_negative = lhs < 0 != rhs < 0;
-
   auto lhs_abs = iabs(lhs);
   auto rhs_abs = iabs(rhs);
-
   auto q = lhs_abs / rhs_abs;
   bool modify_ans = lhs_abs % rhs_abs != 0;
 
@@ -61,22 +58,22 @@ AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename details::idi
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
       if (is_ans_negative) {
-        if (Mode == details::idiv_mode::floor) // ans = -q - 1, so q + 1 must be <= result_max + 1, which is always satisfied
+        if (Mode == idiv_mode::floor) // ans = -q - 1, so q + 1 must be <= result_max + 1, which is always satisfied
           ;
-        if (Mode == details::idiv_mode::ceil) // ans = -q + 1, so q - 1 must be <= result_max + 1, which is always satisfied
+        if (Mode == idiv_mode::ceil) // ans = -q + 1, so q - 1 must be <= result_max + 1, which is always satisfied
           ;
       }
       else {
-        if (Mode == details::idiv_mode::floor) // ans = q, so q must be <= result_max, which is always satisfied
+        if (Mode == idiv_mode::floor) // ans = q, so q must be <= result_max, which is always satisfied
           ;
-        if (Mode == details::idiv_mode::ceil) // ans = q + 1, so q + 1 must be <= result_max
+        if (Mode == idiv_mode::ceil) // ans = q + 1, so q + 1 must be <= result_max
           assert(!iadd_overflows<result_type>(q, 1) && "the ceil div result cannot be represented");
       }
     }
   }
 #endif // NDEBUG
 
-  if (Mode == details::idiv_mode::floor)
+  if (Mode == idiv_mode::floor)
     return is_ans_negative ? -static_cast<result_type>(q + modify_ans) : q;
 
   return is_ans_negative ? -static_cast<result_type>(q) : q + modify_ans;

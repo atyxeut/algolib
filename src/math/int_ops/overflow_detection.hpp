@@ -14,8 +14,8 @@ namespace aal {
 template <typename TResult, typename T1, typename T2>
 AAL_CONSTEXPR14 bool iadd_overflows(T1 a, T2 b) noexcept
 {
-  static_assert(conjunction<is_integral<T1>, is_integral<T2>>::value, "given operands must be integers");
-  assert(a >= 0 && b >= 0 && "given operands must be nonnegative");
+  static_assert(conjunction<is_integral<T1>, is_integral<T2>>::value, "operands must be integers");
+  assert(a >= 0 && b >= 0 && "operands must be nonnegative");
   return b > std::numeric_limits<TResult>::max() || a > std::numeric_limits<TResult>::max() - b;
 }
 
@@ -23,8 +23,8 @@ AAL_CONSTEXPR14 bool iadd_overflows(T1 a, T2 b) noexcept
 template <typename TResult, typename T1, typename T2>
 AAL_CONSTEXPR14 bool imul_overflows(T1 a, T2 b) noexcept
 {
-  static_assert(conjunction<is_integral<T1>, is_integral<T2>>::value, "given operands must be integers");
-  assert(a >= 0 && b >= 0 && "given operands must be nonnegative");
+  static_assert(conjunction<is_integral<T1>, is_integral<T2>>::value, "operands must be integers");
+  assert(a >= 0 && b >= 0 && "operands must be nonnegative");
   return b == 0 ? false : a > std::numeric_limits<TResult>::max() / b;
   // a * b <= c ==> a <= c / b = floor(c / b) + {c / b} ==> a <= floor(c / b)
 }
