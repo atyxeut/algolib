@@ -25,7 +25,6 @@ AAL_CONSTEXPR14 T isqrt(T x) noexcept
     cur = nxt;
     nxt = (cur + x / cur) / 2;
   } while (cur > nxt);
-
   return std::min(cur, nxt);
 }
 
