@@ -1,6 +1,6 @@
 ## Euclidean algorithm
 
-For $a, b \in \Z^+$, $\gcd(a, b) = \gcd(b, a \bmod b)$.
+For $a, b \in \mathbb{Z}^+$, $\gcd(a, b) = \gcd(b, a \bmod b)$.
 
 (*Proof*) Let $d_1$ be any common divisor of $a$ and $b$, then $d_1 \mid a - k_1b$ for some integer $k_1$.
 Let $d_2$ be any common divisor of $b$ and $a - k_1b$, then $d_2 \mid k_2b + a - k_1b$ for some integer $k_2$, so $d_2 \mid a$.
