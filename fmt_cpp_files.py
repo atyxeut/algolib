@@ -1,3 +1,5 @@
+# formats every .cpp/.hpp file using clang-format (requires clang-format 21+), using the formatting rules defined in .clang-format
+
 from pathlib import Path
 import subprocess
 
@@ -11,4 +13,4 @@ def fmt(path: Path, dep: int = 0) -> None:
         subprocess.run(["clang-format", "-style=file", "-i", path])
 
 fmt(Path(".").resolve())
-print("Done.")
+print("formatting done")
