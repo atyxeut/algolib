@@ -1,6 +1,6 @@
 ## The difference of two nth powers
 
-$\forall a, b \in \mathbb{C} , \forall n \in \Z^+$,
+$\forall a, b \in \mathbb{C}, \forall n \in \mathbb{Z}^+$,
 
 $$
   a^n - b^n = (a - b) \sum_{i = 0}^{n - 1} a^{n - 1 - i} b^i.
