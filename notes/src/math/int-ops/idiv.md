@@ -16,7 +16,7 @@ $$
   q = \left\lceil\frac{a - 1 - b}{b}\right\rceil.
 $$ 
 
-We will prove the former proposition, the latter can be obtained by replacing $a, b$ with $-a, -b$ in the formula.
+***(Proof)*** We will prove the former proposition, the latter can be obtained by replacing $a, b$ with $-a, -b$ in the formula.
 
 Under the hypothesis, $a + 1 - b$ is guaranteed to be negative, thus in C++ the quotient of `(a + 1 - b) / b` is ceiled.
 
@@ -42,7 +42,7 @@ $$
   q = \left\lfloor\frac{a + 1 + b}{b}\right\rfloor.
 $$
 
-We will prove the former proposition, the latter can be obtained by replacing $a, b$ with $-a, -b$ in the formula.
+***(Proof)*** We will prove the former proposition, the latter can be obtained by replacing $a, b$ with $-a, -b$ in the formula.
 
 Under the hypothesis, $a - 1 + b$ is guaranteed to be positive, thus in C++ the quotient of `(a - 1 + b) / b` is floored.
 
