@@ -12,5 +12,9 @@ def fmt(path: Path, dep: int = 0) -> None:
         print(f"formatting {path}")
         subprocess.run(["clang-format", "-style=file", "-i", path])
 
-fmt(Path(".").resolve())
-print("formatting done")
+def main():
+    fmt(Path(".").resolve())
+    print("formatting done")
+
+if __name__ == "__main__":
+    main()
