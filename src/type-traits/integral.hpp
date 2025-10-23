@@ -98,7 +98,7 @@ constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
 template <typename T>
 struct make_signed
 {
-  // lazy evaluation of std::make_signed<T>::type to avoid compilation error
+  // delay the instantiation of std::make_signed<T> to avoid compilation error
   using type = typename std::conditional<is_int128<T>::value, claim_cv<T, i128>, std::make_signed<T>>::type::type;
 };
 
@@ -109,7 +109,7 @@ using make_signed_t = typename make_signed<T>::type;
 template <typename T>
 struct make_unsigned
 {
-  // lazy evaluation of std::make_unsigned<T>::type to avoid compilation error
+  // delay the instantiation of std::make_unsigned<T> to avoid compilation error
   using type = typename std::conditional<is_int128<T>::value, claim_cv<T, u128>, std::make_unsigned<T>>::type::type;
 };
 
