@@ -3,6 +3,7 @@
 from pathlib import Path
 import subprocess
 
+
 def fmt(path: Path, dep: int = 0) -> None:
     if path.is_dir():
         if dep == 0 or dep == 1 and path.name == "src" or dep > 1:
@@ -12,9 +13,11 @@ def fmt(path: Path, dep: int = 0) -> None:
         print(f"formatting {path}")
         subprocess.run(["clang-format", "-style=file", "-i", path])
 
+
 def main():
     fmt(Path(".").resolve())
     print("formatting done")
+
 
 if __name__ == "__main__":
     main()
