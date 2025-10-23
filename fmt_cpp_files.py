@@ -1,4 +1,4 @@
-# formats every .cpp/.hpp file using clang-format (requires clang-format 21+), using the formatting rules defined in .clang-format
+# format every .cpp/.hpp file using clang-format (requires clang-format 21+), using the formatting rules defined in .clang-format
 
 from pathlib import Path
 import subprocess
