@@ -27,11 +27,11 @@ AAL_CONSTEXPR14 bool trial_division(T n) noexcept
   return true;
 }
 
-template <typename T>
-AAL_CONSTEXPR14 bool miller_rabin(T n) noexcept
-{
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
-}
+// template <typename T>
+// AAL_CONSTEXPR14 bool miller_rabin(T n) noexcept
+// {
+//   static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+// }
 
 }} // namespace aal::is_prime
 

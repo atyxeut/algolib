@@ -1,6 +1,8 @@
 #ifndef AAL_SRC_MATH_INT_OPS_FACTORIZATION_HPP
 #define AAL_SRC_MATH_INT_OPS_FACTORIZATION_HPP
 
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/factorization.hpp */
+
 #include "../../type-traits/integral.hpp"
 #include <array>
 #include <cassert>
