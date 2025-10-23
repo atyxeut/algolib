@@ -7,18 +7,18 @@
 
 #if __cplusplus >= 201402L
 #define AAL_CPP14 1
-#endif // test if the current C++ version is C++14
+#endif // test if the current C++ version is C++14 or above
 
 #if __cplusplus >= 201703L
 #define AAL_CPP17 1
-#endif // test if the current C++ version is C++17
+#endif // test if the current C++ version is C++17 or above
 
 #if __cplusplus >= 202002L
 #define AAL_CPP20 1
-#endif // test if the current C++ version is C++20
+#endif // test if the current C++ version is C++20 or above
 
 #if __cplusplus >= 202302L
 #define AAL_CPP23 1
-#endif // test if the current C++ version is C++23
+#endif // test if the current C++ version is C++23 or above
 
 #endif // AAL_SRC_MACROS_CPP_VERSION_HPP
