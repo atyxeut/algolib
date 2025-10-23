@@ -1,8 +1,9 @@
-# > python3 fmt_cpp_files.py
-#   format every .cpp/.hpp file using clang-format (requires clang-format 21+), using the formatting rules defined in .clang-format
-
 from pathlib import Path
 import subprocess
+
+
+# > python3 fmt_cpp_files.py
+#   format every .cpp/.hpp file using clang-format (requires clang-format 21+), using the formatting rules defined in .clang-format
 
 
 def fmt(path: Path, dep: int = 0) -> None:
