@@ -9,7 +9,7 @@ def fmt(path: Path, dep: int = 0) -> None:
             for item in path.iterdir():
                 fmt(item, dep + 1)
     elif path.suffix == ".cpp" or path.suffix == ".hpp":
-        print(f"Formatting {path}")
+        print(f"formatting {path}")
         subprocess.run(["clang-format", "-style=file", "-i", path])
 
 fmt(Path(".").resolve())
