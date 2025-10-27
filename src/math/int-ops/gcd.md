@@ -21,4 +21,4 @@ More analyses can be found in _The Art of Computer Programming, Volume 2: Seminu
 
 ## Other propositions needed
 
-[gcd property 1](../../../divisibility.md#gcd-property-1), [gcd property 4](../../../divisibility.md#gcd-property-4), [lcm property 2](../../../divisibility.md#lcm-property-2), [lcm property 3](../../../divisibility.md#lcm-property-3).
+[gcd property 1](../../../notes/divisibility.md#gcd-property-1), [gcd property 4](../../../notes/divisibility.md#gcd-property-4), [lcm property 2](../../../notes/divisibility.md#lcm-property-2), [lcm property 3](../../../notes/divisibility.md#lcm-property-3).
