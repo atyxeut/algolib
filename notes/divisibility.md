@@ -96,7 +96,7 @@ $$
   a \equiv b \pmod n \Rightarrow a^{-1} \equiv b^{-1} \pmod n.
 $$
 
-***(Proof)*** Let $c = a^{-1}, d = b^{-1}$, and they are integers, then $a c \equiv b d \equiv 1 \pmod n$. Also, we have $a c \equiv b c \pmod n$ ([Congruence property 3](#congruence-property-3)), thus $b c \equiv b d \pmod n$. Since $\gcd(b, n) = 1$ ([Modular multiplicative inverse](src/math/mint.md#modular-multiplicative-inverse)), we have $c \equiv d \pmod n$ ([Congruence property 5](#congruence-property-5)).
+***(Proof)*** Let $c = a^{-1}, d = b^{-1}$, and they are integers, then $a c \equiv b d \equiv 1 \pmod n$. Also, we have $a c \equiv b c \pmod n$ ([Congruence property 3](#congruence-property-3)), thus $b c \equiv b d \pmod n$. Since $\gcd(b, n) = 1$ ([Modular multiplicative inverse](../src/math/modint/modint.md#modular-multiplicative-inverse)), we have $c \equiv d \pmod n$ ([Congruence property 5](#congruence-property-5)).
 
 ## gcd property 1
 
