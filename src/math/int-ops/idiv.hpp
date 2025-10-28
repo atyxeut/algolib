@@ -3,6 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/idiv.hpp */
 
+// see idiv.md for extra information
+
 #include "iabs.hpp"
 #include "overflow_detection.hpp"
 #include <utility>
@@ -81,12 +83,24 @@ AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<
 
 } // namespace details
 
+// compute floor(a / b) for integers a, b without introducing floating-point numbers
+// can correctly handle operands that have different width and signedness
+// int ans = aal::idiv_floor(5, 2);
+// int ans = aal::idiv_floor(-5, 2);
+// int ans = aal::idiv_floor(-2147483647 - 1, 1ull);
+// ans is 2, -3, -2147483648 respectively
 template <typename T1, typename T2>
 AAL_CONSTEXPR14 auto idiv_floor(T1 lhs, T2 rhs) noexcept -> typename details::idiv_result<T1, T2>::type
 {
   return details::idiv_impl<details::idiv_mode::floor>(lhs, rhs);
 }
 
+// compute ceil(a / b) for integers a, b without introducing floating-point numbers
+// can correctly handle operands that have different width and signedness
+// int ans = aal::idiv_ceil(5, 2); // 3
+// int ans = aal::idiv_ceil(-5, 2); // -2
+// long long ans = aal::idiv_ceil(-2147483647 - 1, -1); // 2147483648, no overflow
+// ans is 3, -2, 2147483648 (no overflow) respectively
 template <typename T1, typename T2>
 AAL_CONSTEXPR14 auto idiv_ceil(T1 lhs, T2 rhs) noexcept -> typename details::idiv_result<T1, T2>::type
 {

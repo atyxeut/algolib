@@ -8,6 +8,7 @@
 
 namespace aal { namespace is_prime {
 
+// test if an integer is prime using trial division
 template <typename T>
 AAL_CONSTEXPR14 bool trial_division(T n) noexcept
 {

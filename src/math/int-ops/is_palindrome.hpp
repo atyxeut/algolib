@@ -8,6 +8,7 @@
 
 namespace aal {
 
+// test if a nonnegative integer is palindrome
 template <typename T>
 AAL_CONSTEXPR14 bool is_palindrome(T n) noexcept
 {

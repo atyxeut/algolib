@@ -3,6 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/factorization.hpp */
 
+// provide function templates for integer factorization
+
 #include "../../type-traits/integral.hpp"
 #include <array>
 #include <cassert>
@@ -10,13 +12,16 @@
 
 namespace aal { namespace get_divisor {
 
+// get all unique divisors of an integer
+// std::vector<int> ret = aal::get_divisor::all(36);
+// ret is [1, 2, 3, 4, 6, 9, 12, 18, 36]
 template <typename T>
 auto all(T n) -> std::vector<T>
 {
   static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
   assert(n > 0 && "argument must be positive");
 
-  // divisors are in pairs, let n = a * b, let a be the smaller one, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
+  // divisors are in pairs, let n = a * b and a <= b, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
   std::vector<T> info;
   for (T i = 1; i <= n / i; ++i) {
     if (n % i == 0)
@@ -30,13 +35,17 @@ auto all(T n) -> std::vector<T>
   return info;
 }
 
+// get the prime factorization of an integer n in O(sqrt(n)) time
+// int n = 36;
+// std::vector<std::array<int, 2>> ret = aal::get_divisor::prime(n);
+// ret is [[2, 2], [3, 2]]
 template <typename T>
 auto prime(T n) -> std::vector<std::array<T, 2>>
 {
   static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
   assert(n > 0 && "argument must be positive");
 
-  // if there exists a prime p of n that is > sqrt(n), then its the only, and its count is exactly 1, otherwise the total product exceeds n
+  // if there exists a prime p of n that is > sqrt(n), then its the only, otherwise the total product exceeds n
   std::vector<std::array<T, 2>> info;
   for (T i = 2; i <= n / i; ++i) {
     if (n % i == 0)
@@ -50,14 +59,14 @@ auto prime(T n) -> std::vector<std::array<T, 2>>
   return info;
 }
 
+// O(logn) version when the smallest prime divisor of every integer that <= n is known
+// because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
 template <typename T>
 auto prime(T n, const std::vector<T>& minp) -> std::vector<std::array<T, 2>>
 {
   static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
   assert(n > 0 && "argument must be positive");
 
-  // when the smallest prime divisor of every number is known, the time complexity can be reduced to O(logn)
-  // because the worst case is n = pow(2, k), where k = log_2 n, any other case costs less computations
   std::vector<std::array<T, 2>> info;
   while (n > 1) {
     int p = minp[n], cnt = 0;

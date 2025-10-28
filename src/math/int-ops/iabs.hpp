@@ -7,6 +7,9 @@
 
 namespace aal {
 
+// an improved version of std::abs, can handle unsigned integer types and i/u128, and never overflows
+// no compilation error: unsigned int _ = aal::iabs(1u);
+// no overflow: unsigned int _ = aal::iabs(-2147483647 - 1);
 template <typename T>
 constexpr auto iabs(T n) noexcept -> make_unsigned_t<T> // implies is_integral<T>::value == true
 {

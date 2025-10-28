@@ -10,6 +10,7 @@
 
 namespace aal {
 
+// compute floor(sqrt(x)) without introducing floating-point numbers, see isqrt.md for extra information
 template <typename T>
 AAL_CONSTEXPR14 T isqrt(T x) noexcept
 {

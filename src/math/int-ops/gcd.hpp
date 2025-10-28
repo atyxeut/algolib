@@ -3,64 +3,14 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/gcd.hpp */
 
-#include "../operator/categories.hpp"
+// provide function templates to calculate gcd and lcm of a list of integers, see gcd.md for extra information
+
+#include "../operator/gcd.hpp"
 #include "iabs.hpp"
 #include "overflow_detection.hpp"
 #include <utility>
 
 namespace aal {
-
-namespace op {
-
-namespace details {
-
-template <typename T, typename = std::enable_if<is_nonbool_integral<T>::value>>
-struct gcd_impl
-{
-// clang-format off
-  using category     = binary_operator_tag;
-  using operand_type = T;
-  static constexpr T identity_elem  = 0; // gcd(0, a) = a
-  static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
-// clang-format on
-
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
-  {
-    for (T t; b != 0;) {
-      t = a % b;
-      a = b;
-      b = t;
-    }
-    return a;
-  }
-};
-
-template <typename T, typename = std::enable_if<is_nonbool_integral<T>::value>>
-struct lcm_impl
-{
-// clang-format off
-  using category     = binary_operator_tag;
-  using operand_type = T;
-  static constexpr T identity_elem  = 1; // lcm(1, a) = a
-  static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
-// clang-format on
-
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
-  {
-    assert(!imul_overflows<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
-    return a / gcd_impl<T> {}(a, b) * b;
-  }
-};
-
-} // namespace details
-
-template <typename T>
-using gcd = details::gcd_impl<T>;
-
-template <typename T>
-using lcm = details::lcm_impl<T>;
-
-} // namespace op
 
 namespace details {
 
@@ -90,6 +40,9 @@ AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename TOp::op
 
 } // namespace details
 
+// compute gcd(x_1, x_2, ..., x_n), can correctly handle operands that have different width and signedness
+// long long ans = aal::gcd(28, 21LL, -7, 0);
+// ans is 7
 template <typename... Ts>
 AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {
@@ -98,6 +51,9 @@ AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept -> typename std::common_type<rem
   return details::gcd_lcm_selector<op::gcd<result_type>>(std::forward<Ts>(nums)...);
 }
 
+// compute lcm(x_1, x_2, ..., x_n), can correctly handle operands that have different width and signedness
+// u128 ans = aal::lcm(28, -21, 7, 49, u128(1));
+// ans is 588
 template <typename... Ts>
 AAL_CONSTEXPR14 auto lcm(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {

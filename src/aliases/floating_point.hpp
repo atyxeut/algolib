@@ -3,6 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/floating_point.hpp */
 
+// provide aliases for floating-point number types
+
 #include "../macros/target.hpp"
 
 // precision (significant digits)
@@ -15,7 +17,7 @@ using f80 = long double;
 // f128 is provided by compilers, and is not supported by standard type traits
 // there is no f128 for MSVC
 // for convenience, we consider that f128 only works on x86 or x86_64
-#if AAL_MSVC || !AAL_ARCH_X86 && !AAL_ARCH_X86_64
+#if AAL_COMPILER_MSVC || !AAL_ARCH_X86 && !AAL_ARCH_X86_64
 namespace aal { namespace details {
 
 struct fake_f128;
@@ -26,6 +28,6 @@ using f128 = ::aal::details::fake_f128;
 #else
 // details (GCC and Clang): https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html
 using f128 = __float128;
-#endif // MSVC or not x86(_64) architecture
+#endif // MSVC compiler or not x86(_64) architecture
 
 #endif // AAL_SRC_ALIASES_FLOATING_POINT_HPP

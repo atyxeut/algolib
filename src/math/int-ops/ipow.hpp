@@ -7,8 +7,9 @@
 
 namespace aal {
 
+// compute a^n in O(logn) time, see ipow.md for extra information
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept -> make_unsigned_t<typename std::common_type<T1, T2>::type>
+AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept -> typename std::common_type<T1, T2>::type
 {
   static_assert(conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, "arguments must be nonbool integers");
   assert(a >= 0 && n >= 0 && "arguments must be nonnegative");
@@ -21,8 +22,10 @@ AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept -> make_unsigned_t<typename std::
   result_type ans = 1;
   result_type base = a;
   while (true) { // don't write for (; n != 0; n >>= 1), base *= base will be executed an extra time in the end
-    if (n & 1)
+    if (n & 1) {
+      assert(!imul_overflows<result_type>(ans, base) && "the result cannot be represented");
       ans *= base;
+    }
     n >>= 1;
     if (n == 0)
       break;

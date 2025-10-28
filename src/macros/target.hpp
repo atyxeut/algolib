@@ -12,7 +12,7 @@
 #endif // test if the target architecture is x86_64
 
 #ifdef _MSC_VER
-#define AAL_MSVC 1
+#define AAL_COMPILER_MSVC 1
 #endif // test if the target compiler is MSVC
 
 #endif // AAL_SRC_MACROS_TARGET_HPP
