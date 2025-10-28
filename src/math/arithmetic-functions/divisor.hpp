@@ -18,9 +18,12 @@ AAL_CONSTEXPR14 T sigma(T n) noexcept
   T ans = 0;
   for (T i = 1; i <= n / i; ++i) {
     if (n % i == 0) {
+      assert(!iadd_overflows<T>(ans, ipow(i, x)) && "the result cannot be represented");
       ans += ipow(i, x);
-      if (n / i != i)
+      if (n / i != i) {
+        assert(!iadd_overflows<T>(ans, ipow(n / i, x)) && "the result cannot be represented");
         ans += ipow(n / i, x);
+      }
     }
   }
   return ans;
