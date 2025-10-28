@@ -59,7 +59,7 @@ AAL_CONSTEXPR20 auto make_array(const T& val) -> array<TElem, Dims...>
 template <typename TElem, typename TDim, typename T>
 auto make_vector(TDim size, T&& val) -> std::vector<TElem>
 {
-  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "wrong type for dim size");
+  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "the type of dim size must be standard integral");
   return std::vector<TElem>(size, std::forward<T>(val));
 }
 
@@ -71,7 +71,7 @@ auto make_vector(TDim size, T&& val) -> std::vector<TElem>
 template <typename TElem, typename TDim, typename... Ts>
 auto make_vector(TDim size, Ts&&... args) -> vector<TElem, sizeof...(Ts)>
 {
-  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "wrong type for dim size");
+  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "the type of dim size must be standard integral");
   return std::vector<vector<TElem, sizeof...(Ts) - 1>>(size, make_vector<TElem>(std::forward<Ts>(args)...));
 }
 

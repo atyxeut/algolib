@@ -16,7 +16,7 @@ namespace aal { namespace get_divisor {
 template <typename T>
 auto all(T n) -> std::vector<T>
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   // divisors are in pairs, let n = a * b and a <= b, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
@@ -40,7 +40,7 @@ auto all(T n) -> std::vector<T>
 template <typename T>
 auto prime(T n) -> std::vector<std::array<T, 2>>
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   // if there exists a prime p of n that is > sqrt(n), then its the only, otherwise the total product exceeds n
@@ -62,7 +62,7 @@ auto prime(T n) -> std::vector<std::array<T, 2>>
 template <typename T>
 auto prime(T n, const std::vector<T>& minp) -> std::vector<std::array<T, 2>>
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   std::vector<std::array<T, 2>> info;

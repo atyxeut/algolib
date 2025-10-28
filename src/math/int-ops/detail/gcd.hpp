@@ -11,13 +11,13 @@ namespace aal { namespace detail {
 template <typename TOp, typename... Ts>
 AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename TOp::operand_type
 {
-  static_assert(sizeof...(Ts) >= 2, "must give at least 2 arguments");
+  static_assert(sizeof...(Ts) >= 2, "must provide at least 2 arguments");
   using result_type = typename TOp::operand_type;
   make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
 
 #ifndef NDEBUG
   for (auto i : mags)
-    assert(static_cast<result_type>(i) >= 0 && "not all magnitudes can be represented in the common type");
+    assert(static_cast<result_type>(i) >= 0 && "some magnitudes cannot be represented in the common type");
 #endif // NDEBUG
 
   TOp op;

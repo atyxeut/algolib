@@ -12,7 +12,7 @@ namespace aal { namespace arith_func {
 template <int x = 1, typename T>
 AAL_CONSTEXPR14 T sigma(T n) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   T ans = 0;

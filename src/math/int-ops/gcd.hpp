@@ -17,7 +17,7 @@ namespace aal {
 template <typename... Ts>
 AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {
-  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "arguments must be nonbool integers");
+  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "arguments must be integers");
   using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
   return detail::gcd_lcm_selector<op::gcd<result_type>>(std::forward<Ts>(nums)...);
 }
@@ -28,7 +28,7 @@ AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept -> typename std::common_type<rem
 template <typename... Ts>
 AAL_CONSTEXPR14 auto lcm(Ts&&... nums) noexcept -> typename std::common_type<remove_cv_t<Ts>...>::type
 {
-  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "arguments must be nonbool integers");
+  static_assert(conjunction<is_nonbool_integral<Ts>...>::value, "arguments must be integers");
   using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
   return detail::gcd_lcm_selector<op::lcm<result_type>>(std::forward<Ts>(nums)...);
 }

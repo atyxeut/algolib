@@ -12,7 +12,7 @@ namespace aal {
 template <typename T>
 AAL_CONSTEXPR14 int countl_zero(T x) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(x >= 0 && "argument must be nonnegative");
   return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : detail::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
 }
@@ -21,7 +21,7 @@ AAL_CONSTEXPR14 int countl_zero(T x) noexcept
 template <typename T>
 AAL_CONSTEXPR14 int bit_width(T x) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(x >= 0 && "argument must be nonnegative");
   return std::numeric_limits<make_unsigned_t<T>>::digits - countl_zero(x);
 }
@@ -31,7 +31,7 @@ AAL_CONSTEXPR14 int bit_width(T x) noexcept
 template <typename T>
 AAL_CONSTEXPR14 int ilog2(T x) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(x >= 0 && "argument must be nonnegative");
   return bit_width(x) - 1;
 }

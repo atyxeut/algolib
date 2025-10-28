@@ -14,7 +14,7 @@ namespace aal {
 template <typename T>
 AAL_CONSTEXPR14 T isqrt(T x) noexcept
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
+  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(x >= 0 && "argument must be nonnegative");
 
   if (x == 0 || x == 1)
