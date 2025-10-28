@@ -110,7 +110,7 @@ struct make_unsigned
 template <typename T>
 using make_unsigned_t = typename make_unsigned<T>::type;
 
-namespace details {
+namespace detail {
 
 template <typename T, std::size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
 struct make_larger_width_selector;
@@ -139,7 +139,7 @@ struct make_larger_width_selector<T, sizeof(i128)>
   using type = T;
 };
 
-} // namespace details
+} // namespace detail
 
 // for the given integer type, obtains i32 if its width is smaller than the width of i32,
 // otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
@@ -148,7 +148,7 @@ template <typename T>
 struct make_larger_width
 {
   static_assert(is_integral<T>::value, "the given type must be integral");
-  using type = typename details::make_larger_width_selector<T>::type;
+  using type = typename detail::make_larger_width_selector<T>::type;
 };
 
 template <typename T>
@@ -156,15 +156,15 @@ using make_larger_width_t = typename make_larger_width<T>::type;
 
 struct empty_integral;
 
-namespace details {
+namespace detail {
 
 template <typename T, typename = typename std::enable_if<disjunction<is_integral<T>, std::is_same<T, empty_integral>>::value>::type>
 struct integral_wrapper_impl;
 
-} // namespace details
+} // namespace detail
 
 template <typename T>
-using integral_wrapper = details::integral_wrapper_impl<T>;
+using integral_wrapper = detail::integral_wrapper_impl<T>;
 
 using empty_integral_wrapper = integral_wrapper<empty_integral>;
 
@@ -193,7 +193,7 @@ template <typename T>
 constexpr bool is_empty_integral_wrapper_v = is_empty_integral_wrapper<T>::value;
 #endif // C++14
 
-namespace details {
+namespace detail {
 
 template <typename>
 struct unwrap_integral_impl;
@@ -207,10 +207,10 @@ struct unwrap_integral_impl<integral_wrapper<T>>
   using type = T;
 };
 
-} // namespace details
+} // namespace detail
 
 template <typename T>
-using unwrap_integral = details::unwrap_integral_impl<T>;
+using unwrap_integral = detail::unwrap_integral_impl<T>;
 
 template <typename T>
 using unwrap_integral_t = typename unwrap_integral<T>::type;
