@@ -1,6 +1,6 @@
 *
 !.clang-format
-!fmt_cpp_files.py
+!fmt.py
 !notes
 !notes/**
 !src
