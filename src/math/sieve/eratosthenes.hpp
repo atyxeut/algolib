@@ -4,6 +4,7 @@
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/eratosthenes.hpp */
 
 #include "../../type-traits/integral.hpp"
+#include <cassert>
 #include <vector>
 
 namespace aal { namespace sieve {
