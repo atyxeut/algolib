@@ -3,10 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/integer_sequence.hpp */
 
-// backports C++14 std::integer_sequence and its helpers
-// implementation details from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
-
 #include <cstddef>
+
+// backports C++14 std::integer_sequence and its helpers
 
 namespace aal {
 
@@ -24,7 +23,9 @@ struct integer_sequence
 template <std::size_t... Ints>
 using index_sequence = integer_sequence<std::size_t, Ints...>;
 
-namespace details {
+namespace detail {
+
+// implementation details from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
 
 template <typename TInt, TInt Begin, TInt End, TInt... Ints>
 struct make_integer_sequence_impl
@@ -38,10 +39,10 @@ struct make_integer_sequence_impl<TInt, End, End, Ints...>
   using type = integer_sequence<TInt, Ints...>;
 };
 
-} // namespace details
+} // namespace detail
 
 template <typename TInt, TInt N>
-using make_integer_sequence = typename details::make_integer_sequence_impl<TInt, 0, N>::type;
+using make_integer_sequence = typename detail::make_integer_sequence_impl<TInt, 0, N>::type;
 
 template <std::size_t N>
 using make_index_sequence = make_integer_sequence<std::size_t, N>;

@@ -3,11 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/integral.hpp */
 
-// provide aliases for integer types
-
 #include "../macros/target.hpp"
 #include <cstddef>
 #include <cstdint>
+
+// provide aliases for integer types
 
 using i8  = std::int8_t;
 using u8  = std::uint8_t;

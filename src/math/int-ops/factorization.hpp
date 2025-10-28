@@ -3,8 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/factorization.hpp */
 
-// provide function templates for integer factorization
-
 #include "../../type-traits/integral.hpp"
 #include <array>
 #include <cassert>

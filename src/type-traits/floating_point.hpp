@@ -41,7 +41,7 @@ template <typename T>
 constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::value;
 #endif // C++14
 
-namespace details {
+namespace detail {
 
 // use specialization to avoid nested conditional_t
 template <typename T, typename TFloatingPoint = remove_cv_t<T>>
@@ -71,7 +71,7 @@ struct make_higher_precision_selector<T, f128>
   using type = T;
 };
 
-} // namespace details
+} // namespace detail
 
 // for the given floating-point type, obtains a floating-point that has higher precision,
 // if there is no such a type, obtains the given type
@@ -80,7 +80,7 @@ template <typename T>
 struct make_higher_precision
 {
   static_assert(is_floating_point<T>::value, "the given type must be floating point");
-  using type = typename details::make_higher_precision_selector<T>::type;
+  using type = typename detail::make_higher_precision_selector<T>::type;
 };
 
 template <typename T>

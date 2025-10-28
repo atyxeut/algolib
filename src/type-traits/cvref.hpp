@@ -22,9 +22,8 @@ constexpr bool is_cv_v = is_cv<T>::value;
 template <typename T>
 using remove_cv_t = typename std::remove_cv<T>::type;
 
-namespace details {
+namespace detail {
 
-// use specialization to avoid nested conditional_t
 template <typename TFrom, typename TTo, bool = std::is_const<TFrom>::value, bool = std::is_volatile<TFrom>::value>
 struct claim_cv_selector;
 
@@ -56,13 +55,13 @@ struct claim_cv_selector<TFrom, TTo, false, false>
   using type = TTo;
 };
 
-} // namespace details
+} // namespace detail
 
 // extracts the cv-qualifiers of a TFrom and apply them to TTo
 template <typename TFrom, typename TTo>
 struct claim_cv
 {
-  using type = typename details::claim_cv_selector<TFrom, TTo>::type;
+  using type = typename detail::claim_cv_selector<TFrom, TTo>::type;
 };
 
 template <typename TFrom, typename TTo>

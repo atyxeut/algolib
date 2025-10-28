@@ -3,62 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/bit.hpp */
 
-// provide function templates for bit operations
-
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "detail/bit.hpp"
 #include <cassert>
-#include <limits>
-
-// docs of compiler built-in bit operation:
-// https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html
-// https://learn.microsoft.com/en-us/cpp/intrinsics/bitscanreverse-bitscanreverse64?view=msvc-170
-
-#if AAL_COMPILER_MSVC
-#include <intrin.h>
-#endif // MSVC compiler
 
 namespace aal {
-
-namespace details {
-
-template <usize Width, typename T>
-AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u32>::digits, int>::type
-{
-  constexpr int max_digits = std::numeric_limits<make_unsigned_t<T>>::digits;
-#if AAL_COMPILER_MSVC
-  unsigned long ret;
-  _BitScanReverse(&ret, x);
-  return max_digits - ret - 1;
-#else
-  return max_digits + __builtin_clz(x) - Width;
-#endif // MSVC compiler
-}
-
-template <usize Width, typename T>
-AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u64>::digits, int>::type
-{
-#if AAL_COMPILER_MSVC
-  unsigned long ret;
-  _BitScanReverse64(&ret, x);
-  return std::numeric_limits<u64>::digits - ret - 1;
-#else
-  return __builtin_clzll(x);
-#endif // MSVC compiler
-}
-
-template <usize Width, typename T>
-AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u128>::digits, int>::type
-{
-#if AAL_COMPILER_MSVC
-  constexpr int u64_width = std::numeric_limits<u128>::digits / 2;
-  return x >> u64_width == 0 ? u64_width + countl_zero_impl<u64_width>(static_cast<u64>(x)) : countl_zero_impl<u64_width>(static_cast<u64>(x >> u64_width));
-#else
-  return __builtin_clzg(static_cast<u128>(x));
-#endif // MSVC compiler
-}
-
-} // namespace details
 
 // backport of C++20 std::countl_zero, but can handle signed and 128-bit integer types
 template <typename T>
@@ -66,7 +14,7 @@ AAL_CONSTEXPR14 int countl_zero(T x) noexcept
 {
   static_assert(is_nonbool_integral<T>::value, "argument must be nonbool integer");
   assert(x >= 0 && "argument must be nonnegative");
-  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : details::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
+  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : detail::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
 }
 
 // backport of C++20 std::bit_width, but can handle signed and 128-bit integer types
