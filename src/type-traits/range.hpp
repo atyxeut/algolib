@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-traits/range.hpp */
 
-#include "logical.hpp"
+#include "cvref.hpp"
 #include "sfinae.hpp"
 #include <iterator>
 #include <utility>
@@ -16,7 +16,7 @@ struct can_call_std_begin : std::false_type
 };
 
 template <typename T>
-struct can_call_std_begin<T, void_t<decltype(std::begin(std::declval<T&>()))>> : std::true_type
+struct can_call_std_begin<T, void_t<decltype(std::begin(std::declval<remove_cvref_t<T>&>()))>> : std::true_type
 {
 };
 
@@ -31,7 +31,7 @@ struct can_call_std_end : std::false_type
 };
 
 template <typename T>
-struct can_call_std_end<T, void_t<decltype(std::end(std::declval<T&>()))>> : std::true_type
+struct can_call_std_end<T, void_t<decltype(std::end(std::declval<remove_cvref_t<T>&>()))>> : std::true_type
 {
 };
 
@@ -41,13 +41,13 @@ constexpr bool can_call_std_end_v = can_call_std_end<T>::value;
 #endif // C++14
 
 template <typename T>
-struct is_range : conjunction<can_call_std_begin<T>, can_call_std_end<T>>
+struct is_range : std::integral_constant<bool, can_call_std_begin<T>::value && can_call_std_end<T>::value>
 {
 };
 
 #if CPP14
 template <typename T>
-constexpr bool can_call_std_end_v = can_call_std_end<T>::value;
+constexpr bool is_range_v = is_range<T>::value;
 #endif // C++14
 
 } // namespace aal
