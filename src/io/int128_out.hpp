@@ -1,0 +1,42 @@
+#ifndef AAL_SRC_IO_INT128_OUT_HPP
+#define AAL_SRC_IO_INT128_OUT_HPP
+
+/* https://github.com/atyxeut/algolib/blob/main/src/io/int128_out.hpp */
+
+#include "../aliases/integral.hpp"
+#include <algorithm>
+#include <limits>
+#include <ostream>
+#include <string>
+
+// this #include order is necesarry to make range_out.hpp able to print ranges that has int128 as elements:
+// #include <.../int128_out.hpp>
+// #include <.../range_out.hpp>
+
+template <typename TChar, typename TTraits>
+auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic_ostream<TChar, TTraits>&
+{
+  if (n == 0)
+    return ostr << 0;
+
+  std::string buffer;
+  for (; n; n /= 10)
+    buffer += static_cast<char>(n % 10 + '0');
+  std::reverse(buffer.begin(), buffer.end());
+
+  return ostr << buffer;
+}
+
+template <typename TChar, typename TTraits>
+auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, i128 n) -> std::basic_ostream<TChar, TTraits>&
+{
+  if (n == std::numeric_limits<i128>::min())
+    return ostr << '-' << static_cast<u128>(n);
+
+  if (n < 0)
+    return ostr << '-' << static_cast<u128>(-n);
+
+  return ostr << static_cast<u128>(n);
+}
+
+#endif // AAL_SRC_IO_INT128_OUT_HPP
