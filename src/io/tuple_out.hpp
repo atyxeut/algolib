@@ -6,13 +6,9 @@
 #include "detail/tuple_out.hpp"
 #include <utility>
 
-// change the #include order to switch if range_out can print ranges that has std::pair, std::tuple as elements
-// enable:
+// this #include order is necesarry to make range_out.hpp able to print ranges that has std::pair, std::tuple as elements:
 // #include <.../tuple_out.hpp>
 // #include <.../range_out.hpp>
-// disable:
-// #include <.../range_out.hpp>
-// #include <.../tuple_out.hpp>
 
 template <typename TChar, typename TTraits, typename T1, typename T2>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, const std::pair<T1, T2>& p) -> std::basic_ostream<TChar, TTraits>&

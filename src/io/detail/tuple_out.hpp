@@ -13,7 +13,7 @@ template <typename TChar, typename TTraits, typename TTuple, std::size_t... Is>
 void print_tuple_impl(std::basic_ostream<TChar, TTraits>& ostr, const TTuple& t, ::aal::index_sequence<Is...>)
 {
   using T = int[];
-  (void)(T {(ostr << std::get<Is>(t) << (Is + 1 == std::tuple_size<TTuple>::value ? "" : " "), 0)...});
+  static_cast<void>(T {(ostr << std::get<Is>(t) << (Is + 1 == std::tuple_size<TTuple>::value ? "" : " "), 0)...});
 }
 
 } // namespace detail
