@@ -21,10 +21,10 @@ auto all(T n) -> std::vector<T>
 
   // divisors are in pairs, let n = a * b and a <= b, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
   std::vector<T> info;
-  for (T i = 1; i <= n / i; ++i) {
+  for (T i = 1; i <= n / i; ++i)
     if (n % i == 0)
       info.push_back(i);
-  }
+
   for (int idx = info.size() - 1; idx >= 0; --idx) {
     T another = n / info[idx];
     if (another != info[idx])
@@ -48,9 +48,8 @@ auto prime(T n) -> std::vector<std::array<T, 2>>
   for (T i = 2; i <= n / i; ++i) {
     if (n % i == 0)
       info.push_back({i, 0});
-    for (; n % i == 0; n /= i) {
+    for (; n % i == 0; n /= i)
       ++info.back()[1];
-    }
   }
   if (n > 1)
     info.push_back({n, 1});

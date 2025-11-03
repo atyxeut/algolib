@@ -21,10 +21,10 @@ AAL_CONSTEXPR14 bool trial_division(T n) noexcept
     return false;
 
   // let p be the smallest prime factor of n, write n = p * a, then p <= a ==> p * p <= p * a = n ==> p <= sqrt(n)
-  for (T i = 3; i <= n / i; i += 2) {
+  for (T i = 3; i <= n / i; i += 2)
     if (n % i == 0)
       return false;
-  }
+
   return true;
 }
 
