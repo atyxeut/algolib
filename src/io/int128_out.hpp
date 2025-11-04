@@ -10,7 +10,7 @@
 #include <string>
 
 // to make the overload of operator << defined in range_out.hpp able to accept ranges that has i128, u128 as elements,
-//   this #include order is necessarry:
+//   this #include order is necessary:
 // #include ".../int128_out.hpp"
 // #include ".../range_out.hpp"
 
