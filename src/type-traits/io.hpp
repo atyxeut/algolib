@@ -49,10 +49,9 @@ struct is_default_printable_impl<T, TOstream, void_t<decltype(std::declval<remov
 } // namespace detail
 
 // check if T has a dedicated overload for operator <<
-// note that templates are not "dedicated", that is to say:
-// operator <<(..., int) is, while operator <<(..., TArg&&) is not, even if the latter can actually be used
-// a more concrete example:
-// std::vector<int> matches the latter, but it's not considered default printable, since there is no operator <<(..., std::vector<int>) overload
+// for what is dedicated", see this example:
+// operator <<(..., int) is, while operator <<(..., TArg&&) is not, even if the latter can actually be selected by overload resolution
+// std::vector<int> matches the latter, but it's not considered default printable, since there is not an overload like operator <<(..., const std::vector<int>&)
 template <typename T, typename TOstream>
 using is_default_printable = detail::is_default_printable_impl<T, TOstream>;
 
