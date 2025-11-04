@@ -14,14 +14,14 @@
 namespace aal {
 
 template <typename TChar, typename TTraits, typename T1, typename T2, typename TDelim>
-auto print_pair(std::basic_ostream<TChar, TTraits>& ostr, const std::pair<T1, T2>& p, TDelim&& delim) ->
+auto print(std::basic_ostream<TChar, TTraits>& ostr, const std::pair<T1, T2>& p, TDelim&& delim) ->
   typename std::enable_if<std::is_convertible<TDelim, std::basic_string<TChar>>::value, void>::type
 {
   ostr << p.first << delim << p.second;
 }
 
 template <typename TChar, typename TTraits, typename TDelim, typename... Ts, std::size_t... Is>
-auto print_tuple(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple<Ts...>& t, TDelim&& delim) ->
+auto print(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple<Ts...>& t, TDelim&& delim) ->
   typename std::enable_if<std::is_convertible<TDelim, std::basic_string<TChar>>::value, void>::type
 {
   detail::print_tuple_impl(ostr, t, std::forward<TDelim>(delim), index_sequence_for<Ts...> {});
@@ -32,7 +32,7 @@ auto print_tuple(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple<Ts..
 template <typename TChar, typename TTraits, typename T1, typename T2>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, const std::pair<T1, T2>& p) -> std::basic_ostream<TChar, TTraits>&
 {
-  ::aal::print_pair(ostr, p, std::basic_string<TChar>(1, static_cast<TChar>(' ')));
+  ::aal::print(ostr, p, std::basic_string<TChar>(1, static_cast<TChar>(' ')));
   return ostr;
 }
 

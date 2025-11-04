@@ -12,7 +12,7 @@ namespace aal {
 // print ranges whose element can be printed by specific ostreams by default
 // e.g. std::vector<std::string> is OK but std::vector<std::pair<int, int>> is not by default
 template <typename TChar, typename TTraits, typename TRange, typename TDelim>
-auto print_range(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, TDelim&& delim) -> enable_if_t<
+auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, TDelim&& delim) -> enable_if_t<
   is_range<TRange>::value &&
     is_default_printable<remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>, std::basic_ostream<TChar, TTraits>>::value &&
     std::is_convertible<remove_cvref_t<TDelim>, std::basic_string<TChar>>::value,
@@ -32,7 +32,7 @@ auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range) -> ::
   ::aal::is_range<TRange>::value && !::aal::is_default_printable<TRange, std::basic_ostream<TChar, TTraits>>::value, std::basic_ostream<TChar, TTraits>&
 >
 {
-  ::aal::print_range(ostr, std::forward<TRange>(range), std::basic_string<TChar>(1, static_cast<TChar>(' ')));
+  ::aal::print(ostr, std::forward<TRange>(range), std::basic_string<TChar>(1, static_cast<TChar>(' ')));
   return ostr;
 }
 
