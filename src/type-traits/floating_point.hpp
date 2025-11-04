@@ -71,17 +71,19 @@ struct make_higher_precision_selector<T, f128>
   using type = T;
 };
 
+template <typename T, typename = typename std::enable_if<is_floating_point<T>::value>::type>
+struct make_higher_precision_impl
+{
+  using type = typename detail::make_higher_precision_selector<T>::type;
+};
+
 } // namespace detail
 
 // for the given floating-point type, obtains a floating-point that has higher precision,
 // if there is no such a type, obtains the given type
 // cv-qualifiers are kept
 template <typename T>
-struct make_higher_precision
-{
-  static_assert(is_floating_point<T>::value, "the given type must be floating point");
-  using type = typename detail::make_higher_precision_selector<T>::type;
-};
+using make_higher_precision = detail::make_higher_precision_impl<T>;
 
 template <typename T>
 using make_higher_precision_t = typename make_higher_precision<T>::type;

@@ -12,9 +12,8 @@ namespace aal {
 
 // compute floor(sqrt(x)) without introducing floating-point numbers, see isqrt.md for extra information
 template <typename T>
-AAL_CONSTEXPR14 T isqrt(T x) noexcept
+AAL_CONSTEXPR14 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(x >= 0 && "argument must be nonnegative");
 
   if (x == 0 || x == 1)

@@ -139,17 +139,19 @@ struct make_larger_width_selector<T, sizeof(i128)>
   using type = T;
 };
 
+template <typename T, typename = typename std::enable_if<is_integral<T>::value>::type>
+struct make_larger_width_impl
+{
+  using type = typename detail::make_larger_width_selector<T>::type;
+};
+
 } // namespace detail
 
 // for the given integer type, obtains i32 if its width is smaller than the width of i32,
 // otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
 // cv-qualifiers and signedness are kept
 template <typename T>
-struct make_larger_width
-{
-  static_assert(is_integral<T>::value, "the given type must be integral");
-  using type = typename detail::make_larger_width_selector<T>::type;
-};
+using make_larger_width = detail::make_larger_width_impl<T>;
 
 template <typename T>
 using make_larger_width_t = typename make_larger_width<T>::type;

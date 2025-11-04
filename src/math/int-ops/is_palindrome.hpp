@@ -10,10 +10,8 @@ namespace aal {
 
 // test if a nonnegative integer is palindrome
 template <typename T>
-AAL_CONSTEXPR14 bool is_palindrome(T n) noexcept
+AAL_CONSTEXPR14 auto is_palindrome(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
-
   if (n == 0)
     return true;
 

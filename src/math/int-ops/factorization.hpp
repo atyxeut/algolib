@@ -14,9 +14,8 @@ namespace aal { namespace get_divisor {
 // std::vector<int> ret = aal::get_divisor::all(36);
 // ret is [1, 2, 3, 4, 6, 9, 12, 18, 36]
 template <typename T>
-auto all(T n) -> std::vector<T>
+auto all(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<T>>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   // divisors are in pairs, let n = a * b and a <= b, then a <= sqrt(n) <= b, we only need to find all possible a, then calculate b
@@ -38,9 +37,8 @@ auto all(T n) -> std::vector<T>
 // std::vector<std::array<int, 2>> ret = aal::get_divisor::prime(n);
 // ret is [[2, 2], [3, 2]]
 template <typename T>
-auto prime(T n) -> std::vector<std::array<T, 2>>
+auto prime(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<std::array<T, 2>>>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   // if there exists a prime p of n that is > sqrt(n), then its the only, otherwise the total product exceeds n
@@ -58,10 +56,10 @@ auto prime(T n) -> std::vector<std::array<T, 2>>
 
 // O(logn) version when the smallest prime divisor of every integer that <= n is known
 // because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
+// the behavior is undefined if the second argument is not the actual minp array
 template <typename T>
-auto prime(T n, const std::vector<T>& minp) -> std::vector<std::array<T, 2>>
+auto prime(T n, const std::vector<T>& minp) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<std::array<T, 2>>>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   std::vector<std::array<T, 2>> info;

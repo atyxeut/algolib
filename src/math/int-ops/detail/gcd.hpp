@@ -9,9 +9,8 @@
 namespace aal { namespace detail {
 
 template <typename TOp, typename... Ts>
-AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename TOp::operand_type
+AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename std::enable_if<sizeof...(Ts) >= 2, typename TOp::operand_type>::type
 {
-  static_assert(sizeof...(Ts) >= 2, "must provide at least 2 arguments");
   using result_type = typename TOp::operand_type;
   make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
 

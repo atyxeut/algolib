@@ -18,13 +18,13 @@ using f80 = long double;
 // there is no f128 for MSVC
 // for convenience, we consider that f128 only works on x86 or x86_64
 #if AAL_COMPILER_MSVC || !AAL_ARCH_X86 && !AAL_ARCH_X86_64
-namespace aal { namespace details {
+namespace aal { namespace detail {
 
 struct fake_f128;
 
-}} // namespace aal::details
+}} // namespace aal::detail
 
-using f128 = ::aal::details::fake_f128;
+using f128 = ::aal::detail::fake_f128;
 #else
 // details (GCC and Clang): https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html
 using f128 = __float128;

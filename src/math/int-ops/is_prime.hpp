@@ -10,10 +10,8 @@ namespace aal { namespace is_prime {
 
 // test if an integer is prime using trial division
 template <typename T>
-AAL_CONSTEXPR14 bool trial_division(T n) noexcept
+AAL_CONSTEXPR14 auto trial_division(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
-
   if (n == 2)
     return true;
 
@@ -29,9 +27,8 @@ AAL_CONSTEXPR14 bool trial_division(T n) noexcept
 }
 
 // template <typename T>
-// AAL_CONSTEXPR14 bool miller_rabin(T n) noexcept
+// AAL_CONSTEXPR14 auto miller_rabin(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
 // {
-//   static_assert(is_nonbool_integral<T>::value, "argument must be integer");
 // }
 
 }} // namespace aal::is_prime

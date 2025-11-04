@@ -15,9 +15,8 @@ namespace aal { namespace sieve { namespace linear {
 // get the prime list and the smallest prime factor list (minp[i]: the smallest prime divisor of i, minp[i] = i: i is a prime, otherwise not)
 // the behavior is undefined if minp[0], minp[1] are used
 template <typename T>
-auto base(T n) -> std::tuple<std::vector<T>, std::vector<T>>
+auto base(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::tuple<std::vector<T>, std::vector<T>>>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "the argument must be positive");
 
   std::vector<T> prime;

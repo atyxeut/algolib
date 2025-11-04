@@ -15,23 +15,32 @@ enum class idiv_mode
   ceil
 };
 
-template <typename TDividend, typename TDivisor>
-struct idiv_result
+namespace detail {
+
+template <
+  typename TDividend, typename TDivisor,
+  typename = typename std::enable_if<conjunction<is_nonbool_integral<TDividend>, is_nonbool_integral<TDivisor>>::value>::type
+>
+struct idiv_result_impl
 {
-  static_assert(conjunction<is_nonbool_integral<TDividend>, is_nonbool_integral<TDivisor>>::value, "given two types must be nonbool integral");
-  // cv-qualifiers are removed after integral promotion
+    // cv-qualifiers are removed after integral promotion
   using type1 = decltype(+std::declval<TDividend>());
   using type2 = decltype(+std::declval<TDivisor>());
 
-  // branch 1: type2 is unsigned, then the divisor is always positive, so the result never overflows type1
+    // branch 1: type2 is unsigned, then the divisor is always positive, so the result never overflows type1
 
-  // branch 2: type2 is signed, the result type has to be a signed type larger than type1
-  //   e.g. -2147483648 (int) / -1 = 2147483648 (requires long long)
-  //   e.g. 4294967295 (unsigned int) / -1 = -4294967295 (requires long long)
+    // branch 2: type2 is signed, the result type has to be a signed type larger than type1
+    //   e.g. -2147483648 (int) / -1 = 2147483648 (requires long long)
+    //   e.g. 4294967295 (unsigned int) / -1 = -4294967295 (requires long long)
 
-  // obtains a type that guarantees to be able to represent the result, unless there is no such type
+    // obtains a type that guarantees to be able to represent the result, unless there is no such type
   using type = typename std::conditional<is_unsigned<type2>::value, type1, make_larger_width_t<make_signed_t<type1>>>::type;
 };
+
+} // namespace detail
+
+template <typename TDividend, typename TDivisor>
+using idiv_result = detail::idiv_result_impl<TDividend, TDividend>;
 
 template <idiv_mode Mode, typename T1, typename T2>
 AAL_CONSTEXPR14 auto idiv_impl(T1 lhs, T2 rhs) noexcept -> typename idiv_result<T1, T2>::type

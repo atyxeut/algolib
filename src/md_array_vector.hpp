@@ -36,8 +36,8 @@ AAL_CONSTEXPR20 auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> ty
 // aal::array<int, 3, 5, 2, 10> arr4d;
 // int val = -1;
 // aal::fill_array(arr4d, val);
-template <typename TElem, std::size_t Dim, typename T>
-AAL_CONSTEXPR20 auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> typename std::enable_if<!std::is_convertible<T, TElem>::value>::type
+template <typename TArr, std::size_t Dim, typename T>
+AAL_CONSTEXPR20 auto fill_array(std::array<TArr, Dim>& arr, const T& val) -> typename std::enable_if<!std::is_convertible<T, TArr>::value>::type
 {
   for (auto& inner_arr : arr)
     fill_array(inner_arr, val);
@@ -46,8 +46,8 @@ AAL_CONSTEXPR20 auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> ty
 // auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
 // combines aal::array<int, 5, 8, 3, 2> arr4d;
 //      and aal::fill_array(arr4d, val);
-template <typename TElem, std::size_t... Dims, typename T>
-AAL_CONSTEXPR20 auto make_array(const T& val) -> array<TElem, Dims...>
+template <typename TElem, std::size_t... Dims>
+AAL_CONSTEXPR20 auto make_array(const TElem& val) -> array<TElem, Dims...>
 {
   array<TElem, Dims...> arr;
   fill_array(arr, val);
@@ -57,9 +57,8 @@ AAL_CONSTEXPR20 auto make_array(const T& val) -> array<TElem, Dims...>
 // base case of aal::make_vector
 // auto vec = aal::make_vector<int>(x, -1); calls this overload
 template <typename TElem, typename TDim, typename T>
-auto make_vector(TDim size, T&& val) -> std::vector<TElem>
+auto make_vector(TDim size, T&& val) -> typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), std::vector<TElem>>::type
 {
-  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "the type of dim size must be standard integral");
   return std::vector<TElem>(size, std::forward<T>(val));
 }
 
@@ -69,10 +68,10 @@ auto make_vector(TDim size, T&& val) -> std::vector<TElem>
 //                         std::vector<std::vector<int>>(y, std::vector<int>(z, 1))
 //                      );
 template <typename TElem, typename TDim, typename... Ts>
-auto make_vector(TDim size, Ts&&... args) -> vector<TElem, sizeof...(Ts)>
+auto make_vector(TDim first_dim_size, Ts&&... args) ->
+  typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), vector<TElem, sizeof...(Ts)>>::type
 {
-  static_assert(std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), "the type of dim size must be standard integral");
-  return std::vector<vector<TElem, sizeof...(Ts) - 1>>(size, make_vector<TElem>(std::forward<Ts>(args)...));
+  return std::vector<vector<TElem, sizeof...(Ts) - 1>>(first_dim_size, make_vector<TElem>(std::forward<Ts>(args)...));
 }
 
 } // namespace aal

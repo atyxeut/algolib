@@ -12,9 +12,8 @@
 namespace aal { namespace arith_func {
 
 template <typename T>
-AAL_CONSTEXPR14 T little_omega(T n) noexcept
+AAL_CONSTEXPR14 auto little_omega(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   T ans = 0;
@@ -27,9 +26,8 @@ AAL_CONSTEXPR14 T little_omega(T n) noexcept
 }
 
 template <typename T>
-AAL_CONSTEXPR14 T big_omega(T n) noexcept
+AAL_CONSTEXPR14 auto big_omega(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
-  static_assert(is_nonbool_integral<T>::value, "argument must be integer");
   assert(n > 0 && "argument must be positive");
 
   T ans = 0;
