@@ -9,9 +9,10 @@
 #include <ostream>
 #include <string>
 
-// this #include order is necesarry to make range_out.hpp able to print ranges that has int128 as elements:
-// #include <.../int128_out.hpp>
-// #include <.../range_out.hpp>
+// to make the overload of operator << defined in range_out.hpp able to accept ranges that has i128, u128 as elements,
+//   this #include order is necessarry:
+// #include ".../int128_out.hpp"
+// #include ".../range_out.hpp"
 
 template <typename TChar, typename TTraits>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic_ostream<TChar, TTraits>&
