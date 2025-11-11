@@ -16,9 +16,11 @@ namespace aal {
 // int ans = aal::idiv_floor(-2147483647 - 1, 1ull);
 // ans is 2, -3, -2147483648 respectively
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto idiv_floor(T1 lhs, T2 rhs) noexcept -> typename detail::idiv_result<T1, T2>::type
+AAL_CONSTEXPR14 auto idiv_floor(T1 lhs, T2 rhs) noexcept ->
+  typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, detail::idiv::final_result_t<T1, T2>>::type
 {
-  return detail::idiv_impl<detail::idiv_mode::floor>(lhs, rhs);
+  assert(rhs != 0 && "divisor cannot be 0");
+  return detail::idiv::selector<detail::idiv::mode::floor>(lhs, rhs);
 }
 
 // compute ceil(a / b) for integers a, b without introducing floating-point numbers
@@ -28,9 +30,11 @@ AAL_CONSTEXPR14 auto idiv_floor(T1 lhs, T2 rhs) noexcept -> typename detail::idi
 // long long ans = aal::idiv_ceil(-2147483647 - 1, -1); // 2147483648, no overflow
 // ans is 3, -2, 2147483648 (no overflow) respectively
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto idiv_ceil(T1 lhs, T2 rhs) noexcept -> typename detail::idiv_result<T1, T2>::type
+AAL_CONSTEXPR14 auto idiv_ceil(T1 lhs, T2 rhs) noexcept ->
+  typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, detail::idiv::final_result_t<T1, T2>>::type
 {
-  return detail::idiv_impl<detail::idiv_mode::ceil>(lhs, rhs);
+  assert(rhs != 0 && "divisor cannot be 0");
+  return detail::idiv::selector<detail::idiv::mode::ceil>(lhs, rhs);
 }
 
 } // namespace aal
