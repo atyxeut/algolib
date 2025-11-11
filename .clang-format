@@ -63,7 +63,7 @@ AlignArrayOfStructures: Right
 
 # operator
 AlignOperands: Align
-BreakBinaryOperations: OnePerLine
+BreakBinaryOperations: Never
 BreakBeforeBinaryOperators: None
 BreakBeforeTernaryOperators: true
 
