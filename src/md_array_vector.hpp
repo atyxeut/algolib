@@ -29,7 +29,7 @@ using vector = typename detail::vector_impl<T, DimCnt>::type;
 template <typename TElem, std::size_t Dim, typename T>
 AAL_CONSTEXPR20 auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> typename std::enable_if<std::is_convertible<T, TElem>::value>::type
 {
-  arr.fill(val);
+  arr.fill(static_cast<TElem>(val));
 }
 
 // set every element of a aal::array to val
@@ -46,20 +46,21 @@ AAL_CONSTEXPR20 auto fill_array(std::array<TArr, Dim>& arr, const T& val) -> typ
 // auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
 // combines aal::array<int, 5, 8, 3, 2> arr4d;
 //      and aal::fill_array(arr4d, val);
-template <typename TElem, std::size_t... Dims>
-AAL_CONSTEXPR20 auto make_array(const TElem& val) -> array<TElem, Dims...>
+template <typename TElem, std::size_t... Dims, typename T>
+AAL_CONSTEXPR20 auto make_array(const T& val) -> array<TElem, Dims...>
 {
   array<TElem, Dims...> arr;
-  fill_array(arr, val);
+  fill_array(arr, static_cast<TElem>(val));
   return arr;
 }
 
 // base case of aal::make_vector
 // auto vec = aal::make_vector<int>(x, -1); calls this overload
 template <typename TElem, typename TDim, typename T>
-auto make_vector(TDim size, T&& val) -> typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), std::vector<TElem>>::type
+auto make_vector(TDim size, const T& val) ->
+  typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), std::vector<TElem>>::type
 {
-  return std::vector<TElem>(size, std::forward<T>(val));
+  return std::vector<TElem>(static_cast<std::size_t>(size), static_cast<TElem>(val));
 }
 
 // auto vec3d = aal::make_vector<int>(x, y, z, 1);
@@ -69,9 +70,9 @@ auto make_vector(TDim size, T&& val) -> typename std::enable_if<std::is_integral
 //                      );
 template <typename TElem, typename TDim, typename... Ts>
 auto make_vector(TDim first_dim_size, Ts&&... args) ->
-  typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), vector<TElem, sizeof...(Ts)>>::type
+  typename std::enable_if<(sizeof...(Ts) > 1) && std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), vector<TElem, sizeof...(Ts)>>::type
 {
-  return std::vector<vector<TElem, sizeof...(Ts) - 1>>(first_dim_size, make_vector<TElem>(std::forward<Ts>(args)...));
+  return std::vector<vector<TElem, sizeof...(Ts) - 1>>(static_cast<std::size_t>(first_dim_size), make_vector<TElem>(std::forward<Ts>(args)...));
 }
 
 } // namespace aal
