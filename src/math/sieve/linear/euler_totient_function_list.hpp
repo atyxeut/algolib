@@ -3,10 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/euler_totient_function_list.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../../int-ops/conversion-helper/as_index.hpp"
 #include <vector>
 
-// see linear.md for extra information
+// see note.md for extra information
 
 namespace aal { namespace sieve { namespace linear {
 
@@ -16,23 +16,22 @@ namespace aal { namespace sieve { namespace linear {
 template <typename T>
 auto euler_totient(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
 {
-  T n = minp.size() - 1;
-
-  std::vector<T> phi(n + 1);
+  std::vector<T> phi(minp.size());
   phi[1] = 1;
 
-  for (T i = 2; i <= n; ++i) {
-    if (minp[i] == i)
-      phi[i] = i - 1;
+  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
+    if (minp[as_index(i)] == i)
+      phi[as_index(i)] = i - 1;
     for (T p : prime) {
-      auto composite = static_cast<make_unsigned_t<make_larger_width_t<T>>>(i) * p;
-      if (composite > n)
+      using limit_type = make_unsigned_t<make_larger_width_t<T>>;
+      auto composite = static_cast<limit_type>(i) * static_cast<limit_type>(p);
+      if (composite > static_cast<limit_type>(n))
         break;
       if (i % p == 0) {
-        phi[composite] = p * phi[i];
+        phi[as_index(composite)] = p * phi[as_index(i)];
         break;
       }
-      phi[composite] = phi[i] * (p - 1);
+      phi[as_index(composite)] = phi[as_index(i)] * (p - 1);
     }
   }
 

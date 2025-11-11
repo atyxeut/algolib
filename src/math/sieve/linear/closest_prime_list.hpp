@@ -3,6 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/closest_prime_list.hpp */
 
+#include "../../int-ops/conversion-helper/as_index.hpp"
 #include <vector>
 
 namespace aal { namespace sieve { namespace linear {
@@ -13,12 +14,10 @@ namespace aal { namespace sieve { namespace linear {
 template <typename T>
 auto clp(const std::vector<T>& minp) -> std::vector<T>
 {
-  T n = minp.size() - 1;
+  std::vector<T> clp(minp.size());
 
-  std::vector<T> clp(n + 1);
-
-  for (T i = 2; i <= n; ++i)
-    clp[i] = minp[i] == i ? i : clp[i - 1];
+  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i)
+    clp[as_index(i)] = minp[as_index(i)] == i ? i : clp[as_index(i - 1)];
 
   return clp;
 }

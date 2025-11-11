@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/factorization/prime_minp.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../conversion-helper/as_index.hpp"
 #include <array>
 #include <cassert>
 #include <vector>
@@ -16,11 +16,12 @@ namespace aal { namespace get_divisor {
 template <typename T>
 auto prime(T n, const std::vector<T>& minp) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<std::array<T, 2>>>::type
 {
-  assert(n > 0 && "argument must be positive");
+  assert(n > 0 && "the first argument must be positive");
+  assert(static_cast<std::size_t>(n) < minp.size() && "the first argument is too large");
 
   std::vector<std::array<T, 2>> info;
   while (n > 1) {
-    T p = minp[n], cnt = 0;
+    T p = minp[as_index(n)], cnt = 0;
     for (; n % p == 0; n /= p)
       ++cnt;
     info.push_back({p, cnt});

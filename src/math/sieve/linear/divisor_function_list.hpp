@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/divisor_function_list.hpp */
 
-#include "../../int-ops/ipow.hpp"
+#include "../../int-ops/conversion-helper/as_index.hpp"
+#include "../../int-ops/pow/include.hpp"
 #include <vector>
 
-// see linear.md for extra information
+// see note.md for extra information
 
 namespace aal { namespace sieve { namespace linear {
 
@@ -16,34 +17,33 @@ namespace aal { namespace sieve { namespace linear {
 template <int x = 1, typename T>
 auto sigma(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
 {
-  T n = minp.size() - 1;
-
-  std::vector<T> first(n + 1);
-  std::vector<T> sgm(n + 1);
+  std::vector<T> first(minp.size());
+  std::vector<T> sgm(minp.size());
   sgm[1] = 1;
 
-  for (T i = 2; i <= n; ++i) {
-    if (minp[i] == i) {
+  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
+    if (minp[as_index(i)] == i) {
       assert(!iadd_overflows<T>(1, ipow(i, x)) && "the result cannot be represented");
-      first[i] = sgm[i] = 1 + ipow(i, x);
+      first[as_index(i)] = sgm[as_index(i)] = 1 + ipow(i, x);
     }
     for (T p : prime) {
-      auto composite = static_cast<make_unsigned_t<make_larger_width_t<T>>>(i) * p;
+      using limit_type = make_unsigned_t<make_larger_width_t<T>>;
+      auto composite = static_cast<limit_type>(i) * static_cast<limit_type>(p);
       auto px = ipow(p, x);
-      if (composite > n)
+      if (composite > static_cast<limit_type>(n))
         break;
       if (i % p == 0) {
-        assert(!imul_overflows<T>(px, first[i]) && "the result cannot be represented");
-        assert(!iadd_overflows<T>(1, px * first[i]) && "the result cannot be represented");
-        first[composite] = 1 + px * first[i];
-        assert(!imul_overflows<T>(sgm[i] / first[i], first[composite]) && "the result cannot be represented");
-        sgm[composite] = sgm[i] / first[i] * first[composite];
+        assert(!imul_overflows<T>(px, first[as_index(i)]) && "the result cannot be represented");
+        assert(!iadd_overflows<T>(1, px * first[as_index(i)]) && "the result cannot be represented");
+        first[as_index(composite)] = 1 + px * first[as_index(i)];
+        assert(!imul_overflows<T>(sgm[as_index(i)] / first[as_index(i)], first[as_index(composite)]) && "the result cannot be represented");
+        sgm[as_index(composite)] = sgm[as_index(i)] / first[as_index(i)] * first[as_index(composite)];
         break;
       }
       assert(!iadd_overflows<T>(1, px) && "the result cannot be represented");
-      first[composite] = 1 + px;
-      assert(!imul_overflows<T>(first[composite], sgm[i]) && "the result cannot be represented");
-      sgm[composite] = first[composite] * sgm[i];
+      first[as_index(composite)] = 1 + px;
+      assert(!imul_overflows<T>(first[as_index(composite)], sgm[as_index(i)]) && "the result cannot be represented");
+      sgm[as_index(composite)] = first[as_index(composite)] * sgm[as_index(i)];
     }
   }
 

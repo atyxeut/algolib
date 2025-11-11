@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/largest_prime_factor_list.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../../int-ops/conversion-helper/as_index.hpp"
 #include <vector>
 
 namespace aal { namespace sieve { namespace linear {
@@ -14,18 +14,17 @@ namespace aal { namespace sieve { namespace linear {
 template <typename T>
 auto maxp(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
 {
-  T n = minp.size() - 1;
+  std::vector<T> maxp(minp.size());
 
-  std::vector<T> maxp(n + 1);
-
-  for (T i = 2; i <= n; ++i) {
-    if (minp[i] == i)
-      maxp[i] = i;
+  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
+    if (minp[as_index(i)] == i)
+      maxp[as_index(i)] = i;
     for (T p : prime) {
-      auto composite = static_cast<make_unsigned_t<make_larger_width_t<T>>>(i) * p;
-      if (composite > n)
+      using limit_type = make_unsigned_t<make_larger_width_t<T>>;
+      auto composite = static_cast<limit_type>(i) * static_cast<limit_type>(p);
+      if (composite > static_cast<limit_type>(n))
         break;
-      maxp[composite] = std::max(maxp[i], p);
+      maxp[as_index(composite)] = std::max(maxp[as_index(i)], p);
       if (i % p == 0)
         break;
     }
