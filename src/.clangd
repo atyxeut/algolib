@@ -1,8 +1,8 @@
 CompileFlags:
   Add: [
     -std=c++11,
-    -pedantic-errors,
     -Werror,
+    -Wpedantic,
     -Wall,
     -Wextra,
     -Wconversion,
