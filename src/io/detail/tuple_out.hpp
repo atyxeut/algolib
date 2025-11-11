@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_IO_DETAIL_TUPLE_OUT_HPP
 #define AAL_SRC_IO_DETAIL_TUPLE_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/detail/tuple_out.hpp */
-
 #include "../../integer_sequence.hpp"
 #include <ostream>
 #include <string>

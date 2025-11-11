@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_DETAIL_MD_ARRAY_VECTOR_HPP
 #define AAL_SRC_DETAIL_MD_ARRAY_VECTOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/detail/md_array_vector.hpp */
-
 #include <array>
 #include <cstddef>
 #include <vector>

@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_MATH_OPERATOR_DETAIL_GCD_HPP
 #define AAL_SRC_MATH_OPERATOR_DETAIL_GCD_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/operator/detail/gcd.hpp */
-
 #include "../../int-ops/overflow_detection.hpp"
 #include "../categories.hpp"
 
