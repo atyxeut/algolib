@@ -44,7 +44,7 @@ template <std::size_t Width, typename T>
 AAL_CONSTEXPR14 auto countl_zero_impl(T x) noexcept -> typename std::enable_if<Width == std::numeric_limits<u128>::digits, int>::type
 {
 #if AAL_COMPILER_MSVC
-  constexpr auto u64_width = static_cast<int>(std::numeric_limits<u128>::digits / 2);
+  constexpr int u64_width = std::numeric_limits<u128>::digits / 2;
   return x >> u64_width == 0 ? u64_width + countl_zero_impl<u64_width>(static_cast<u64>(x)) : countl_zero_impl<u64_width>(static_cast<u64>(x >> u64_width));
 #else
   return __builtin_clzg(static_cast<u128>(x));
