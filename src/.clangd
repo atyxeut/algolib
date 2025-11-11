@@ -1,4 +1,14 @@
 CompileFlags:
   Add: [
-    -std=c++11
+    -std=c++11,
+    -pedantic-errors,
+    -Werror,
+    -Wall,
+    -Wextra,
+    -Wconversion,
+    -Wshadow,
+    -Wuninitialized,
+    -Wcast-align,
+    -Wfloat-equal,
+    -Wformat=2
   ]
