@@ -1,5 +1,5 @@
-#ifndef AAL_SRC_DETAIL_MD_ARRAY_VECTOR_HPP
-#define AAL_SRC_DETAIL_MD_ARRAY_VECTOR_HPP
+#ifndef AAL_SRC_MISC_MD_ARRAY_VECTOR_DETAIL_HPP
+#define AAL_SRC_MISC_MD_ARRAY_VECTOR_DETAIL_HPP
 
 #include <array>
 #include <cstddef>
@@ -36,4 +36,4 @@ struct vector_impl<T, 1>
 
 }} // namespace aal::detail
 
-#endif // AAL_SRC_DETAIL_MD_ARRAY_VECTOR_HPP
+#endif // AAL_SRC_MISC_MD_ARRAY_VECTOR_DETAIL_HPP

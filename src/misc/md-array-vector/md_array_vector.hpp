@@ -1,10 +1,10 @@
-#ifndef AAL_SRC_MD_ARRAY_VECTOR_HPP
-#define AAL_SRC_MD_ARRAY_VECTOR_HPP
+#ifndef AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP
+#define AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP
 
 /* https://github.com/atyxeut/algolib/blob/main/src/md_array_vector.hpp */
 
-#include "detail/md_array_vector.hpp"
-#include "macros/constexpr.hpp"
+#include "../../macros/constexpr.hpp"
+#include "detail.hpp"
 #include <utility>
 
 // provide type alias templates and helper function templates to ease the creation of multidimentional std::array and std::vector
@@ -77,4 +77,4 @@ auto make_vector(TDim first_dim_size, Ts&&... args) ->
 
 } // namespace aal
 
-#endif // AAL_SRC_MD_ARRAY_VECTOR_HPP
+#endif // AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP

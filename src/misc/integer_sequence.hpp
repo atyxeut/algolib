@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_INTEGER_SEQUENCE_HPP
-#define AAL_SRC_INTEGER_SEQUENCE_HPP
+#ifndef AAL_SRC_MISC_INTEGER_SEQUENCE_HPP
+#define AAL_SRC_MISC_INTEGER_SEQUENCE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/integer_sequence.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/misc/integer_sequence.hpp */
 
 #include <cstddef>
 
@@ -25,7 +25,7 @@ using index_sequence = integer_sequence<std::size_t, Ints...>;
 
 namespace detail {
 
-// implementation details from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
+// implementation detail from https://en.cppreference.com/w/cpp/utility/integer_sequence.html
 
 template <typename TInt, TInt Begin, TInt End, TInt... Ints>
 struct make_integer_sequence_impl
@@ -52,4 +52,4 @@ using index_sequence_for = make_index_sequence<sizeof...(Ts)>;
 
 } // namespace aal
 
-#endif // AAL_SRC_INTEGER_SEQUENCE_HPP
+#endif // AAL_SRC_MISC_INTEGER_SEQUENCE_HPP
