@@ -14,7 +14,7 @@ struct is_bool : std::is_same<remove_cv_t<T>, bool>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_bool_v = is_bool<T>::value;
 #endif // C++14
@@ -24,7 +24,7 @@ struct is_int128 : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_same<
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_int128_v = is_int128<T>::value;
 #endif // C++14
@@ -34,7 +34,7 @@ struct is_integral : disjunction<std::is_integral<T>, is_int128<T>>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_integral_v = is_integral<T>::value;
 #endif // C++14
@@ -45,7 +45,7 @@ struct is_standard_integral : conjunction<std::is_integral<T>, negation<is_int12
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_standard_integral_v = is_standard_integral<T>::value;
 #endif // C++14
@@ -55,7 +55,7 @@ struct is_nonbool_integral : conjunction<is_integral<T>, negation<is_bool<T>>>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
 #endif // C++14
@@ -65,7 +65,7 @@ struct is_signed : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_signe
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_signed_v = is_signed<T>::value;
 #endif // C++14
@@ -75,7 +75,7 @@ struct is_unsigned : disjunction<std::is_same<remove_cv_t<T>, u128>, std::is_uns
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_unsigned_v = is_unsigned<T>::value;
 #endif // C++14
@@ -85,7 +85,7 @@ struct is_nonbool_unsigned : conjunction<negation<is_bool<T>>, is_unsigned<T>>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
 #endif // C++14
@@ -180,7 +180,7 @@ struct is_integral_wrapper<integral_wrapper<T>> : std::true_type
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_integral_wrapper_v = is_integral_wrapper<T>::value;
 #endif // C++14
@@ -190,7 +190,7 @@ struct is_empty_integral_wrapper : std::is_same<T, empty_integral_wrapper>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_empty_integral_wrapper_v = is_empty_integral_wrapper<T>::value;
 #endif // C++14

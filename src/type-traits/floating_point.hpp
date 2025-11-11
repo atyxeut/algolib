@@ -14,7 +14,7 @@ struct is_f128 : std::is_same<remove_cv_t<T>, f128>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_f128_v = is_f128<T>::value;
 #endif // C++14
@@ -25,7 +25,7 @@ struct is_floating_point : disjunction<std::is_floating_point<T>, is_f128<T>>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_floating_point_v = is_floating_point<T>::value;
 #endif // C++14
@@ -36,7 +36,7 @@ struct is_standard_floating_point : conjunction<std::is_floating_point<T>, negat
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::value;
 #endif // C++14

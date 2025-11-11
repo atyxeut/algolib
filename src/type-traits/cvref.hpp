@@ -13,7 +13,7 @@ struct is_cv : std::integral_constant<bool, std::is_const<T>::value && std::is_v
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_cv_v = is_cv<T>::value;
 #endif // C++14

@@ -21,7 +21,7 @@ struct is_none_of<T, T0, Ts...> : conjunction<is_none_of<T, T0>, is_none_of<T, T
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T, typename... Ts>
 constexpr bool is_none_of_v = is_none_of<T, Ts...>::value;
 #endif // C++14
@@ -32,7 +32,7 @@ struct is_any_of : negation<is_none_of<T, Ts...>>
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T, typename... Ts>
 constexpr bool is_any_of_v = is_any_of<T, Ts...>::value;
 #endif // C++14

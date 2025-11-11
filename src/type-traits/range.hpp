@@ -20,7 +20,7 @@ struct can_call_std_begin<T, void_t<decltype(std::begin(std::declval<remove_cvre
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool can_call_std_begin_v = can_call_std_begin<T>::value;
 #endif // C++14
@@ -35,7 +35,7 @@ struct can_call_std_end<T, void_t<decltype(std::end(std::declval<remove_cvref_t<
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool can_call_std_end_v = can_call_std_end<T>::value;
 #endif // C++14
@@ -45,7 +45,7 @@ struct is_range : std::integral_constant<bool, can_call_std_begin<T>::value && c
 {
 };
 
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool is_range_v = is_range<T>::value;
 #endif // C++14

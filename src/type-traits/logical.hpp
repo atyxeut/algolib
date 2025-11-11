@@ -15,7 +15,7 @@ struct negation : std::integral_constant<bool, !static_cast<bool>(T::value)>
 };
 
 // backports C++17 std::negation_v
-#if CPP14
+#if AAL_CPP14
 template <typename T>
 constexpr bool negation_v = negation<T>::value;
 #endif // C++14
@@ -37,7 +37,7 @@ struct conjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), con
 };
 
 // backports C++17 std::conjunction_v
-#if CPP14
+#if AAL_CPP14
 template <typename... Ts>
 constexpr bool conjunction_v = conjunction<Ts...>::value;
 #endif // C++14
@@ -59,7 +59,7 @@ struct disjunction<T, Ts...> : std::conditional<static_cast<bool>(T::value), dis
 };
 
 // backports C++17 std::disjunction_v
-#if CPP14
+#if AAL_CPP14
 template <typename... Ts>
 constexpr bool disjunction_v = disjunction<Ts...>::value;
 #endif // C++14
