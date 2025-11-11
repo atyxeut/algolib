@@ -10,10 +10,10 @@ namespace aal { namespace op {
 template <typename TOp>
 struct operator_traits_base
 {
-// clang-format off
+  // clang-format off
   using category     = typename TOp::category;
   using operand_type = typename TOp::operand_type;
-// clang-format on
+  // clang-format on
 };
 
 }} // namespace aal::op

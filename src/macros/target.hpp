@@ -11,8 +11,8 @@
 #define AAL_ARCH_X86_64 1
 #endif // test if the target architecture is x86_64
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && __cplusplus >= 201402L
 #define AAL_COMPILER_MSVC 1
-#endif // test if the target compiler is MSVC
+#endif // test if the target compiler is MSVC (MSVC STL requires at least C++14)
 
 #endif // AAL_SRC_MACROS_TARGET_HPP

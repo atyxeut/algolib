@@ -1,8 +1,8 @@
-#ifndef AAL_SRC_MATH_INT_OPS_DETAIL_DIV_HPP
-#define AAL_SRC_MATH_INT_OPS_DETAIL_DIV_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_DIV_DETAIL_HPP
+#define AAL_SRC_MATH_INT_OPS_DIV_DETAIL_HPP
 
 #include "../abs.hpp"
-#include "../overflow_detection.hpp"
+#include "../overflow-detection/include.hpp"
 #include <utility>
 
 namespace aal { namespace detail { namespace idiv {
@@ -88,4 +88,4 @@ AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
 
 }}} // namespace aal::detail::idiv
 
-#endif // AAL_SRC_MATH_INT_OPS_DETAIL_DIV_HPP
+#endif // AAL_SRC_MATH_INT_OPS_DIV_DETAIL_HPP

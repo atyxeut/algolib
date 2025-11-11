@@ -1,14 +1,13 @@
-#ifndef AAL_SRC_MATH_INT_OPS_IS_PRIME_HPP
-#define AAL_SRC_MATH_INT_OPS_IS_PRIME_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_IS_PRIME_TRIAL_DIVISION_HPP
+#define AAL_SRC_MATH_INT_OPS_IS_PRIME_TRIAL_DIVISION_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/is_prime.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/is-prime/trial_division.hpp */
 
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "../../../macros/constexpr.hpp"
+#include "../../../type-traits/integral.hpp"
 
 namespace aal { namespace is_prime {
 
-// test if an integer is prime using trial division
 template <typename T>
 AAL_CONSTEXPR14 auto trial_division(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
 {
@@ -26,11 +25,6 @@ AAL_CONSTEXPR14 auto trial_division(T n) noexcept -> typename std::enable_if<is_
   return true;
 }
 
-// template <typename T>
-// AAL_CONSTEXPR14 auto miller_rabin(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
-// {
-// }
-
 }} // namespace aal::is_prime
 
-#endif // AAL_SRC_MATH_INT_OPS_IS_PRIME_HPP
+#endif // AAL_SRC_MATH_INT_OPS_IS_PRIME_TRIAL_DIVISION_HPP

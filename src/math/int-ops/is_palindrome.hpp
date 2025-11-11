@@ -23,6 +23,7 @@ AAL_CONSTEXPR14 auto is_palindrome(T n) noexcept -> typename std::enable_if<is_n
     r = r * 10 + n % 10;
     n /= 10;
   }
+
   return r == n || r / 10 == n;
 }
 

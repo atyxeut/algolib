@@ -1,10 +1,10 @@
-#ifndef AAL_SRC_MATH_OPERATOR_DETAIL_GCD_HPP
-#define AAL_SRC_MATH_OPERATOR_DETAIL_GCD_HPP
+#ifndef AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
+#define AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
 
-#include "../../int-ops/overflow_detection.hpp"
+#include "../../int-ops/overflow-detection/include.hpp"
 #include "../categories.hpp"
 
-namespace aal { namespace op { namespace detail {
+namespace aal { namespace op { namespace detail { namespace gcd {
 
 template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
 struct gcd_impl
@@ -42,6 +42,6 @@ struct lcm_impl
   }
 };
 
-}}} // namespace aal::op::detail
+}}}} // namespace aal::op::detail::gcd
 
-#endif // AAL_SRC_MATH_OPERATOR_DETAIL_GCD_HPP
+#endif // AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP

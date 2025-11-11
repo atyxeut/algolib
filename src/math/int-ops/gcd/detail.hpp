@@ -1,13 +1,13 @@
-#ifndef AAL_SRC_MATH_INT_OPS_DETAIL_GCD_HPP
-#define AAL_SRC_MATH_INT_OPS_DETAIL_GCD_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
+#define AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
 
 #include "../../../macros/constexpr.hpp"
 #include "../abs.hpp"
 
-namespace aal { namespace detail {
+namespace aal { namespace detail { namespace gcd {
 
 template <typename TOp, typename... Ts>
-AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename std::enable_if<sizeof...(Ts) >= 2, typename TOp::operand_type>::type
+AAL_CONSTEXPR14 auto selector(Ts&&... nums) noexcept -> typename TOp::operand_type
 {
   using result_type = typename TOp::operand_type;
   make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
@@ -19,6 +19,7 @@ AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename std::en
 
   TOp op;
   result_type ans = *mags;
+
   for (auto iter = mags + 1, end = mags + sizeof...(Ts); iter != end; ++iter) {
     if (*iter == op.absorbing_elem)
       return op.absorbing_elem;
@@ -26,9 +27,10 @@ AAL_CONSTEXPR14 auto gcd_lcm_selector(Ts&&... nums) noexcept -> typename std::en
       continue;
     ans = op(ans, *iter);
   }
+
   return ans;
 }
 
-}} // namespace aal::detail
+}}} // namespace aal::detail::gcd
 
-#endif // AAL_SRC_MATH_INT_OPS_DETAIL_GCD_HPP
+#endif // AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP

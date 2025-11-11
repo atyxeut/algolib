@@ -1,9 +1,9 @@
-#ifndef AAL_SRC_MATH_INT_OPS_BIT_HPP
-#define AAL_SRC_MATH_INT_OPS_BIT_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_BIT_INCLUDE_HPP
+#define AAL_SRC_MATH_INT_OPS_BIT_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/bit.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/bit/include.hpp */
 
-#include "detail/bit.hpp"
+#include "detail.hpp"
 #include <cassert>
 
 namespace aal {
@@ -13,7 +13,8 @@ template <typename T>
 AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
 {
   assert(x >= 0 && "argument must be nonnegative");
-  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits : detail::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
+  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits
+                : detail::bit::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
 }
 
 // backport of C++20 std::bit_width, but can handle signed and 128-bit integer types
@@ -35,4 +36,4 @@ AAL_CONSTEXPR14 auto ilog2(T x) noexcept -> typename std::enable_if<is_nonbool_i
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_BIT_HPP
+#endif // AAL_SRC_MATH_INT_OPS_BIT_INCLUDE_HPP

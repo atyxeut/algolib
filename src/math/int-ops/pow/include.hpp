@@ -1,13 +1,13 @@
-#ifndef AAL_SRC_MATH_INT_OPS_POW_HPP
-#define AAL_SRC_MATH_INT_OPS_POW_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_POW_INCLUDE_HPP
+#define AAL_SRC_MATH_INT_OPS_POW_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/pow.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/pow/include.hpp */
 
-#include "overflow_detection.hpp"
+#include "../overflow-detection/include.hpp"
 
 namespace aal {
 
-// compute a^n in O(logn) time, see pow.md for extra information
+// compute a^n in O(logn) time, see note.md for extra information
 template <typename T1, typename T2>
 AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, typename std::common_type<T1, T2>::type>::type
@@ -39,4 +39,4 @@ AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_POW_HPP
+#endif // AAL_SRC_MATH_INT_OPS_POW_INCLUDE_HPP

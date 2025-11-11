@@ -1,10 +1,10 @@
-#ifndef AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_HPP
-#define AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_INCLUDE_HPP
+#define AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/overflow_detection.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/overflow-detection/include.hpp */
 
-#include "../../type-traits/integral.hpp"
-#include "detail/overflow_detection.hpp"
+#include "../../../type-traits/integral.hpp"
+#include "detail.hpp"
 #include <cassert>
 
 namespace aal {
@@ -27,4 +27,4 @@ AAL_CONSTEXPR14 auto imul_overflows(T1 a, T2 b) noexcept -> typename std::enable
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_HPP
+#endif // AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_INCLUDE_HPP
