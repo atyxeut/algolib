@@ -27,7 +27,7 @@ struct fake_f128;
 using f128 = ::aal::detail::fake_f128;
 #else
 // details (GCC and Clang): https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html
-using f128 = __float128;
+__extension__ using f128 = __float128;
 #endif // MSVC compiler or not x86(_64) architecture
 
 #endif // AAL_SRC_ALIASES_FLOATING_POINT_HPP

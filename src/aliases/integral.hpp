@@ -26,8 +26,8 @@ using i128 = std::_Signed128;
 using u128 = std::_Unsigned128;
 #else
 // details (GCC and Clang): https://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
-using i128 = __int128;
-using u128 = unsigned __int128;
+__extension__ using i128 = __int128;
+__extension__ using u128 = unsigned __int128;
 #endif // MSVC compiler
 
 using usize = std::size_t;
