@@ -4,7 +4,7 @@
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/detail/gcd.hpp */
 
 #include "../../../macros/constexpr.hpp"
-#include "../iabs.hpp"
+#include "../abs.hpp"
 
 namespace aal { namespace detail {
 

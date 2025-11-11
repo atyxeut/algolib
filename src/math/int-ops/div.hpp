@@ -1,11 +1,11 @@
-#ifndef AAL_SRC_MATH_INT_OPS_IDIV_HPP
-#define AAL_SRC_MATH_INT_OPS_IDIV_HPP
+#ifndef AAL_SRC_MATH_INT_OPS_DIV_HPP
+#define AAL_SRC_MATH_INT_OPS_DIV_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/idiv.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/div.hpp */
 
-#include "detail/idiv.hpp"
+#include "detail/div.hpp"
 
-// see idiv.md for extra information
+// see div.md for extra information
 
 namespace aal {
 
@@ -39,4 +39,4 @@ AAL_CONSTEXPR14 auto idiv_ceil(T1 lhs, T2 rhs) noexcept ->
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INT_OPS_IDIV_HPP
+#endif // AAL_SRC_MATH_INT_OPS_DIV_HPP
