@@ -13,8 +13,9 @@ namespace aal {
 template <typename T>
 constexpr auto iabs(T n) noexcept -> make_unsigned_t<T>
 {
+  using result_type = make_unsigned_t<T>;
   // for negative n, ~n + 1 is |n| if the bit representation is two's complement
-  return n >= 0 ? n : ~static_cast<make_unsigned_t<T>>(n) + 1;
+  return n >= 0 ? static_cast<result_type>(n) : ~static_cast<result_type>(n) + 1;
 }
 
 } // namespace aal
