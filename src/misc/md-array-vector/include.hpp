@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP
-#define AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP
+#ifndef AAL_SRC_MISC_MD_ARRAY_VECTOR_INCLUDE_HPP
+#define AAL_SRC_MISC_MD_ARRAY_VECTOR_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/md_array_vector.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/misc/md-array-vector/include.hpp */
 
 #include "../../macros/constexpr.hpp"
 #include "detail.hpp"
@@ -77,4 +77,4 @@ auto make_vector(TDim first_dim_size, Ts&&... args) ->
 
 } // namespace aal
 
-#endif // AAL_SRC_MISC_MD_ARRAY_VECTOR_MD_ARRAY_VECTOR_HPP
+#endif // AAL_SRC_MISC_MD_ARRAY_VECTOR_INCLUDE_HPP
