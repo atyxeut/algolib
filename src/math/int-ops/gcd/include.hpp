@@ -16,9 +16,9 @@ namespace aal {
 // ans is 7
 template <typename... Ts>
 AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept ->
-  typename std::enable_if<(sizeof...(Ts) >= 2) && conjunction<is_nonbool_integral<Ts>...>::value, typename std::common_type<remove_cv_t<Ts>...>::type>::type
+  typename std::enable_if<(sizeof...(Ts) >= 2) && conjunction<is_nonbool_integral<remove_ref_t<Ts>>...>::value, typename std::common_type<remove_cvref_t<Ts>...>::type>::type
 {
-  using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
+  using result_type = typename std::common_type<remove_cvref_t<Ts>...>::type;
   return detail::gcd::selector<op::gcd<result_type>>(std::forward<Ts>(nums)...);
 }
 
@@ -27,9 +27,9 @@ AAL_CONSTEXPR14 auto gcd(Ts&&... nums) noexcept ->
 // ans is 588
 template <typename... Ts>
 AAL_CONSTEXPR14 auto lcm(Ts&&... nums) noexcept ->
-  typename std::enable_if<(sizeof...(Ts) >= 2) && conjunction<is_nonbool_integral<Ts>...>::value, typename std::common_type<remove_cv_t<Ts>...>::type>::type
+  typename std::enable_if<(sizeof...(Ts) >= 2) && conjunction<is_nonbool_integral<remove_ref_t<Ts>>...>::value, typename std::common_type<remove_cvref_t<Ts>...>::type>::type
 {
-  using result_type = typename std::common_type<remove_cv_t<Ts>...>::type;
+  using result_type = typename std::common_type<remove_cvref_t<Ts>...>::type;
   return detail::gcd::selector<op::lcm<result_type>>(std::forward<Ts>(nums)...);
 }
 
