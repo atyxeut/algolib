@@ -5,8 +5,6 @@
 
 #include "../macros/target.hpp"
 
-// provide aliases for floating-point number types
-
 // precision (significant digits)
 // f32: 6 to 9, f64: 15 to 17, f80: 18 to 20, f128: 33 to 35
 

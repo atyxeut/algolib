@@ -7,8 +7,6 @@
 #include <cstddef>
 #include <cstdint>
 
-// provide aliases for integer types
-
 using i8  = std::int8_t;
 using u8  = std::uint8_t;
 using i16 = std::int16_t;
