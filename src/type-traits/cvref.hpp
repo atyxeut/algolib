@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_CVREF_HPP
 #define AAL_SRC_TYPE_TRAITS_CVREF_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/cvref.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/type-traits/cvref.hpp */
 
 #include <type_traits>
 

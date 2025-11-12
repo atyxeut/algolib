@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAITS_IO_HPP
 #define AAL_SRC_TYPE_TRAITS_IO_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/type-traits/io.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/type-traits/io.hpp */
 
 #include <ostream>
 #include <type_traits>
