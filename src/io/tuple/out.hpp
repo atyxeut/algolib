@@ -6,7 +6,7 @@
 #include "detail.hpp"
 #include <utility>
 
-// to make the overload of operator << defined in range_out.hpp able to accept ranges that has std::pair, std::tuple as elements,
+// to make the overload of operator << defined in range/out.hpp able to accept ranges that has std::pair, std::tuple as elements,
 //   this #include order is necessary:
 // #include ".../tuple/out.hpp"
 // #include ".../range/out.hpp"
