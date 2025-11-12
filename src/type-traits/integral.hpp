@@ -122,34 +122,21 @@ struct make_larger_width_selector<T, sizeof(i128)>
   using type = T;
 };
 
-template <typename T, typename = std::enable_if_t<is_integral_v<T>>>
-struct make_larger_width_impl
-{
-  using type = make_larger_width_selector<T>::type;
-};
-
 } // namespace detail
 
 // for the given integer type, obtains i32 if its width is smaller than the width of i32,
 // otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
 // cv-qualifiers and signedness are kept
-template <typename T>
-using make_larger_width = detail::make_larger_width_impl<T>;
+template <typename T> requires is_integral_v<T>
+using make_larger_width = detail::make_larger_width_selector<T>::type;
 
 template <typename T>
 using make_larger_width_t = make_larger_width<T>::type;
 
 struct empty_integral;
 
-namespace detail {
-
-template <typename T, typename = std::enable_if_t<std::disjunction_v<is_integral<T>, std::is_same<T, empty_integral>>>>
-struct integral_wrapper_impl;
-
-} // namespace detail
-
-template <typename T>
-using integral_wrapper = detail::integral_wrapper_impl<T>;
+template <typename T> requires std::disjunction_v<is_integral<T>, std::is_same<T, empty_integral>>
+struct integral_wrapper;
 
 using empty_integral_wrapper = integral_wrapper<empty_integral>;
 
@@ -174,24 +161,17 @@ struct is_empty_integral_wrapper : std::is_same<T, empty_integral_wrapper>
 template <typename T>
 constexpr bool is_empty_integral_wrapper_v = is_empty_integral_wrapper<T>::value;
 
-namespace detail {
-
 template <typename>
-struct unwrap_integral_impl;
+struct unwrap_integral;
 
 template <>
-struct unwrap_integral_impl<empty_integral_wrapper>;
+struct unwrap_integral<empty_integral_wrapper>;
 
 template <typename T>
-struct unwrap_integral_impl<integral_wrapper<T>>
+struct unwrap_integral<integral_wrapper<T>>
 {
   using type = T;
 };
-
-} // namespace detail
-
-template <typename T>
-using unwrap_integral = detail::unwrap_integral_impl<T>;
 
 template <typename T>
 using unwrap_integral_t = unwrap_integral<T>::type;
