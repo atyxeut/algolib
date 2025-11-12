@@ -46,7 +46,7 @@ auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, TDelim&& de
 
 } // namespace aal
 
-// call aal::print with a space as the delimiter
+// call aal::print with a space or a new line character as the delimiter (depending on whether it is a nested range)
 template <typename TChar, typename TTraits, typename TRange>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range) -> ::aal::enable_if_t<
   // the second condition is set to avoid ambiguous overloads when TRange is std::string, const char[N], ...
