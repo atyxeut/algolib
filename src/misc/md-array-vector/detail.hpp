@@ -22,7 +22,7 @@ struct array_impl<T, Dim, Dims...>
   using type = std::array<typename array_impl<T, Dims...>::type, Dim>;
 };
 
-template <typename T, std::size_t DimCnt, typename = typename std::enable_if<(DimCnt > 0)>::type>
+template <typename T, std::size_t DimCnt> requires (DimCnt > 0)
 struct vector_impl
 {
   using type = std::vector<typename vector_impl<T, DimCnt - 1>::type>;

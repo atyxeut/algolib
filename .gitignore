@@ -42,6 +42,5 @@
 !src/misc
 !src/misc/md-array-vector
 !src/misc/md-array-vector/*
-!src/misc/integer_sequence.hpp
 !src/type-traits
 !src/type-traits/*
