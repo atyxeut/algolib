@@ -3,49 +3,42 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-traits/cvref.hpp */
 
-#include "../macros/cpp_version.hpp"
 #include <type_traits>
 
 namespace aal {
 
 template <typename T>
-struct is_cv : std::integral_constant<bool, std::is_const<T>::value && std::is_volatile<T>::value>
+struct is_cv : std::bool_constant<std::is_const_v<T> && std::is_volatile_v<T>>
 {
 };
 
-#if AAL_CPP14
 template <typename T>
 constexpr bool is_cv_v = is_cv<T>::value;
-#endif // C++14
-
-// backports C++14 std::remove_cv_t
-template <typename T>
-using remove_cv_t = typename std::remove_cv<T>::type;
 
 namespace detail {
 
-template <typename TFrom, typename TTo, bool = std::is_const<TFrom>::value, bool = std::is_volatile<TFrom>::value>
+template <typename TFrom, typename TTo, bool = std::is_const_v<TFrom>, bool = std::is_volatile_v<TFrom>>
 struct claim_cv_selector;
 
 // branch 1: has both cv qualifiers
 template <typename TFrom, typename TTo>
 struct claim_cv_selector<TFrom, TTo, true, true>
 {
-  using type = typename std::add_cv<TTo>::type;
+  using type = std::add_cv_t<TTo>;
 };
 
 // branch 2: has only const qualifier
 template <typename TFrom, typename TTo>
 struct claim_cv_selector<TFrom, TTo, true, false>
 {
-  using type = typename std::add_const<TTo>::type;
+  using type = std::add_const_t<TTo>;
 };
 
 // branch 3: has only volatile qualifier
 template <typename TFrom, typename TTo>
 struct claim_cv_selector<TFrom, TTo, false, true>
 {
-  using type = typename std::add_volatile<TTo>::type;
+  using type = std::add_volatile_t<TTo>;
 };
 
 // branch 4: has no cv qualifiers
@@ -61,34 +54,23 @@ struct claim_cv_selector<TFrom, TTo, false, false>
 template <typename TFrom, typename TTo>
 struct claim_cv
 {
-  using type = typename detail::claim_cv_selector<TFrom, TTo>::type;
+  using type = detail::claim_cv_selector<TFrom, TTo>::type;
 };
 
 template <typename TFrom, typename TTo>
-using claim_cv_t = typename claim_cv<TFrom, TTo>::type;
+using claim_cv_t = claim_cv<TFrom, TTo>::type;
 
-// backports C++14 std::remove_reference_t
+// shorten std::remove_reference_t
 template <typename T>
-using remove_ref_t = typename std::remove_reference<T>::type;
+using remove_ref_t = std::remove_reference_t<T>;
 
-// backports C++20 std::remove_cvref
+// shorten std::add_lvalue_reference_t
 template <typename T>
-struct remove_cvref
-{
-  using type = remove_cv_t<remove_ref_t<T>>;
-};
+using add_lref_t = std::add_lvalue_reference_t<T>;
 
-// backports C++20 std::remove_cvref_t
+// shorten std::add_rvalue_reference_t
 template <typename T>
-using remove_cvref_t = typename remove_cvref<T>::type;
-
-// backports C++14 std::add_lvalue_reference_t
-template <typename T>
-using add_lref_t = typename std::add_lvalue_reference<T>::type;
-
-// backports C++14 std::add_rvalue_reference_t
-template <typename T>
-using add_rref_t = typename std::add_rvalue_reference<T>::type;
+using add_rref_t = std::add_rvalue_reference_t<T>;
 
 } // namespace aal
 

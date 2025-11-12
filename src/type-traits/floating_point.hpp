@@ -5,46 +5,39 @@
 
 #include "../aliases/floating_point.hpp"
 #include "cvref.hpp"
-#include "logical.hpp"
 
 namespace aal {
 
 template <typename T>
-struct is_f128 : std::is_same<remove_cv_t<T>, f128>
+struct is_f128 : std::is_same<std::remove_cv_t<T>, f128>
 {
 };
 
-#if AAL_CPP14
 template <typename T>
 constexpr bool is_f128_v = is_f128<T>::value;
-#endif // C++14
 
 // f128 is considered floating-point
 template <typename T>
-struct is_floating_point : disjunction<std::is_floating_point<T>, is_f128<T>>
+struct is_floating_point : std::disjunction<std::is_floating_point<T>, is_f128<T>>
 {
 };
 
-#if AAL_CPP14
 template <typename T>
 constexpr bool is_floating_point_v = is_floating_point<T>::value;
-#endif // C++14
 
 // std::is_floating_point_v<f128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_floating_point : conjunction<std::is_floating_point<T>, negation<is_f128<T>>>
+struct is_standard_floating_point : std::conjunction<std::is_floating_point<T>, std::negation<is_f128<T>>>
 {
 };
 
-#if AAL_CPP14
 template <typename T>
 constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::value;
-#endif // C++14
 
 namespace detail {
 
 // use specialization to avoid nested conditional_t
-template <typename T, typename TFloatingPoint = remove_cv_t<T>>
+template <typename T, typename TFloatingPoint = std::remove_cv_t<T>>
 struct make_higher_precision_selector;
 
 template <typename T>
@@ -71,10 +64,10 @@ struct make_higher_precision_selector<T, f128>
   using type = T;
 };
 
-template <typename T, typename = typename std::enable_if<is_floating_point<T>::value>::type>
+template <typename T, typename = std::enable_if_t<is_floating_point_v<T>>>
 struct make_higher_precision_impl
 {
-  using type = typename detail::make_higher_precision_selector<T>::type;
+  using type = make_higher_precision_selector<T>::type;
 };
 
 } // namespace detail
@@ -86,7 +79,7 @@ template <typename T>
 using make_higher_precision = detail::make_higher_precision_impl<T>;
 
 template <typename T>
-using make_higher_precision_t = typename make_higher_precision<T>::type;
+using make_higher_precision_t = make_higher_precision<T>::type;
 
 } // namespace aal
 

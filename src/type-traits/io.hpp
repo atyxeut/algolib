@@ -3,9 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-traits/io.hpp */
 
-#include "cvref.hpp"
-#include "sfinae.hpp"
 #include <ostream>
+#include <type_traits>
 #include <utility>
 
 namespace aal {
@@ -24,24 +23,22 @@ struct is_ostream : std::false_type
 };
 
 template <typename T>
-struct is_ostream<T, void_t<decltype(detail::is_ostream_impl(std::declval<remove_cvref_t<T>>()))>> : std::true_type
+struct is_ostream<T, std::void_t<decltype(detail::is_ostream_impl(std::declval<std::remove_cvref_t<T>>()))>> : std::true_type
 {
 };
 
-#if AAL_CPP14
 template <typename T>
 constexpr bool is_ostream_v = is_ostream<T>::value;
-#endif // C++14
 
 namespace detail {
 
-template <typename T, typename TOstream, typename = void, typename = t_enable_if_t<is_ostream<TOstream>>>
+template <typename T, typename TOstream, typename = void, typename = std::enable_if_t<is_ostream_v<TOstream>>>
 struct is_default_printable_impl : std::false_type
 {
 };
 
 template <typename T, typename TOstream>
-struct is_default_printable_impl<T, TOstream, void_t<decltype(std::declval<remove_cvref_t<TOstream>&>() << std::declval<remove_cvref_t<T>&>())>>
+struct is_default_printable_impl<T, TOstream, std::void_t<decltype(std::declval<std::remove_cvref_t<TOstream>&>() << std::declval<std::remove_cvref_t<T>&>())>>
   : std::true_type
 {
 };
@@ -55,10 +52,8 @@ struct is_default_printable_impl<T, TOstream, void_t<decltype(std::declval<remov
 template <typename T, typename TOstream>
 using is_default_printable = detail::is_default_printable_impl<T, TOstream>;
 
-#if AAL_CPP14
 template <typename T, typename TOstream>
 constexpr bool is_default_printable_v = is_default_printable<T, TOstream>::value;
-#endif // C++14
 
 } // namespace aal
 
