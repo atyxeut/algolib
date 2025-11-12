@@ -67,7 +67,7 @@ auto make_vector(TDim size, const T& val) ->
 // same as: auto vec3d = std::vector<std::vector<std::vector<int>>>(
 //                         x,
 //                         std::vector<std::vector<int>>(y, std::vector<int>(z, 1))
-//                      );
+//                       );
 template <typename TElem, typename TDim, typename... Ts>
 auto make_vector(TDim first_dim_size, Ts&&... args) ->
   typename std::enable_if<(sizeof...(Ts) > 1) && std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), vector<TElem, sizeof...(Ts)>>::type
