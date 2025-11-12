@@ -1,7 +1,7 @@
 *
-!.clang-format
-!fmt.py
 !notes
 !notes/**
 !src
 !src/**
+!.clang-format
+!fmt.py
