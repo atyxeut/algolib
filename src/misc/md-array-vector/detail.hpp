@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <type_traits>
 #include <vector>
 
 namespace aal { namespace detail {

@@ -4,6 +4,7 @@
 /* https://github.com/atyxeut/algolib/blob/main/src/misc/md-array-vector/include.hpp */
 
 #include "../../macros/constexpr.hpp"
+#include "../../type-traits/is_std_array.hpp"
 #include "detail.hpp"
 #include <utility>
 
@@ -37,7 +38,7 @@ AAL_CONSTEXPR20 auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> ty
 // int val = -1;
 // aal::fill_array(arr4d, val);
 template <typename TArr, std::size_t Dim, typename T>
-AAL_CONSTEXPR20 auto fill_array(std::array<TArr, Dim>& arr, const T& val) -> typename std::enable_if<!std::is_convertible<T, TArr>::value>::type
+AAL_CONSTEXPR20 auto fill_array(std::array<TArr, Dim>& arr, const T& val) -> typename std::enable_if<is_std_array<TArr>::value>::type
 {
   for (auto& inner_arr : arr)
     fill_array(inner_arr, val);
