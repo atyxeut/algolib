@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/arithmetic-functions/divisor.hpp */
 
-#include "../int-ops/ipow.hpp"
+#include "../int-ops/pow/include.hpp"
 
 // see https://en.wikipedia.org/wiki/Divisor_function#Formulas_at_prime_powers for extra information
 
