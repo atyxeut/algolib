@@ -1,7 +1,6 @@
 import argparse
-from pathlib import Path
 import subprocess
-
+from pathlib import Path
 
 # > python3 fmt.py path
 #                   ↑ this is required
