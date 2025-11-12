@@ -14,30 +14,15 @@ struct is_bool : std::is_same<remove_cv_t<T>, bool>
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_bool_v = is_bool<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_int128 : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_same<remove_cv_t<T>, u128>>
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_int128_v = is_int128<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_integral : disjunction<std::is_integral<T>, is_int128<T>>
 {
 };
-
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_integral_v = is_integral<T>::value;
-#endif // C++14
 
 // std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
@@ -45,50 +30,25 @@ struct is_standard_integral : conjunction<std::is_integral<T>, negation<is_int12
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_standard_integral_v = is_standard_integral<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_nonbool_integral : conjunction<is_integral<T>, negation<is_bool<T>>>
 {
 };
-
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
-#endif // C++14
 
 template <typename T>
 struct is_signed : disjunction<std::is_same<remove_cv_t<T>, i128>, std::is_signed<T>>
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_signed_v = is_signed<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_unsigned : disjunction<std::is_same<remove_cv_t<T>, u128>, std::is_unsigned<T>>
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_unsigned_v = is_unsigned<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_nonbool_unsigned : conjunction<negation<is_bool<T>>, is_unsigned<T>>
 {
 };
-
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
-#endif // C++14
 
 template <typename T>
 struct make_signed
@@ -180,39 +140,22 @@ struct is_integral_wrapper<integral_wrapper<T>> : std::true_type
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_integral_wrapper_v = is_integral_wrapper<T>::value;
-#endif // C++14
-
 template <typename T>
 struct is_empty_integral_wrapper : std::is_same<T, empty_integral_wrapper>
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_empty_integral_wrapper_v = is_empty_integral_wrapper<T>::value;
-#endif // C++14
-
-namespace detail {
-
 template <typename>
-struct unwrap_integral_impl;
+struct unwrap_integral;
 
 template <>
-struct unwrap_integral_impl<empty_integral_wrapper>;
+struct unwrap_integral<empty_integral_wrapper>;
 
 template <typename T>
-struct unwrap_integral_impl<integral_wrapper<T>>
+struct unwrap_integral<integral_wrapper<T>>
 {
   using type = T;
 };
-
-} // namespace detail
-
-template <typename T>
-using unwrap_integral = detail::unwrap_integral_impl<T>;
 
 template <typename T>
 using unwrap_integral_t = typename unwrap_integral<T>::type;

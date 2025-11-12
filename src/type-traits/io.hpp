@@ -28,11 +28,6 @@ struct is_ostream<T, void_t<decltype(detail::is_ostream_impl(std::declval<remove
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_ostream_v = is_ostream<T>::value;
-#endif // C++14
-
 namespace detail {
 
 template <typename T, typename TOstream, typename = void, typename = t_enable_if_t<is_ostream<TOstream>>>
@@ -54,11 +49,6 @@ struct is_default_printable_impl<T, TOstream, void_t<decltype(std::declval<remov
 // std::vector<int> matches the latter, but it's not considered default printable, since there is not an overload like operator <<(..., const std::vector<int>&)
 template <typename T, typename TOstream>
 using is_default_printable = detail::is_default_printable_impl<T, TOstream>;
-
-#if AAL_CPP14
-template <typename T, typename TOstream>
-constexpr bool is_default_printable_v = is_default_printable<T, TOstream>::value;
-#endif // C++14
 
 } // namespace aal
 

@@ -13,11 +13,6 @@ struct is_cv : std::integral_constant<bool, std::is_const<T>::value && std::is_v
 {
 };
 
-#if AAL_CPP14
-template <typename T>
-constexpr bool is_cv_v = is_cv<T>::value;
-#endif // C++14
-
 // backports C++14 std::remove_cv_t
 template <typename T>
 using remove_cv_t = typename std::remove_cv<T>::type;
