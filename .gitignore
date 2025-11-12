@@ -15,6 +15,8 @@
 !src/.clangd
 !src/aliases
 !src/aliases/*
+!src/concepts
+!src/concepts/*
 !src/io
 !src/io/int128
 !src/io/int128/*
