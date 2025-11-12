@@ -1,13 +1,11 @@
 #ifndef AAL_SRC_ALIASES_INTEGRAL_HPP
 #define AAL_SRC_ALIASES_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/aliases/integral.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/aliases/integral.hpp */
 
 #include "../macros/target.hpp"
 #include <cstddef>
 #include <cstdint>
-
-// provide aliases for integer types
 
 using i8  = std::int8_t;
 using u8  = std::uint8_t;
@@ -18,7 +16,7 @@ using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 
-// 128-bit integer types are provided by compilers, and are not supported by standard type traits
+// 128-bit integers are provided by compilers, and are not supported by standard type traits
 #if AAL_COMPILER_MSVC
 // details (MSVC): https://stackoverflow.com/a/76440171/12192463
 #include <__msvc_int128.hpp>
