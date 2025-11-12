@@ -6,6 +6,7 @@
 #include "../../concepts/integral.hpp"
 #include "../../type-traits/is_std_array.hpp"
 #include "detail.hpp"
+#include <concepts>
 #include <utility>
 
 // provide type alias templates and helper function templates to ease the creation of multidimentional std::array and std::vector
