@@ -1,15 +1,15 @@
 #ifndef AAL_SRC_IO_TUPLE_OUT_HPP
 #define AAL_SRC_IO_TUPLE_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/tuple_out.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/io/tuple/out.hpp */
 
-#include "detail/tuple_out.hpp"
+#include "detail.hpp"
 #include <utility>
 
 // to make the overload of operator << defined in range_out.hpp able to accept ranges that has std::pair, std::tuple as elements,
 //   this #include order is necessary:
-// #include ".../tuple_out.hpp"
-// #include ".../range_out.hpp"
+// #include ".../tuple/out.hpp"
+// #include ".../range/out.hpp"
 
 namespace aal {
 

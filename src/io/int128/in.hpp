@@ -1,9 +1,9 @@
 #ifndef AAL_SRC_IO_INT128_IN_HPP
 #define AAL_SRC_IO_INT128_IN_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/int128_in.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/in.hpp */
 
-#include "../aliases/integral.hpp"
+#include "../../aliases/integral.hpp"
 #include <istream>
 #include <limits>
 #include <string>
@@ -16,7 +16,7 @@ auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n) -> std::basi
 
   n = 0;
   for (auto ch : buffer)
-    n = n * 10 + ch - '0';
+    n = n * 10 + static_cast<u128>(ch - '0');
 
   return istr;
 }
@@ -29,8 +29,8 @@ auto operator >>(std::basic_istream<TChar, TTraits>& istr, i128& n) -> std::basi
 
   u128 mag = 0;
   int sgn = buffer[0] == '-' ? -1 : 1;
-  for (int i = sgn < 0; i < buffer.size(); ++i)
-    mag = mag * 10 + buffer[i] - '0';
+  for (std::size_t i = sgn < 0; i < buffer.size(); ++i)
+    mag = mag * 10 + static_cast<u128>(buffer[i] - '0');
   if (mag > std::numeric_limits<i128>::max() || sgn > 0)
     n = static_cast<i128>(mag);
   else

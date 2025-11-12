@@ -1,9 +1,9 @@
 #ifndef AAL_SRC_IO_INT128_OUT_HPP
 #define AAL_SRC_IO_INT128_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/int128_out.hpp */
+/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/out.hpp */
 
-#include "../aliases/integral.hpp"
+#include "../../aliases/integral.hpp"
 #include <algorithm>
 #include <limits>
 #include <ostream>
@@ -11,8 +11,8 @@
 
 // to make the overload of operator << defined in range_out.hpp able to accept ranges that has i128, u128 as elements,
 //   this #include order is necessary:
-// #include ".../int128_out.hpp"
-// #include ".../range_out.hpp"
+// #include ".../int128/out.hpp"
+// #include ".../range/out.hpp"
 
 template <typename TChar, typename TTraits>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic_ostream<TChar, TTraits>&

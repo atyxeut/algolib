@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_IO_DETAIL_TUPLE_OUT_HPP
-#define AAL_SRC_IO_DETAIL_TUPLE_OUT_HPP
+#ifndef AAL_SRC_IO_TUPLE_DETAIL_HPP
+#define AAL_SRC_IO_TUPLE_DETAIL_HPP
 
-#include "../../integer_sequence.hpp"
+#include "../../misc/integer_sequence.hpp"
 #include <ostream>
 #include <string>
 #include <tuple>
@@ -17,4 +17,4 @@ void print_tuple_impl(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple
 
 }} // namespace aal::detail
 
-#endif // AAL_SRC_IO_DETAIL_TUPLE_OUT_HPP
+#endif // AAL_SRC_IO_TUPLE_DETAIL_HPP
