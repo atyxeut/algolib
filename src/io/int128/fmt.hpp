@@ -1,6 +1,8 @@
 #ifndef AAL_SRC_IO_INT128_FMT_HPP
 #define AAL_SRC_IO_INT128_FMT_HPP
 
+/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/fmt.hpp */
+
 #include "../../aliases/integral.hpp"
 #include <algorithm>
 #include <format>
