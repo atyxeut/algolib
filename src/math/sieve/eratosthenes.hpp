@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_SIEVE_ERATOSTHENES_HPP
 #define AAL_SRC_MATH_SIEVE_ERATOSTHENES_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/eratosthenes.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/eratosthenes.hpp */
 
 #include "../int-ops/conversion-helper/as_index.hpp"
 #include <cassert>

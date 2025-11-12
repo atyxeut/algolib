@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_IO_INT128_OUT_HPP
 #define AAL_SRC_IO_INT128_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/out.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/out.hpp */
 
 #include "../../aliases/integral.hpp"
 #include <algorithm>

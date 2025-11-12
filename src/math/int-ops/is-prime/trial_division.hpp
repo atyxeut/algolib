@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_IS_PRIME_TRIAL_DIVISION_HPP
 #define AAL_SRC_MATH_INT_OPS_IS_PRIME_TRIAL_DIVISION_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/is-prime/trial_division.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/is-prime/trial_division.hpp */
 
 #include "../../../macros/constexpr.hpp"
 #include "../../../type-traits/integral.hpp"

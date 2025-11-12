@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_DIV_INCLUDE_HPP
 #define AAL_SRC_MATH_INT_OPS_DIV_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/div/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/div/include.hpp */
 
 #include "detail.hpp"
 

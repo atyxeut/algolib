@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_LOG10_HPP
 #define AAL_SRC_MATH_INT_OPS_LOG10_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/log10.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/log10.hpp */
 
 #include "../../macros/constexpr.hpp"
 #include "../../type-traits/integral.hpp"

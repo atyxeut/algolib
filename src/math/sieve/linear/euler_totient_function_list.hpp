@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_SIEVE_LINEAR_EULER_TOTIENT_FUNCTION_LIST_HPP
 #define AAL_SRC_MATH_SIEVE_LINEAR_EULER_TOTIENT_FUNCTION_LIST_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/euler_totient_function_list.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/linear/euler_totient_function_list.hpp */
 
 #include "../../int-ops/conversion-helper/as_index.hpp"
 #include <vector>

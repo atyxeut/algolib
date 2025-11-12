@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_ARITHMETIC_FUNCTIONS_PRIME_OMEGA_HPP
 #define AAL_SRC_MATH_ARITHMETIC_FUNCTIONS_PRIME_OMEGA_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/arithmetic-functions/prime_omega.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/arithmetic-functions/prime_omega.hpp */
 
 #include "../../macros/constexpr.hpp"
 #include "../../type-traits/integral.hpp"

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_SIEVE_LINEAR_LARGEST_PRIME_FACTOR_LIST_HPP
 #define AAL_SRC_MATH_SIEVE_LINEAR_LARGEST_PRIME_FACTOR_LIST_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/largest_prime_factor_list.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/linear/largest_prime_factor_list.hpp */
 
 #include "../../int-ops/conversion-helper/as_index.hpp"
 #include <vector>

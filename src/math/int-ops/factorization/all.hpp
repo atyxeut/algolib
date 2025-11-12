@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_FACTORIZATION_ALL_HPP
 #define AAL_SRC_MATH_INT_OPS_FACTORIZATION_ALL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/factorization/all.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/factorization/all.hpp */
 
 #include "../../../type-traits/integral.hpp"
 #include <cassert>

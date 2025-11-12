@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_INCLUDE_HPP
 #define AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/overflow-detection/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/overflow-detection/include.hpp */
 
 #include "../../../type-traits/integral.hpp"
 #include "detail.hpp"

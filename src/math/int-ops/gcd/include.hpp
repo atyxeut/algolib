@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_GCD_INCLUDE_HPP
 #define AAL_SRC_MATH_INT_OPS_GCD_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/gcd/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/gcd/include.hpp */
 
 #include "../../operator/gcd/include.hpp"
 #include "detail.hpp"

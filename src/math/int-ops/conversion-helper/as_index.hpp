@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INT_OPS_CONVERSION_HELPER_AS_INDEX_HPP
 #define AAL_SRC_MATH_INT_OPS_CONVERSION_HELPER_AS_INDEX_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/conversion-helper/as_index.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/conversion-helper/as_index.hpp */
 
 #include "../../../type-traits/integral.hpp"
 
