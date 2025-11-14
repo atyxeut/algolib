@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/aliases/integral.hpp */
 
-#include "../macros/target.hpp"
 #include <cstddef>
 #include <cstdint>
 
@@ -17,13 +16,25 @@ using i64 = std::int64_t;
 using u64 = std::uint64_t;
 
 // 128-bit integers are provided by compilers, and are not supported by standard type traits
-#if AAL_COMPILER_MSVC
-// details (MSVC): https://stackoverflow.com/a/76440171/12192463
+#ifdef _MSC_VER
+#if _MSC_VER >= 1934
+// see https://stackoverflow.com/a/76440171/12192463 for details
 #include <__msvc_int128.hpp>
 using i128 = std::_Signed128;
 using u128 = std::_Unsigned128;
 #else
-// details (GCC and Clang): https://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
+namespace aal { namespace detail {
+
+struct fake_i128;
+struct fake_u128;
+
+}} // namespace aal::detail
+
+using i128 = ::aal::detail::fake_i128;
+using u128 = ::aal::detail::fake_u128;
+#endif // MSVC version >= 19.34
+#else
+// see https://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html for details (GCC and Clang)
 __extension__ using i128 = __int128;
 __extension__ using u128 = unsigned __int128;
 #endif // MSVC compiler

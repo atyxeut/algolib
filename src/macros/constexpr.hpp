@@ -5,22 +5,12 @@
 
 #include "cpp_version.hpp"
 
+// see https://en.cppreference.com/w/cpp/language/constexpr.html for details
+
 #if AAL_CPP14
 #define AAL_CONSTEXPR14 constexpr
 #else
 #define AAL_CONSTEXPR14
-#endif // apply constexpr if compiled with C++14 or above
-
-#if AAL_CPP20
-#define AAL_CONSTEXPR20 constexpr
-#else
-#define AAL_CONSTEXPR20
-#endif // apply constexpr if compiled with C++20 or above
-
-#if AAL_CPP23
-#define AAL_CONSTEXPR23 constexpr
-#else
-#define AAL_CONSTEXPR23
-#endif // apply constexpr if compiled with C++23 or above
+#endif
 
 #endif // AAL_SRC_MACROS_CONSTEXPR_HPP
