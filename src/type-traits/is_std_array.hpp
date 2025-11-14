@@ -1,5 +1,5 @@
-#ifndef AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
-#define AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
+#ifndef AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
+#define AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/type-traits/is_std_array.hpp */
 
@@ -23,4 +23,4 @@ constexpr bool is_std_array_v = is_std_array<T>::value;
 
 } // namespace aal
 
-#endif // AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
+#endif // AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
