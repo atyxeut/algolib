@@ -1,5 +1,5 @@
-#ifndef AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
-#define AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
+#ifndef AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
+#define AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-traits/is_std_array.hpp */
 
@@ -20,4 +20,4 @@ struct is_std_array<std::array<T, N>> : std::true_type
 
 } // namespace aal
 
-#endif // AAL_SRC_CONCEPTS_IS_STD_ARRAY_HPP
+#endif // AAL_SRC_TYPE_TRAITS_IS_STD_ARRAY_HPP
