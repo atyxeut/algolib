@@ -3,16 +3,15 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/arithmetic-functions/prime_omega.hpp */
 
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "../../concepts/integral.hpp"
 #include <cassert>
 
 // see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 
 namespace aal { namespace arith_func {
 
-template <typename T>
-AAL_CONSTEXPR14 auto little_omega(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto little_omega(T n) noexcept
 {
   assert(n > 0 && "argument must be positive");
 
@@ -25,8 +24,8 @@ AAL_CONSTEXPR14 auto little_omega(T n) noexcept -> typename std::enable_if<is_no
   return ans += n > 1;
 }
 
-template <typename T>
-AAL_CONSTEXPR14 auto big_omega(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto big_omega(T n) noexcept
 {
   assert(n > 0 && "argument must be positive");
 

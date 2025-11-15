@@ -9,8 +9,8 @@
 
 namespace aal { namespace arith_func {
 
-template <int x = 1, typename T>
-AAL_CONSTEXPR14 auto sigma(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+template <int x = 1, nonbool_integral T>
+[[nodiscard]] constexpr auto sigma(T n) noexcept
 {
   assert(n > 0 && "argument must be positive");
 

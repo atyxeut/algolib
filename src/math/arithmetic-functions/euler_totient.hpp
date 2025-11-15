@@ -3,16 +3,15 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/arithmetic-functions/euler_totient.hpp */
 
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "../../concepts/integral.hpp"
 #include <cassert>
 
 // see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
 
 namespace aal { namespace arith_func {
 
-template <typename T>
-AAL_CONSTEXPR14 auto euler_totient(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto euler_totient(T n) noexcept
 {
   assert(n > 0 && "argument must be positive");
 
