@@ -3,16 +3,17 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/operator/traits.hpp */
 
+#include "../../concepts/operator.hpp"
 #include "categories.hpp"
 
 namespace aal { namespace op {
 
-template <typename TOp>
+template <optr T>
 struct operator_traits_base
 {
   // clang-format off
-  using category     = typename TOp::category;
-  using operand_type = typename TOp::operand_type;
+  using category     = typename T::category;
+  using operand_type = typename T::operand_type;
   // clang-format on
 };
 

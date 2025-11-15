@@ -13,8 +13,8 @@ namespace aal { namespace get_divisor {
 // O(logn) when the smallest prime divisor of every integer that <= n is known
 // because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
 // the behavior is undefined if the second argument is not the actual minp array
-template <typename T>
-auto prime(T n, const std::vector<T>& minp) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<std::array<T, 2>>>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto prime(T n, const std::vector<T>& minp)
 {
   assert(n > 0 && "the first argument must be positive");
   assert(static_cast<std::size_t>(n) < minp.size() && "the first argument is too large");

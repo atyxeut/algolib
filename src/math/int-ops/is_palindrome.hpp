@@ -3,14 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/is_palindrome.hpp */
 
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "../../concepts/integral.hpp"
 
 namespace aal {
 
-// test if a nonnegative integer is palindrome
-template <typename T>
-AAL_CONSTEXPR14 auto is_palindrome(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr bool is_palindrome(T n) noexcept
 {
   if (n == 0)
     return true;

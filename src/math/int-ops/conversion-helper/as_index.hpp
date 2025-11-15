@@ -3,12 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/conversion-helper/as_index.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../../../concepts/integral.hpp"
 
 namespace aal {
 
-template <typename T>
-constexpr auto as_index(T n) noexcept -> typename std::enable_if<is_integral<T>::value, std::size_t>::type
+template <integral T>
+[[nodiscard]] constexpr auto as_index(T n) noexcept
 {
   return static_cast<std::size_t>(n);
 }

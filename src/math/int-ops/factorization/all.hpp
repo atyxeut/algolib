@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/factorization/all.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../../../concepts/integral.hpp"
 #include <cassert>
 #include <vector>
 
@@ -12,8 +12,8 @@ namespace aal { namespace get_divisor {
 // get all unique divisors of an integer
 // std::vector<int> ret = aal::get_divisor::all(36);
 // ret is [1, 2, 3, 4, 6, 9, 12, 18, 36]
-template <typename T>
-auto all(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<T>>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto all(T n)
 {
   assert(n > 0 && "argument must be positive");
 

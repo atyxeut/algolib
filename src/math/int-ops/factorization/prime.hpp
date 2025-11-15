@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/factorization/prime.hpp */
 
-#include "../../../type-traits/integral.hpp"
+#include "../../../concepts/integral.hpp"
 #include <array>
 #include <cassert>
 #include <vector>
@@ -14,8 +14,8 @@ namespace aal { namespace get_divisor {
 // int n = 36;
 // std::vector<std::array<int, 2>> ret = aal::get_divisor::prime(n);
 // ret is [[2, 2], [3, 2]]
-template <typename T>
-auto prime(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<std::array<T, 2>>>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto prime(T n)
 {
   assert(n > 0 && "argument must be positive");
 

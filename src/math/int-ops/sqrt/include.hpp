@@ -3,16 +3,15 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/sqrt/include.hpp */
 
-#include "../../../macros/constexpr.hpp"
-#include "../../../type-traits/integral.hpp"
+#include "../../../concepts/integral.hpp"
 #include <algorithm>
 #include <cassert>
 
 namespace aal {
 
 // compute floor(sqrt(x)) without introducing floating-point numbers, see note.md for extra information
-template <typename T>
-AAL_CONSTEXPR14 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr T isqrt(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
 

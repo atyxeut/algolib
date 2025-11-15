@@ -1,17 +1,16 @@
 #ifndef AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
 #define AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
 
-#include "../../../macros/constexpr.hpp"
 #include "../abs.hpp"
 
-namespace aal { namespace detail { namespace gcd {
+namespace aal { namespace detail {
 
 template <typename TOp, typename... Ts>
-AAL_CONSTEXPR14 auto selector(Ts&&... nums) noexcept -> typename TOp::operand_type
+constexpr auto gcd_lcm_impl(Ts... nums) noexcept
 {
   using result_type = typename TOp::operand_type;
-  make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
 
+  make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
 #ifndef NDEBUG
   for (auto i : mags)
     assert(static_cast<result_type>(i) >= 0 && "some magnitudes cannot be represented in the common type");
@@ -20,17 +19,17 @@ AAL_CONSTEXPR14 auto selector(Ts&&... nums) noexcept -> typename TOp::operand_ty
   TOp op;
   result_type ans = *mags;
 
-  for (auto iter = mags + 1, end = mags + sizeof...(Ts); iter != end; ++iter) {
-    if (*iter == op.absorbing_elem)
+  for (auto it = mags + 1, it_end = mags + sizeof...(Ts); it != it_end; ++it) {
+    if (*it == op.absorbing_elem)
       return op.absorbing_elem;
-    if (*iter == op.identity_elem)
+    if (*it == op.identity_elem)
       continue;
-    ans = op(ans, *iter);
+    ans = op(ans, *it);
   }
 
   return ans;
 }
 
-}}} // namespace aal::detail::gcd
+}} // namespace aal::detail
 
 #endif // AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP

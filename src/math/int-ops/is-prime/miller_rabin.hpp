@@ -3,13 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/is-prime/miller_rabin.hpp */
 
-#include "../../../macros/constexpr.hpp"
-#include "../../../type-traits/integral.hpp"
+#include "../../../concepts/integral.hpp"
 
 namespace aal { namespace is_prime {
 
-template <typename T>
-AAL_CONSTEXPR14 auto miller_rabin(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr bool miller_rabin(T n) noexcept
 {
   if (n < 2)
     return false;

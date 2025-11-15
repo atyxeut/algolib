@@ -4,9 +4,9 @@
 #include "../../int-ops/overflow-detection/include.hpp"
 #include "../categories.hpp"
 
-namespace aal { namespace op { namespace detail { namespace gcd {
+namespace aal { namespace op { namespace detail {
 
-template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
+template <typename T>
 struct gcd_impl
 {
   using category     = binary_operator_tag;
@@ -15,7 +15,7 @@ struct gcd_impl
   static constexpr T identity_elem  = 0; // gcd(0, a) = a
   static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
 
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
+  [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
     for (T t; b != 0;) {
       t = a % b;
@@ -26,7 +26,7 @@ struct gcd_impl
   }
 };
 
-template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
+template <typename T>
 struct lcm_impl
 {
   using category     = binary_operator_tag;
@@ -35,13 +35,13 @@ struct lcm_impl
   static constexpr T identity_elem  = 1; // lcm(1, a) = a
   static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
 
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
+  [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
-    assert(!imul_overflows<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
+    assert(!ioverflows::mul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd_impl<T> {}(a, b) * b;
   }
 };
 
-}}}} // namespace aal::op::detail::gcd
+}}} // namespace aal::op::detail
 
 #endif // AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP

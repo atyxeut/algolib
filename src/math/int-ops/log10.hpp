@@ -3,21 +3,20 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/log10.hpp */
 
-#include "../../macros/constexpr.hpp"
-#include "../../type-traits/integral.hpp"
+#include "../../concepts/integral.hpp"
 #include <cassert>
 
 namespace aal {
 
-template <typename T>
-AAL_CONSTEXPR14 auto ilog10(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr int ilog10(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
   return x == 0 ? -1 : 0;
 }
 
-template <typename T>
-AAL_CONSTEXPR14 auto digit_width(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr int digit_width(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
   return x == 0 ? 1 : ilog10(x) + 1;

@@ -10,14 +10,14 @@ namespace aal { namespace op {
 // class template representing operator gcd
 // auto gcd = aal::op::gcd<int> {};
 // int ans = gcd(3, 6);
-template <typename T>
-using gcd = detail::gcd::gcd_impl<T>;
+template <nonbool_integral T>
+using gcd = detail::gcd_impl<T>;
 
 // class template representing operator lcm
 // auto lcm = aal::op::lcm<int> {};
 // int ans = lcm(3, 18);
-template <typename T>
-using lcm = detail::gcd::lcm_impl<T>;
+template <nonbool_integral T>
+using lcm = detail::lcm_impl<T>;
 
 }} // namespace aal::op
 

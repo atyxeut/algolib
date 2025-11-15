@@ -3,32 +3,39 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-ops/bit/include.hpp */
 
-#include "detail.hpp"
+#include "../../../concepts/integral.hpp"
+#include <bit>
 #include <cassert>
+#include <limits>
 
 namespace aal {
 
-// backport of C++20 std::countl_zero, but can handle signed and 128-bit integer types
-template <typename T>
-AAL_CONSTEXPR14 auto countl_zero(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+// extend C++20 std::countl_zero, can handle signed and 128-bit integers
+template <nonbool_integral T>
+[[nodiscard]] constexpr int countl_zero(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
-  return x == 0 ? std::numeric_limits<make_unsigned_t<T>>::digits
-                : detail::bit::countl_zero_impl<std::numeric_limits<make_unsigned_t<decltype(+x)>>::digits>(x);
+  if constexpr (is_standard_integral_v<T>) {
+    return std::countl_zero<make_unsigned_t<T>>(x);
+  }
+  else {
+    constexpr int u64_width = std::numeric_limits<u128>::digits / 2;
+    return x >> u64_width == 0 ? u64_width + std::countl_zero<u64>(x) : std::countl_zero<u64>(x >> u64_width);
+  }
 }
 
-// backport of C++20 std::bit_width, but can handle signed and 128-bit integer types
-template <typename T>
-AAL_CONSTEXPR14 auto bit_width(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+// extend C++20 std::bit_width, can handle signed and 128-bit integers
+template <nonbool_integral T>
+[[nodiscard]] constexpr int bit_width(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
   return std::numeric_limits<make_unsigned_t<T>>::digits - countl_zero(x);
 }
 
 // get the largest integer exponent n such that 2^n <= x
-// this is similar to GCC's std::__lg, but aal::ilog2(0) is not undefined behavior and returns -1
-template <typename T>
-AAL_CONSTEXPR14 auto ilog2(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, int>::type
+// similar to GCC's std::__lg, but aal::ilog2(0) is not undefined behavior and returns -1
+template <nonbool_integral T>
+[[nodiscard]] constexpr int ilog2(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
   return bit_width(x) - 1;
