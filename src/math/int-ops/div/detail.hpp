@@ -5,7 +5,7 @@
 #include "../overflow-detection/include.hpp"
 #include <utility>
 
-namespace aal { namespace detail { namespace idiv {
+namespace aal { namespace idiv { namespace detail {
 
 enum class mode
 {
@@ -14,7 +14,7 @@ enum class mode
 };
 
 template <typename TDividend, typename TDivisor>
-struct final_result_impl
+struct final_result
 {
   // cv-qualifiers are removed after integral promotion
   using type1 = decltype(+std::declval<TDividend>());
@@ -31,7 +31,7 @@ struct final_result_impl
 };
 
 template <typename TDividend, typename TDivisor>
-using final_result_t = typename final_result_impl<TDividend, TDividend>::type;
+using final_result_t = typename final_result<TDividend, TDividend>::type;
 
 template <mode Mode, typename T1, typename T2>
 AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
@@ -52,9 +52,9 @@ AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_ans) { // r = 0, |ans| = q
       if (is_ans_negative) // ans = -q, so q must be <= result_max + 1
-        assert(!iadd_overflows<result_type>(q - 1, 0) && "the result cannot be represented");
+        assert(!ioverflows::add<result_type>(q - 1, 0) && "the result cannot be represented");
       else // ans = q, so q must be <= result_max
-        assert(!iadd_overflows<result_type>(q, 0) && "the result cannot be represented");
+        assert(!ioverflows::add<result_type>(q, 0) && "the result cannot be represented");
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
       if (is_ans_negative) {
@@ -71,7 +71,7 @@ AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
         }
         if (Mode == mode::ceil) {
           // ans = q + 1, so q + 1 must be <= result_max
-          assert(!iadd_overflows<result_type>(q, 1) && "the ceil div result cannot be represented");
+          assert(!ioverflows::add<result_type>(q, 1) && "the ceil div result cannot be represented");
         }
       }
     }
@@ -86,6 +86,6 @@ AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
   }
 }
 
-}}} // namespace aal::detail::idiv
+}}} // namespace aal::idiv::detail
 
 #endif // AAL_SRC_MATH_INT_OPS_DIV_DETAIL_HPP

@@ -10,8 +10,8 @@
 #endif // MSVC compiler
 
 // docs of compiler built-in bit operation:
-// https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html
-// https://learn.microsoft.com/en-us/cpp/intrinsics/bitscanreverse-bitscanreverse64?view=msvc-170
+//   https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html
+//   https://learn.microsoft.com/en-us/cpp/intrinsics/bitscanreverse-bitscanreverse64?view=msvc-170
 
 namespace aal { namespace detail { namespace bit {
 

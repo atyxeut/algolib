@@ -23,7 +23,7 @@ auto sigma(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vect
 
   for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
     if (minp[as_index(i)] == i) {
-      assert(!iadd_overflows<T>(1, ipow(i, x)) && "the result cannot be represented");
+      assert(!ioverflows::add<T>(1, ipow(i, x)) && "the result cannot be represented");
       first[as_index(i)] = sgm[as_index(i)] = 1 + ipow(i, x);
     }
     for (T p : prime) {
@@ -33,16 +33,16 @@ auto sigma(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vect
       if (composite > static_cast<limit_type>(n))
         break;
       if (i % p == 0) {
-        assert(!imul_overflows<T>(px, first[as_index(i)]) && "the result cannot be represented");
-        assert(!iadd_overflows<T>(1, px * first[as_index(i)]) && "the result cannot be represented");
+        assert(!ioverflows::mul<T>(px, first[as_index(i)]) && "the result cannot be represented");
+        assert(!ioverflows::add<T>(1, px * first[as_index(i)]) && "the result cannot be represented");
         first[as_index(composite)] = 1 + px * first[as_index(i)];
-        assert(!imul_overflows<T>(sgm[as_index(i)] / first[as_index(i)], first[as_index(composite)]) && "the result cannot be represented");
+        assert(!ioverflows::mul<T>(sgm[as_index(i)] / first[as_index(i)], first[as_index(composite)]) && "the result cannot be represented");
         sgm[as_index(composite)] = sgm[as_index(i)] / first[as_index(i)] * first[as_index(composite)];
         break;
       }
-      assert(!iadd_overflows<T>(1, px) && "the result cannot be represented");
+      assert(!ioverflows::add<T>(1, px) && "the result cannot be represented");
       first[as_index(composite)] = 1 + px;
-      assert(!imul_overflows<T>(first[as_index(composite)], sgm[as_index(i)]) && "the result cannot be represented");
+      assert(!ioverflows::mul<T>(first[as_index(composite)], sgm[as_index(i)]) && "the result cannot be represented");
       sgm[as_index(composite)] = first[as_index(composite)] * sgm[as_index(i)];
     }
   }

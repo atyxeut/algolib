@@ -4,7 +4,7 @@
 #include "../../int-ops/overflow-detection/include.hpp"
 #include "../categories.hpp"
 
-namespace aal { namespace op { namespace detail { namespace gcd {
+namespace aal { namespace op { namespace detail {
 
 template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
 struct gcd_impl
@@ -37,11 +37,11 @@ struct lcm_impl
 
   AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
   {
-    assert(!imul_overflows<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
+    assert(!ioverflows::mul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd_impl<T> {}(a, b) * b;
   }
 };
 
-}}}} // namespace aal::op::detail::gcd
+}}} // namespace aal::op::detail::gcd
 
 #endif // AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP

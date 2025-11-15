@@ -13,7 +13,7 @@ AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, typename std::common_type<T1, T2>::type>::type
 {
   assert(a >= 0 && n >= 0 && "arguments must be nonnegative");
-  assert(a != 0 || (n != 0 && "arguments can not be all 0"));
+  assert(a != 0 || (n != 0 && "arguments can not be both 0"));
 
   if (a == 0)
     return 0;
@@ -22,15 +22,15 @@ AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
   result_type ans = 1;
   auto base = static_cast<result_type>(a);
 
-  while (true) { // don't write for (; n != 0; n >>= 1), base *= base will be executed an extra time in the end
+  while (true) { // don't write for (; n != 0; n >>= 1), since base *= base will be executed an extra time in the end
     if (n & 1) {
-      assert(!imul_overflows<result_type>(ans, base) && "the result cannot be represented");
+      assert(!ioverflows::mul<result_type>(ans, base) && "the result cannot be represented");
       ans *= base;
     }
     n >>= 1;
     if (n == 0)
       break;
-    assert(!imul_overflows<result_type>(base, base) && "the result cannot be represented");
+    assert(!ioverflows::mul<result_type>(base, base) && "the result cannot be represented");
     base *= base;
   }
 
