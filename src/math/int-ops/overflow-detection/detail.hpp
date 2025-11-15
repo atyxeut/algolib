@@ -1,7 +1,6 @@
 #ifndef AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_DETAIL_HPP
 #define AAL_SRC_MATH_INT_OPS_OVERFLOW_DETECTION_DETAIL_HPP
 
-#include "../../../macros/constexpr.hpp"
 #include <limits>
 #include <type_traits>
 
@@ -27,7 +26,7 @@ constexpr bool mul_impl(T a, T b, T limit) noexcept
 }
 
 template <mode Mode, typename TResult, typename T1, typename T2>
-AAL_CONSTEXPR14 bool selector(T1 a, T2 b) noexcept
+bool selector(T1 a, T2 b) noexcept
 {
   using op_common_type = typename std::common_type<T1, T2, TResult>::type;
   auto a_ = static_cast<op_common_type>(a);

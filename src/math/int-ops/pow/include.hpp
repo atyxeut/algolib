@@ -9,7 +9,7 @@ namespace aal {
 
 // compute a^n in O(logn) time, see note.md for extra information
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto ipow(T1 a, T2 n) noexcept ->
+auto ipow(T1 a, T2 n) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, typename std::common_type<T1, T2>::type>::type
 {
   assert(a >= 0 && n >= 0 && "arguments must be nonnegative");

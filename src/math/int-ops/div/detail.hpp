@@ -34,7 +34,7 @@ template <typename TDividend, typename TDivisor>
 using final_result_t = typename final_result<TDividend, TDividend>::type;
 
 template <mode Mode, typename T1, typename T2>
-AAL_CONSTEXPR14 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
+auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
 {
   using result_type = final_result_t<T1, T2>;
 

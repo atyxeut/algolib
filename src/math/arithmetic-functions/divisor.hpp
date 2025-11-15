@@ -10,17 +10,17 @@
 namespace aal { namespace arith_func {
 
 template <int x = 1, typename T>
-AAL_CONSTEXPR14 auto sigma(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+auto sigma(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
   assert(n > 0 && "argument must be positive");
 
   T ans = 0;
   for (T i = 1; i <= n / i; ++i) {
     if (n % i == 0) {
-      assert(!iadd_overflows<T>(ans, ipow(i, x)) && "the result cannot be represented");
+      assert(!ioverflows::add<T>(ans, ipow(i, x)) && "the result cannot be represented");
       ans += ipow(i, x);
       if (n / i != i) {
-        assert(!iadd_overflows<T>(ans, ipow(n / i, x)) && "the result cannot be represented");
+        assert(!ioverflows::add<T>(ans, ipow(n / i, x)) && "the result cannot be represented");
         ans += ipow(n / i, x);
       }
     }

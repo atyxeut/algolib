@@ -16,7 +16,7 @@ namespace aal { namespace idiv {
 //   int ans = aal::idiv::floor(-2147483647 - 1, 1ull);
 //   ans is 2, -3, -2147483648 respectively
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto floor(T1 lhs, T2 rhs) noexcept ->
+auto floor(T1 lhs, T2 rhs) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, detail::final_result_t<T1, T2>>::type
 {
   assert(rhs != 0 && "divisor cannot be 0");
@@ -30,7 +30,7 @@ AAL_CONSTEXPR14 auto floor(T1 lhs, T2 rhs) noexcept ->
 //   long long ans = aal::idiv::ceil(-2147483647 - 1, -1); // 2147483648, no overflow
 //   ans is 3, -2, 2147483648 (no overflow) respectively
 template <typename T1, typename T2>
-AAL_CONSTEXPR14 auto ceil(T1 lhs, T2 rhs) noexcept ->
+auto ceil(T1 lhs, T2 rhs) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, detail::final_result_t<T1, T2>>::type
 {
   assert(rhs != 0 && "divisor cannot be 0");

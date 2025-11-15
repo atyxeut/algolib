@@ -15,7 +15,7 @@ struct gcd_impl
   static constexpr T identity_elem  = 0; // gcd(0, a) = a
   static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
 
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
+  T operator ()(T a, T b) const noexcept
   {
     for (T t; b != 0;) {
       t = a % b;
@@ -35,7 +35,7 @@ struct lcm_impl
   static constexpr T identity_elem  = 1; // lcm(1, a) = a
   static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
 
-  AAL_CONSTEXPR14 T operator ()(T a, T b) const noexcept
+  T operator ()(T a, T b) const noexcept
   {
     assert(!ioverflows::mul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd_impl<T> {}(a, b) * b;

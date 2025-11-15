@@ -3,13 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-ops/is-prime/trial_division.hpp */
 
-#include "../../../macros/constexpr.hpp"
 #include "../../../type-traits/integral.hpp"
 
 namespace aal { namespace is_prime {
 
 template <typename T>
-AAL_CONSTEXPR14 auto trial_division(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
+auto trial_division(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, bool>::type
 {
   if (n == 2)
     return true;

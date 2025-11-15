@@ -1,13 +1,12 @@
 #ifndef AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
 #define AAL_SRC_MATH_INT_OPS_GCD_DETAIL_HPP
 
-#include "../../../macros/constexpr.hpp"
 #include "../abs.hpp"
 
 namespace aal { namespace detail {
 
 template <typename TOp, typename... Ts>
-AAL_CONSTEXPR14 auto gcd_lcm_impl(Ts... nums) noexcept -> typename TOp::operand_type
+auto gcd_lcm_impl(Ts... nums) noexcept -> typename TOp::operand_type
 {
   using result_type = typename TOp::operand_type;
 

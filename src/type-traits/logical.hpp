@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-traits/logical.hpp */
 
-#include "../macros/cpp_version.hpp"
 #include <type_traits>
 
 namespace aal {

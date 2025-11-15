@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/misc/md-array-vector/include.hpp */
 
-#include "../../macros/attribute.hpp"
 #include "../../type-traits/is_std_array.hpp"
 #include "detail.hpp"
 #include <utility>
@@ -48,7 +47,7 @@ auto fill_array(std::array<TArr, Dim>& arr, const T& val) -> typename std::enabl
 //   combines aal::array<int, 5, 8, 3, 2> arr4d;
 //        and aal::fill_array(arr4d, val);
 template <typename TElem, std::size_t... Dims, typename T>
-AAL_ATTRIBUTE_NODISCARD auto make_array(const T& val) -> array<TElem, Dims...>
+auto make_array(const T& val) -> array<TElem, Dims...>
 {
   array<TElem, Dims...> arr;
   fill_array(arr, static_cast<TElem>(val));
@@ -58,7 +57,7 @@ AAL_ATTRIBUTE_NODISCARD auto make_array(const T& val) -> array<TElem, Dims...>
 // base case of aal::make_vector
 //   auto vec = aal::make_vector<int>(x, -1); calls this overload
 template <typename TElem, typename TDim, typename T>
-AAL_ATTRIBUTE_NODISCARD auto make_vector(TDim size, const T& val) ->
+auto make_vector(TDim size, const T& val) ->
   typename std::enable_if<std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), std::vector<TElem>>::type
 {
   return std::vector<TElem>(static_cast<std::size_t>(size), static_cast<TElem>(val));
@@ -70,7 +69,7 @@ AAL_ATTRIBUTE_NODISCARD auto make_vector(TDim size, const T& val) ->
 //                           std::vector<std::vector<int>>(y, std::vector<int>(z, 1))
 //                         );
 template <typename TElem, typename TDim, typename... Ts>
-AAL_ATTRIBUTE_NODISCARD auto make_vector(TDim first_dim_size, Ts&&... args) ->
+auto make_vector(TDim first_dim_size, Ts&&... args) ->
   typename std::enable_if<(sizeof...(Ts) > 1) && std::is_integral<TDim>::value && sizeof(TDim) <= sizeof(std::size_t), vector<TElem, sizeof...(Ts)>>::type
 {
   return std::vector<vector<TElem, sizeof...(Ts) - 1>>(static_cast<std::size_t>(first_dim_size), make_vector<TElem>(std::forward<Ts>(args)...));

@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/arithmetic-functions/euler_totient.hpp */
 
-#include "../../macros/constexpr.hpp"
 #include "../../type-traits/integral.hpp"
 #include <cassert>
 
@@ -12,7 +11,7 @@
 namespace aal { namespace arith_func {
 
 template <typename T>
-AAL_CONSTEXPR14 auto euler_totient(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
+auto euler_totient(T n) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
   assert(n > 0 && "argument must be positive");
 
