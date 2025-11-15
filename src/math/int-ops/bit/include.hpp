@@ -10,7 +10,7 @@
 
 namespace aal {
 
-// extend C++20 std::countl_zero, can handle signed and 128-bit integers
+// extended std::countl_zero, can handle signed and 128-bit integers
 template <nonbool_integral T>
 [[nodiscard]] constexpr int countl_zero(T x) noexcept
 {
@@ -24,7 +24,7 @@ template <nonbool_integral T>
   }
 }
 
-// extend C++20 std::bit_width, can handle signed and 128-bit integers
+// extended std::bit_width, can handle signed and 128-bit integers
 template <nonbool_integral T>
 [[nodiscard]] constexpr int bit_width(T x) noexcept
 {
@@ -33,7 +33,7 @@ template <nonbool_integral T>
 }
 
 // get the largest integer exponent n such that 2^n <= x
-// similar to GCC's std::__lg, but aal::ilog2(0) is not undefined behavior and returns -1
+//   similar to GCC's std::__lg, but aal::ilog2(0) is not undefined behavior and returns -1
 template <nonbool_integral T>
 [[nodiscard]] constexpr int ilog2(T x) noexcept
 {

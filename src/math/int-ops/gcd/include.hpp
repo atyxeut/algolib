@@ -5,7 +5,6 @@
 
 #include "../../operator/gcd/include.hpp"
 #include "detail.hpp"
-#include <utility>
 
 // see note.md for extra information
 
