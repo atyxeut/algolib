@@ -22,8 +22,6 @@
 !src/io/range/*
 !src/io/tuple
 !src/io/tuple/*
-!src/macros
-!src/macros/*
 !src/math
 !src/math/arithmetic-functions
 !src/math/arithmetic-functions/divisor.hpp
