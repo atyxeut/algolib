@@ -11,8 +11,8 @@ namespace aal { namespace sieve {
 
 // get a not_prime list (not_prime[i] = true/false means i is not/is a prime)
 // the behavior is undefined if not_prime[0], not_prime[1] are used
-template <typename T>
-auto eratosthenes(T n) -> typename std::enable_if<is_nonbool_integral<T>::value, std::vector<bool>>::type
+template <nonbool_integral T>
+[[nodiscard]] constexpr auto eratosthenes(T n)
 {
   assert(n > 0 && "argument must be positive");
 

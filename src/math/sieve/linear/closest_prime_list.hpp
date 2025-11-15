@@ -12,7 +12,7 @@ namespace aal { namespace sieve { namespace linear {
 // the behavior is undefined if clp[0], clp[1] are used
 // the behavior is undefined if the argument is not the actual minp array
 template <typename T>
-auto clp(const std::vector<T>& minp) -> std::vector<T>
+[[nodiscard]] constexpr auto clp(const std::vector<T>& minp)
 {
   std::vector<T> clp(minp.size());
 

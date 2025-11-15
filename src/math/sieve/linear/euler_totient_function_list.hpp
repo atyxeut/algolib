@@ -14,7 +14,7 @@ namespace aal { namespace sieve { namespace linear {
 // the behavior is undefined if phi[0] is used
 // the behavior is undefined if the arguments are not the actual prime, minp array
 template <typename T>
-auto euler_totient(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
+[[nodiscard]] constexpr auto euler_totient(const std::vector<T>& prime, const std::vector<T>& minp)
 {
   std::vector<T> phi(minp.size());
   phi[1] = 1;

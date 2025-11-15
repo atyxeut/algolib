@@ -15,7 +15,7 @@ namespace aal { namespace sieve { namespace linear {
 // the behavior is undefined if sgm[0] is used
 // the behavior is undefined if the arguments are not the actual prime, minp array
 template <int x = 1, typename T>
-auto sigma(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
+[[nodiscard]] constexpr auto sigma(const std::vector<T>& prime, const std::vector<T>& minp)
 {
   std::vector<T> first(minp.size());
   std::vector<T> sgm(minp.size());

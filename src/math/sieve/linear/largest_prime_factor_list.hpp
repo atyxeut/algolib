@@ -12,7 +12,7 @@ namespace aal { namespace sieve { namespace linear {
 // the behavior is undefined if maxp[0], maxp[1] are used
 // the behavior is undefined if the arguments are not the actual prime, minp array
 template <typename T>
-auto maxp(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vector<T>
+[[nodiscard]] constexpr auto maxp(const std::vector<T>& prime, const std::vector<T>& minp)
 {
   std::vector<T> maxp(minp.size());
 
