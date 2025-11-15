@@ -15,6 +15,9 @@ using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 
+using usize = std::size_t;
+using ssize = std::ptrdiff_t;
+
 // 128-bit integers are provided by compilers, and are not supported by standard type traits
 #ifdef _MSC_VER
 #if _MSC_VER >= 1934
@@ -38,8 +41,5 @@ using u128 = ::aal::detail::fake_u128;
 __extension__ using i128 = __int128;
 __extension__ using u128 = unsigned __int128;
 #endif // MSVC compiler
-
-using usize = std::size_t;
-using ssize = std::ptrdiff_t;
 
 #endif // AAL_SRC_ALIASES_INTEGRAL_HPP
