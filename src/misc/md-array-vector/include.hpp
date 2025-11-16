@@ -27,7 +27,7 @@ using vector = typename detail::vector_impl<T, DimCnt>::type;
 //   std::array<int, 10> arr;
 //   aal::fill_array(arr, -1); calls this overload
 template <typename TElem, std::size_t Dim, typename T>
-auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> typename std::enable_if<std::is_convertible<T, TElem>::value>::type
+auto fill_array(std::array<TElem, Dim>& arr, const T& val) -> typename std::enable_if<!is_std_array<TElem>::value>::type
 {
   arr.fill(static_cast<TElem>(val));
 }

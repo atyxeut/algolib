@@ -9,10 +9,10 @@ namespace aal { namespace op { namespace detail {
 template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
 struct gcd_impl
 {
-  using category     = binary_operator_tag;
+  using operator_category = binary_operator_tag;
   using operand_type = T;
 
-  static constexpr T identity_elem  = 0; // gcd(0, a) = a
+  static constexpr T identity_elem = 0; // gcd(0, a) = a
   static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
 
   T operator ()(T a, T b) const noexcept
@@ -29,10 +29,10 @@ struct gcd_impl
 template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
 struct lcm_impl
 {
-  using category     = binary_operator_tag;
+  using operator_category = binary_operator_tag;
   using operand_type = T;
 
-  static constexpr T identity_elem  = 1; // lcm(1, a) = a
+  static constexpr T identity_elem = 1; // lcm(1, a) = a
   static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
 
   T operator ()(T a, T b) const noexcept
@@ -42,6 +42,6 @@ struct lcm_impl
   }
 };
 
-}}} // namespace aal::op::detail::gcd
+}}} // namespace aal::op::detail
 
 #endif // AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
