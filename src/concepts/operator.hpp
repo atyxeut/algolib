@@ -7,7 +7,7 @@ namespace aal {
 
 template <typename T>
 concept optr = requires {
-  typename T::category;
+  typename T::operator_category;
   typename T::operand_type;
 };
 

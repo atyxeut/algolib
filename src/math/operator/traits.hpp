@@ -11,10 +11,8 @@ namespace aal { namespace op {
 template <optr T>
 struct operator_traits_base
 {
-  // clang-format off
-  using category     = typename T::category;
+  using operator_category = typename T::operator_category;
   using operand_type = typename T::operand_type;
-  // clang-format on
 };
 
 }} // namespace aal::op
