@@ -24,20 +24,22 @@ using array = detail::array_impl<T, Dims...>::type;
 template <typename T, std::size_t DimCnt = 1>
 using vector = detail::vector_impl<T, DimCnt>::type;
 
+// base case of aal::fill_array
+template <typename TElem, std::size_t Dim, typename T>
+constexpr void fill_array(std::array<TElem, Dim>& arr, const T& val)
+{
+  arr.fill(static_cast<TElem>(val));
+}
+
 // aal::array<int, 3, 5, 2, 10> arr4d;
 // int val = -1;
 // aal::fill_array(arr4d, val);
 //   set every element of a aal::array to val
-template <typename TElem, std::size_t Dim, typename T>
-constexpr void fill_array(std::array<TElem, Dim>& arr, const T& val)
+template <typename TArr, std::size_t Dim, typename T> requires is_std_array_v<TArr>
+constexpr void fill_array(std::array<TArr, Dim>& arr, const T& val)
 {
-  if constexpr (is_std_array_v<TElem>) {
-    for (auto& inner_arr : arr)
-      fill_array(inner_arr, val);
-  }
-  else {
-    arr.fill(static_cast<TElem>(val));
-  }
+  for (auto& inner_arr : arr)
+    fill_array(inner_arr, val);
 }
 
 // auto arr4d = aal::make_array<int, 5, 8, 3, 2>(val);
