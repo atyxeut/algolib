@@ -3,8 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/misc/md-array-vector/include.hpp */
 
-#include "../../concepts/integral.hpp"
-#include "../../type-traits/is_std_array.hpp"
+#include "../../concept/integral.hpp"
+#include "../../type-trait/is_std_array.hpp"
 #include "detail.hpp"
 #include <utility>
 

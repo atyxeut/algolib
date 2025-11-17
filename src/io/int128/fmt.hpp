@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/fmt.hpp */
 
-#include "../../aliases/integral.hpp"
+#include "../../alias/integral.hpp"
 #include <algorithm>
 #include <format>
 #include <limits>

@@ -3,20 +3,21 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/range/out.hpp */
 
-#include "../../type-traits/io.hpp"
-#include "../../type-traits/range.hpp"
+#include "../../type-trait/io.hpp"
 #include <cstddef>
+#include <ranges>
 #include <string>
+// #include <concepts>
 
 namespace aal {
 
 // element of the range can be printed by the specified ostr by default
 // e.g. std::vector<std::string> can, but std::vector<std::pair<int, int>> can not
 template <
-  typename TChar, typename TTraits, typename TRange, typename TDelim,
-  typename TVal = enable_if_t<is_range<TRange>::value, remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>>
+  typename TChar, typename TTraits, std::ranges::input_range TRange, typename TDelim,
+  typename TVal = std::remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>
 >
-auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true) -> enable_if_t<
+auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, std::basic_string_view delim, bool never_second_case = true) -> enable_if_t<
   std::is_convertible<remove_cvref_t<TDelim>, std::basic_string<TChar>>::value && is_default_printable<TVal, std::basic_ostream<TChar, TTraits>>::value, int
 >
 {

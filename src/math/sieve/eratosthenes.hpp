@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/eratosthenes.hpp */
 
-#include "../int-ops/conversion-helper/as_index.hpp"
+#include "../int-operation/conversion-helper/as_index.hpp"
 #include <cassert>
 #include <vector>
 

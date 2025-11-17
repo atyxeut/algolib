@@ -3,13 +3,13 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/in.hpp */
 
-#include "../../aliases/integral.hpp"
+#include "../../alias/integral.hpp"
 #include <istream>
 #include <limits>
 #include <string>
 
 template <typename TChar, typename TTraits>
-auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n) -> std::basic_istream<TChar, TTraits>&
+auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n)
 {
   std::string buffer;
   istr >> buffer;
@@ -22,7 +22,7 @@ auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n) -> std::basi
 }
 
 template <typename TChar, typename TTraits>
-auto operator >>(std::basic_istream<TChar, TTraits>& istr, i128& n) -> std::basic_istream<TChar, TTraits>&
+auto operator >>(std::basic_istream<TChar, TTraits>& istr, i128& n)
 {
   std::string buffer;
   istr >> buffer;

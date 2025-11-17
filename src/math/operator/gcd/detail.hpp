@@ -1,8 +1,8 @@
 #ifndef AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
 #define AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
 
-#include "../../int-ops/overflow-detection/include.hpp"
-#include "../categories.hpp"
+#include "../../int-operation/overflow-detection/include.hpp"
+#include "../category.hpp"
 
 namespace aal { namespace op { namespace detail {
 

@@ -3,8 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/linear/divisor_function_list.hpp */
 
-#include "../../int-ops/conversion-helper/as_index.hpp"
-#include "../../int-ops/pow/include.hpp"
+#include "../../int-operation/conversion-helper/as_index.hpp"
+#include "../../int-operation/pow/include.hpp"
 #include <vector>
 
 // see note.md for extra information

@@ -4,7 +4,6 @@
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/tuple/out.hpp */
 
 #include "detail.hpp"
-#include <utility>
 
 // to make the overload of operator << defined in range/out.hpp able to accept ranges that has std::pair, std::tuple as elements,
 //   this #include order is necessary:
@@ -24,7 +23,7 @@ template <typename TChar, typename TTraits, typename TDelim, typename... Ts, std
 auto print(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple<Ts...>& t, TDelim&& delim) ->
   typename std::enable_if<std::is_convertible<TDelim, std::basic_string<TChar>>::value, void>::type
 {
-  detail::print_tuple_impl(ostr, t, std::forward<TDelim>(delim), index_sequence_for<Ts...> {});
+  detail::print_tuple_impl(ostr, t, std::forward<TDelim>(delim), std::index_sequence_for<Ts...> {});
 }
 
 } // namespace aal
@@ -39,7 +38,7 @@ auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, const std::pair<T1, T
 template <typename TChar, typename TTraits, typename... Ts>
 auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, const std::tuple<Ts...>& t) -> std::basic_ostream<TChar, TTraits>&
 {
-  ::aal::detail::print_tuple_impl(ostr, t, std::basic_string<TChar>(1, static_cast<TChar>(' ')), ::aal::index_sequence_for<Ts...> {});
+  ::aal::detail::print_tuple_impl(ostr, t, std::basic_string<TChar>(1, static_cast<TChar>(' ')), std::index_sequence_for<Ts...> {});
   return ostr;
 }
 

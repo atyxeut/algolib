@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/out.hpp */
 
-#include "../../aliases/integral.hpp"
+#include "../../alias/integral.hpp"
 #include <algorithm>
 #include <limits>
 #include <ostream>
@@ -15,7 +15,7 @@
 // #include ".../range/out.hpp"
 
 template <typename TChar, typename TTraits>
-auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic_ostream<TChar, TTraits>&
+auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n)
 {
   if (n == 0)
     return ostr << 0;
@@ -29,7 +29,7 @@ auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic
 }
 
 template <typename TChar, typename TTraits>
-auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, i128 n) -> std::basic_ostream<TChar, TTraits>&
+auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, i128 n)
 {
   if (n == std::numeric_limits<i128>::min())
     return ostr << '-' << static_cast<u128>(n);

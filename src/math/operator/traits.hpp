@@ -3,8 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/operator/traits.hpp */
 
-#include "../../concepts/operator.hpp"
-#include "categories.hpp"
+#include "../../concept/operator.hpp"
+#include "category.hpp"
 
 namespace aal { namespace op {
 
