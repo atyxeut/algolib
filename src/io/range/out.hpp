@@ -4,60 +4,51 @@
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/range/out.hpp */
 
 #include "../../type-trait/io.hpp"
+#include <concepts>
 #include <cstddef>
 #include <ranges>
 #include <string>
-// #include <concepts>
 
 namespace aal {
 
-// element of the range can be printed by the specified ostr by default
-// e.g. std::vector<std::string> can, but std::vector<std::pair<int, int>> can not
-template <
-  typename TChar, typename TTraits, std::ranges::input_range TRange, typename TDelim,
-  typename TVal = std::remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>
->
-auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, std::basic_string_view delim, bool never_second_case = true) -> enable_if_t<
-  std::is_convertible<remove_cvref_t<TDelim>, std::basic_string<TChar>>::value && is_default_printable<TVal, std::basic_ostream<TChar, TTraits>>::value, int
->
+template <typename TChar, std::ranges::input_range TRange, typename TDelim> requires std::convertible_to<TDelim, std::basic_string<TChar>>
+int print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true)
 {
-  auto cur_delim = never_second_case ? delim : std::basic_string<TChar>(1, static_cast<TChar>(' '));
-  for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it)
-    ostr << *it << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
-  return 1;
-}
+  using value_type = std::ranges::range_value_t<TRange>;
 
-// element type of the range is non-default-printable range
-// e.g. std::vector<std::array<int, 4>>
-template <
-  typename TChar, typename TTraits, typename TRange, typename TDelim,
-  typename TVal = enable_if_t<is_range<TRange>::value, remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>>
->
-auto print(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = false)
-  -> enable_if_t<std::is_convertible<remove_cvref_t<TDelim>, std::basic_string<TChar>>::value && is_range<TVal>::value, int>
-{
-  int reverse_dep = 0;
-  for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it) {
-    reverse_dep = print(ostr, *it, std::forward<TDelim>(delim), never_second_case);
-    auto cur_delim = std::basic_string<TChar>(static_cast<std::size_t>(reverse_dep), *std::begin(delim));
-    ostr << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
+  // element of the range can be printed by the specified ostr by default
+  // e.g. std::vector<std::string> can, but std::vector<std::pair<int, int>> can not
+  if constexpr (is_ostream_interactable_v<TChar, value_type>) {
+    auto cur_delim = never_second_case ? delim : std::basic_string<TChar>(1, static_cast<TChar>(' '));
+    for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it)
+      ostr << *it << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
+    return 1;
   }
-  return reverse_dep + 1;
+
+  // element type of the range is non-default-printable range
+  // e.g. std::vector<std::array<int, 4>>
+  if constexpr (std::ranges::input_range<value_type>) {
+    int reverse_dep = 0;
+    for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it) {
+      reverse_dep = print(ostr, *it, std::forward<TDelim>(delim), false);
+      auto cur_delim = std::basic_string<TChar>(static_cast<std::size_t>(reverse_dep), *std::begin(delim));
+      ostr << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
+    }
+    return reverse_dep + 1;
+  }
 }
 
 } // namespace aal
 
 // call aal::print with a space or a new line character as the delimiter (depending on whether it is a nested range)
-template <typename TChar, typename TTraits, typename TRange>
-auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, TRange&& range) -> ::aal::enable_if_t<
-  // the second condition is set to avoid ambiguous overloads when TRange is std::string, const char[N], ...
-  ::aal::is_range<TRange>::value && !::aal::is_default_printable<TRange, std::basic_ostream<TChar, TTraits>>::value, std::basic_ostream<TChar, TTraits>&
->
+// SFINAE here to avoid ambiguous overloads when TRange is std::string&, const char(&)[N], ...
+// note that we cannot use requires here, since it sees the defining function template, causing infinitely recursivive constraint
+template <typename TChar, std::ranges::input_range TRange, typename = std::enable_if_t<!::aal::is_ostream_interactable_v<TChar, TRange>>>
+decltype(auto) operator <<(std::basic_ostream<TChar>& ostr, TRange&& range)
 {
-  using TVal = ::aal::remove_cvref_t<decltype(*std::begin(std::declval<TRange>()))>;
   ::aal::print(
     ostr, std::forward<TRange>(range),
-    std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_default_printable<TVal, std::basic_ostream<TChar, TTraits>>::value ? ' ' : '\n'))
+    std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_ostream_interactable_v<TChar, std::ranges::range_value_t<TRange>> ? ' ' : '\n'))
   );
   return ostr;
 }

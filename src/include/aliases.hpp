@@ -1,2 +1,2 @@
-#include "../alias/integral.hpp"
 #include "../alias/floating_point.hpp"
+#include "../alias/integral.hpp"
