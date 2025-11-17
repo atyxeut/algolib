@@ -8,8 +8,8 @@
 #include <limits>
 #include <string>
 
-template <typename TChar, typename TTraits>
-auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n)
+template <typename TChar>
+auto operator >>(std::basic_istream<TChar>& istr, u128& n)
 {
   std::string buffer;
   istr >> buffer;
@@ -21,8 +21,8 @@ auto operator >>(std::basic_istream<TChar, TTraits>& istr, u128& n)
   return istr;
 }
 
-template <typename TChar, typename TTraits>
-auto operator >>(std::basic_istream<TChar, TTraits>& istr, i128& n)
+template <typename TChar>
+auto operator >>(std::basic_istream<TChar>& istr, i128& n)
 {
   std::string buffer;
   istr >> buffer;
