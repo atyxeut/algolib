@@ -17,6 +17,8 @@
 !src/alias/*
 !src/concept
 !src/concept/*
+!src/include
+!src/include/*
 !src/io
 !src/io/int128
 !src/io/int128/*
