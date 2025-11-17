@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/io/int128/out.hpp */
 
-#include "../../aliases/integral.hpp"
+#include "../../alias/integral.hpp"
 #include <algorithm>
 #include <limits>
 #include <ostream>
@@ -11,11 +11,11 @@
 
 // to make the overload of operator << defined in range/out.hpp able to accept ranges that has i128, u128 as elements,
 //   this #include order is necessary:
-// #include ".../int128/out.hpp"
-// #include ".../range/out.hpp"
+//   #include ".../int128/out.hpp"
+//   #include ".../range/out.hpp"
 
-template <typename TChar, typename TTraits>
-auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic_ostream<TChar, TTraits>&
+template <typename TChar>
+auto operator <<(std::basic_ostream<TChar>& ostr, u128 n) -> std::basic_ostream<TChar>&
 {
   if (n == 0)
     return ostr << 0;
@@ -28,8 +28,8 @@ auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, u128 n) -> std::basic
   return ostr << buffer;
 }
 
-template <typename TChar, typename TTraits>
-auto operator <<(std::basic_ostream<TChar, TTraits>& ostr, i128 n) -> std::basic_ostream<TChar, TTraits>&
+template <typename TChar>
+auto operator <<(std::basic_ostream<TChar>& ostr, i128 n) -> std::basic_ostream<TChar>&
 {
   if (n == std::numeric_limits<i128>::min())
     return ostr << '-' << static_cast<u128>(n);

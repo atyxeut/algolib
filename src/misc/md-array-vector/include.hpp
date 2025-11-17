@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/misc/md-array-vector/include.hpp */
 
-#include "../../type-traits/is_std_array.hpp"
+#include "../../type-trait/is_std_array.hpp"
 #include "detail.hpp"
 #include <utility>
 

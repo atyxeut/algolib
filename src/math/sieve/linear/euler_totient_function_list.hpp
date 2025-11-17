@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/euler_totient_function_list.hpp */
 
-#include "../../int-ops/conversion-helper/as_index.hpp"
+#include "../../int-operation/conversion-helper/as_index.hpp"
 #include <vector>
 
 // see note.md for extra information

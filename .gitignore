@@ -9,12 +9,14 @@
 
 !notes
 !notes/divisibility.md
-!notes/identities.md
+!notes/identity.md
 
 !src
 !src/.clangd
-!src/aliases
-!src/aliases/*
+!src/alias
+!src/alias/*
+!src/include
+!src/include/*
 !src/io
 !src/io/int128
 !src/io/int128/*
@@ -23,12 +25,12 @@
 !src/io/tuple
 !src/io/tuple/*
 !src/math
-!src/math/arithmetic-functions
-!src/math/arithmetic-functions/divisor.hpp
-!src/math/arithmetic-functions/euler_totient.hpp
-!src/math/arithmetic-functions/prime_omega.hpp
-!src/math/int-ops
-!src/math/int-ops/**
+!src/math/arithmetic-function
+!src/math/arithmetic-function/divisor.hpp
+!src/math/arithmetic-function/euler_totient.hpp
+!src/math/arithmetic-function/prime_omega.hpp
+!src/math/int-operation
+!src/math/int-operation/**
 !src/math/modint
 !src/math/modint/modint.md
 !src/math/operator
@@ -39,5 +41,5 @@
 !src/misc/md-array-vector
 !src/misc/md-array-vector/*
 !src/misc/integer_sequence.hpp
-!src/type-traits
-!src/type-traits/*
+!src/type-trait
+!src/type-trait/*
