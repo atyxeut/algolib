@@ -37,7 +37,7 @@ SpacesInLineCommentPrefix:
 #preprocesser / macro
 IndentPPDirectives: None
 AlignConsecutiveMacros:
-  Enabled: true
+  Enabled: false
   AcrossComments: false
 AlignEscapedNewlines: LeftWithLastLine
 SortIncludes: CaseInsensitive
