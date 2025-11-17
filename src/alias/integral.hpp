@@ -1,7 +1,7 @@
-#ifndef AAL_SRC_ALIASES_INTEGRAL_HPP
-#define AAL_SRC_ALIASES_INTEGRAL_HPP
+#ifndef AAL_SRC_ALIAS_INTEGRAL_HPP
+#define AAL_SRC_ALIAS_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/aliases/integral.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/alias/integral.hpp */
 
 #include <cstddef>
 #include <cstdint>
@@ -42,4 +42,4 @@ __extension__ using i128 = __int128;
 __extension__ using u128 = unsigned __int128;
 #endif // MSVC compiler
 
-#endif // AAL_SRC_ALIASES_INTEGRAL_HPP
+#endif // AAL_SRC_ALIAS_INTEGRAL_HPP
