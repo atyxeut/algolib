@@ -4,10 +4,9 @@
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/io.hpp */
 
 #include "../type-trait/io.hpp"
+#include <concepts>
 
 namespace aal {
-
-
 
 } // namespace aal
 

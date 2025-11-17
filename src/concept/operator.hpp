@@ -3,13 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/operator.hpp */
 
-namespace aal {
+#include <concepts>
 
-template <typename T>
-concept math_operator = requires {
-  typename T::operator_category;
-  typename T::operand_type;
-};
+namespace aal {
 
 template <typename T>
 concept unary_operator = true;
