@@ -16,10 +16,10 @@ struct binary_operator_tag
 };
 
 template <typename T>
-struct operator_traits_base
+struct operator_traits
 {
-  using operator_category = typename T::operator_category;
-  using operand_type = typename T::operand_type;
+  using operator_category = T::operator_category;
+  using operand_type = T::operand_type;
 };
 
 } // namespace aal
