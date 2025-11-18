@@ -17,7 +17,7 @@ template <
   typename TVal = enable_if_t<is_range<TRange>::value, remove_cvref_t<decltype(*std::begin(std::declval<TRange&>()))>>
 >
 auto print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true)
-  -> enable_if_t<is_ostream_interactable<TChar, TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, int>
+  -> enable_if_t<is_basic_ostream_interactable<TChar, TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, int>
 {
   auto cur_delim = never_second_case ? delim : std::basic_string<TChar>(1, static_cast<TChar>(' '));
   for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it)
@@ -49,11 +49,11 @@ auto print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool
 template <typename TChar, typename TRange, typename TVal = ::aal::remove_cvref_t<decltype(*std::begin(std::declval<TRange&>()))>>
 auto operator <<(std::basic_ostream<TChar>& ostr, TRange&& range) -> ::aal::enable_if_t<
   // the second condition is set to avoid ambiguous overloads when TRange is std::string, const char[N], ...
-  ::aal::is_range<TRange>::value && !::aal::is_ostream_interactable<TChar, TRange>::value, std::basic_ostream<TChar>&
+  ::aal::is_range<TRange>::value && !::aal::is_basic_ostream_interactable<TChar, TRange>::value, std::basic_ostream<TChar>&
 >
 {
   ::aal::print(
-    ostr, std::forward<TRange>(range), std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_ostream_interactable<TChar, TVal>::value ? ' ' : '\n'))
+    ostr, std::forward<TRange>(range), std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_basic_ostream_interactable<TChar, TVal>::value ? ' ' : '\n'))
   );
   return ostr;
 }
