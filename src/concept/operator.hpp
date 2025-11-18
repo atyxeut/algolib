@@ -9,20 +9,15 @@
 namespace aal {
 
 template <typename T>
-concept operator_traits_instantiatable = requires {
-  typename T::operator_category;
-  typename T::operand_type;
+concept unary_operator = std::same_as<typename operator_traits<T>::operator_category, unary_operator_tag> && requires(const T op, T::operand_type r) {
+  { op(r) } -> std::same_as<typename T::operand_type>;
 };
 
 template <typename T>
-concept unary_operator = operator_traits_instantiatable<T> && requires(const T op, T::operand_type operand) {
-  { op(operand) } -> std::same_as<typename T::operand_type>;
-};
-
-template <typename T>
-concept binary_operator = operator_traits_instantiatable<T> && requires(const T op, T::operand_type l, T::operand_type r) {
-  { op(l, r) } -> std::same_as<typename T::operand_type>;
-};
+concept binary_operator = std::same_as<typename operator_traits<T>::operator_category, binary_operator_tag> &&
+                          requires(const T op, T::operand_type l, T::operand_type r) {
+                            { op(l, r) } -> std::same_as<typename T::operand_type>;
+                          };
 
 } // namespace aal
 
