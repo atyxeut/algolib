@@ -12,13 +12,13 @@ namespace aal {
 
 namespace detail {
 
-template <typename TChar, typename T, typename = void>
+template <typename, typename, typename = void>
 struct is_ostream_interactable_impl : std::false_type
 {
 };
 
 template <typename TChar, typename T>
-struct is_ostream_interactable_impl<TChar, T, void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T&>())>> : std::true_type
+struct is_ostream_interactable_impl<TChar, T, void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T>())>> : std::true_type
 {
 };
 

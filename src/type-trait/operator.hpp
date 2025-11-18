@@ -48,7 +48,7 @@ template <typename T>
 struct is_unary_operator_impl<
   T, void_t<
        t_enable_if_t<std::is_same<typename T::operator_category, unary_operator_tag>>,
-       t_enable_if_t<std::is_same<decltype(std::declval<T>()(std::declval<typename T::operand_type>())), typename T::operand_type>>
+       t_enable_if_t<std::is_same<decltype(std::declval<T&>()(std::declval<typename T::operand_type>())), typename T::operand_type>>
      >
 > : std::true_type
 {
@@ -71,7 +71,7 @@ struct is_binary_operator_impl<
   T, void_t<
        t_enable_if_t<std::is_same<typename T::operator_category, binary_operator_tag>>,
        t_enable_if_t<
-         std::is_same<decltype(std::declval<T>()(std::declval<typename T::operand_type>(), std::declval<typename T::operand_type>())), typename T::operand_type>
+         std::is_same<decltype(std::declval<T&>()(std::declval<typename T::operand_type>(), std::declval<typename T::operand_type>())), typename T::operand_type>
        >
      >
 > : std::true_type
