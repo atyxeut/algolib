@@ -53,7 +53,7 @@ struct is_nonbool_unsigned : conjunction<negation<is_bool<T>>, is_unsigned<T>>
 template <typename T>
 struct make_signed
 {
-  // delay the instantiation of std::make_signed<T> to avoid compilation error
+  // delay the instantiation of std::make_signed<T> to avoid error
   using type = typename std::conditional<is_int128<T>::value, claim_cv<T, i128>, std::make_signed<T>>::type::type;
 };
 
@@ -63,7 +63,7 @@ using make_signed_t = typename make_signed<T>::type;
 template <typename T>
 struct make_unsigned
 {
-  // delay the instantiation of std::make_unsigned<T> to avoid compilation error
+  // delay the instantiation of std::make_unsigned<T> to avoid error
   using type = typename std::conditional<is_int128<T>::value, claim_cv<T, u128>, std::make_unsigned<T>>::type::type;
 };
 
@@ -72,37 +72,31 @@ using make_unsigned_t = typename make_unsigned<T>::type;
 
 namespace detail {
 
-template <typename T, std::size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
+template <typename T, bool = is_integral<T>::value, std::size_t = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
 struct make_larger_width_selector;
 
 template <typename T>
-struct make_larger_width_selector<T, 0>
+struct make_larger_width_selector<T, true, 0>
 {
   using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i32>, claim_cv_t<T, u32>>::type;
 };
 
 template <typename T>
-struct make_larger_width_selector<T, sizeof(i32)>
+struct make_larger_width_selector<T, true, sizeof(i32)>
 {
   using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i64>, claim_cv_t<T, u64>>::type;
 };
 
 template <typename T>
-struct make_larger_width_selector<T, sizeof(i64)>
+struct make_larger_width_selector<T, true, sizeof(i64)>
 {
   using type = typename std::conditional<is_signed<T>::value, claim_cv_t<T, i128>, claim_cv_t<T, u128>>::type;
 };
 
 template <typename T>
-struct make_larger_width_selector<T, sizeof(i128)>
+struct make_larger_width_selector<T, true, sizeof(i128)>
 {
   using type = T;
-};
-
-template <typename T, typename = typename std::enable_if<is_integral<T>::value>::type>
-struct make_larger_width_impl
-{
-  using type = typename detail::make_larger_width_selector<T>::type;
 };
 
 } // namespace detail
@@ -111,7 +105,7 @@ struct make_larger_width_impl
 // otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
 // cv-qualifiers and signedness are kept
 template <typename T>
-using make_larger_width = detail::make_larger_width_impl<T>;
+using make_larger_width = detail::make_larger_width_selector<T>;
 
 template <typename T>
 using make_larger_width_t = typename make_larger_width<T>::type;
@@ -120,8 +114,14 @@ struct empty_integral;
 
 namespace detail {
 
-template <typename T, typename = typename std::enable_if<disjunction<is_integral<T>, std::is_same<T, empty_integral>>::value>::type>
+template <typename T, bool = disjunction<is_integral<T>, std::is_same<T, empty_integral>>::value>
 struct integral_wrapper_impl;
+
+template <typename T>
+struct integral_wrapper_impl<T, true>
+{
+  using type = T;
+};
 
 } // namespace detail
 
@@ -144,21 +144,6 @@ template <typename T>
 struct is_empty_integral_wrapper : std::is_same<T, empty_integral_wrapper>
 {
 };
-
-template <typename>
-struct unwrap_integral;
-
-template <>
-struct unwrap_integral<empty_integral_wrapper>;
-
-template <typename T>
-struct unwrap_integral<integral_wrapper<T>>
-{
-  using type = T;
-};
-
-template <typename T>
-using unwrap_integral_t = typename unwrap_integral<T>::type;
 
 } // namespace aal
 
