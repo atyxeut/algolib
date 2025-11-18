@@ -18,7 +18,7 @@ int print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool 
 
   // element of the range can be printed by the specified ostr by default
   // e.g. std::vector<std::string> can, but std::vector<std::pair<int, int>> can not
-  if constexpr (is_ostream_interactable_v<TChar, value_type>) {
+  if constexpr (is_basic_ostream_interactable_v<TChar, value_type>) {
     auto cur_delim = never_second_case ? delim : std::basic_string<TChar>(1, static_cast<TChar>(' '));
     for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it)
       ostr << *it << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
@@ -43,12 +43,12 @@ int print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool 
 // call aal::print with a space or a new line character as the delimiter (depending on whether it is a nested range)
 // SFINAE here to avoid ambiguous overloads when TRange is std::string&, const char(&)[N], ...
 // note that we cannot use requires here, since it sees the defining function template, causing infinitely recursivive constraint
-template <typename TChar, std::ranges::input_range TRange, typename = std::enable_if_t<!::aal::is_ostream_interactable_v<TChar, TRange>>>
+template <typename TChar, std::ranges::input_range TRange, typename = std::enable_if_t<!::aal::is_basic_ostream_interactable_v<TChar, TRange>>>
 decltype(auto) operator <<(std::basic_ostream<TChar>& ostr, TRange&& range)
 {
   ::aal::print(
     ostr, std::forward<TRange>(range),
-    std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_ostream_interactable_v<TChar, std::ranges::range_value_t<TRange>> ? ' ' : '\n'))
+    std::basic_string<TChar>(1, static_cast<TChar>(::aal::is_basic_ostream_interactable_v<TChar, std::ranges::range_value_t<TRange>> ? ' ' : '\n'))
   );
   return ostr;
 }

@@ -12,24 +12,24 @@ namespace aal {
 namespace detail {
 
 template <typename, typename, typename = void>
-struct is_ostream_interactable_impl : std::false_type
+struct is_basic_ostream_interactable_impl : std::false_type
 {
 };
 
 template <typename TChar, typename T>
-struct is_ostream_interactable_impl<TChar, T, std::void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T>())>> : std::true_type
+struct is_basic_ostream_interactable_impl<TChar, T, std::void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T>())>> : std::true_type
 {
 };
 
 } // namespace detail
 
-// check if T has a operator << overload
-// to make aal::is_ostream_interactable<...>::value evaluate to true, the candidate overloads must be already defined above it
+// check if T has an overload of operator << to std::basic_ostream<TChar>&
+// to make aal::is_basic_ostream_interactable<...>::value evaluate to true, the candidate overloads must be already defined above it
 template <typename TChar, typename T>
-using is_ostream_interactable = detail::is_ostream_interactable_impl<TChar, T>;
+using is_basic_ostream_interactable = detail::is_basic_ostream_interactable_impl<TChar, T>;
 
 template <typename TChar, typename T>
-constexpr bool is_ostream_interactable_v = is_ostream_interactable<TChar, T>::value;
+constexpr bool is_basic_ostream_interactable_v = is_basic_ostream_interactable<TChar, T>::value;
 
 } // namespace aal
 
