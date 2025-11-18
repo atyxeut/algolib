@@ -36,30 +36,29 @@ constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::val
 
 namespace detail {
 
-// use specialization to avoid nested conditional_t
-template <typename T, typename TFloatingPoint = std::remove_cv_t<T>>
+template <typename T, bool = is_floating_point_v<T>, typename TFloatingPoint = std::remove_cv_t<T>>
 struct make_higher_precision_selector;
 
 template <typename T>
-struct make_higher_precision_selector<T, f32>
+struct make_higher_precision_selector<T, true, f32>
 {
   using type = claim_cv_t<T, f64>;
 };
 
 template <typename T>
-struct make_higher_precision_selector<T, f64>
+struct make_higher_precision_selector<T, true, f64>
 {
   using type = claim_cv_t<T, f80>;
 };
 
 template <typename T>
-struct make_higher_precision_selector<T, f80>
+struct make_higher_precision_selector<T, true, f80>
 {
   using type = claim_cv_t<T, f128>;
 };
 
 template <typename T>
-struct make_higher_precision_selector<T, f128>
+struct make_higher_precision_selector<T, true, f128>
 {
   using type = T;
 };
@@ -69,8 +68,8 @@ struct make_higher_precision_selector<T, f128>
 // for the given floating-point type, obtains a floating-point that has higher precision,
 // if there is no such a type, obtains the given type
 // cv-qualifiers are kept
-template <typename T> requires is_floating_point_v<T>
-using make_higher_precision = detail::make_higher_precision_selector<T>::type;
+template <typename T>
+using make_higher_precision = detail::make_higher_precision_selector<T>;
 
 template <typename T>
 using make_higher_precision_t = make_higher_precision<T>::type;
