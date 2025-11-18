@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/floating_point.hpp */
 
-#include "../type-trait/floating_point.hpp"
 #include <concepts>
+
+#include "../type-trait/floating_point.hpp"
 
 namespace aal {
 

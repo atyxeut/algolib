@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-operation/bit/include.hpp */
 
-#include "../../../concept/integral.hpp"
 #include <bit>
 #include <cassert>
 #include <limits>
+
+#include "../../../concept/integral.hpp"
 
 namespace aal {
 

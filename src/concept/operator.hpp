@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/operator.hpp */
 
-#include "../type-trait/operator.hpp"
 #include <concepts>
+
+#include "../type-trait/operator.hpp"
 
 namespace aal {
 

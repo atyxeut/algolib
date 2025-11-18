@@ -1,9 +1,10 @@
 #ifndef AAL_SRC_MATH_INT_OPERATION_DIV_DETAIL_HPP
 #define AAL_SRC_MATH_INT_OPERATION_DIV_DETAIL_HPP
 
+#include <utility>
+
 #include "../abs.hpp"
 #include "../overflow-detection/include.hpp"
-#include <utility>
 
 namespace aal { namespace idiv { namespace detail {
 

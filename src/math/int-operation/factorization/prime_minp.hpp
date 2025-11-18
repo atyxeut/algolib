@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-operation/factorization/prime_minp.hpp */
 
-#include "../conversion-helper/as_index.hpp"
 #include <array>
 #include <cassert>
 #include <vector>
+
+#include "../conversion-helper/as_index.hpp"
 
 namespace aal { namespace get_divisor {
 

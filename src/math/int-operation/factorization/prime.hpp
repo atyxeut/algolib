@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-operation/factorization/prime.hpp */
 
-#include "../../../concept/integral.hpp"
 #include <array>
 #include <cassert>
 #include <vector>
+
+#include "../../../concept/integral.hpp"
 
 namespace aal { namespace get_divisor {
 

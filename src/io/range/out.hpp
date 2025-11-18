@@ -3,11 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/range/out.hpp */
 
-#include "../../type-trait/io.hpp"
 #include <concepts>
 #include <cstddef>
 #include <ranges>
 #include <string>
+
+#include "../../type-trait/io.hpp"
 
 namespace aal {
 

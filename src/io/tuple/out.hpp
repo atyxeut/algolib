@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/tuple/out.hpp */
 
-#include "detail.hpp"
 #include <concepts>
+
+#include "detail.hpp"
 
 // to make the overload of operator << defined in range/out.hpp able to accept ranges that has std::pair, std::tuple as elements,
 //   this #include order is necessary:

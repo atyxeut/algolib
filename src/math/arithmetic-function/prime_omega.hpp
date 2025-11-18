@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/arithmetic-function/prime_omega.hpp */
 
-#include "../../concept/integral.hpp"
 #include <cassert>
+
+#include "../../concept/integral.hpp"
 
 // see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 

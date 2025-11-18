@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/integral.hpp */
 
-#include "../type-trait/integral.hpp"
 #include <concepts>
+
+#include "../type-trait/integral.hpp"
 
 namespace aal {
 

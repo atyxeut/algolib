@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-operation/overflow-detection/include.hpp */
 
+#include <cassert>
+
 #include "../../../concept/integral.hpp"
 #include "detail.hpp"
-#include <cassert>
 
 namespace aal { namespace ioverflows {
 

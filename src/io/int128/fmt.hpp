@@ -3,11 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/fmt.hpp */
 
-#include "../../alias/integral.hpp"
 #include <algorithm>
 #include <format>
 #include <limits>
 #include <string>
+
+#include "../../alias/integral.hpp"
 
 template <>
 struct std::formatter<u128>

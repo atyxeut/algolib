@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/in.hpp */
 
-#include "../../alias/integral.hpp"
 #include <istream>
 #include <limits>
 #include <string>
+
+#include "../../alias/integral.hpp"
 
 template <typename TChar>
 auto operator >>(std::basic_istream<TChar>& istr, u128& n)

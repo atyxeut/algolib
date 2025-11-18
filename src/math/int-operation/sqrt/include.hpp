@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/int-operation/sqrt/include.hpp */
 
-#include "../../../concept/integral.hpp"
 #include <algorithm>
 #include <cassert>
+
+#include "../../../concept/integral.hpp"
 
 namespace aal {
 

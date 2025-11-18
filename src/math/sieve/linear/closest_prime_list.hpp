@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/sieve/linear/closest_prime_list.hpp */
 
-#include "../../int-operation/conversion-helper/as_index.hpp"
 #include <vector>
+
+#include "../../int-operation/conversion-helper/as_index.hpp"
 
 namespace aal { namespace sieve { namespace linear {
 
