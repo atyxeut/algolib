@@ -10,7 +10,7 @@
 
 namespace aal {
 
-template <typename T, typename = void>
+template <typename, typename = void>
 struct can_call_std_begin : std::false_type
 {
 };
@@ -20,7 +20,7 @@ struct can_call_std_begin<T, void_t<decltype(std::begin(std::declval<remove_cvre
 {
 };
 
-template <typename T, typename = void>
+template <typename, typename = void>
 struct can_call_std_end : std::false_type
 {
 };

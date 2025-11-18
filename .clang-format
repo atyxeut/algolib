@@ -81,7 +81,7 @@ IndentGotoLabels: false
 
 # function
 AlignAfterOpenBracket: BlockIndent
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Empty
 BinPackArguments: true
 AllowAllArgumentsOnNextLine: true
 BinPackParameters: BinPack
@@ -141,7 +141,7 @@ BraceWrapping:
   BeforeLambdaBody: true
   BeforeElse: true
   BeforeCatch: true
-  SplitEmptyFunction: true
+  SplitEmptyFunction: false
   SplitEmptyRecord: true
   SplitEmptyNamespace: true
 Cpp11BracedListStyle: true
