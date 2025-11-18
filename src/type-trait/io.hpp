@@ -17,7 +17,7 @@ struct is_ostream_interactable_impl : std::false_type
 };
 
 template <typename TChar, typename T>
-struct is_ostream_interactable_impl<TChar, T, std::void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T&>())>> : std::true_type
+struct is_ostream_interactable_impl<TChar, T, std::void_t<decltype(std::declval<std::basic_ostream<TChar>&>() << std::declval<T>())>> : std::true_type
 {
 };
 
