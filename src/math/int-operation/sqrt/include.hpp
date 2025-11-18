@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-operation/sqrt/include.hpp */
 
-#include "../../../type-trait/integral.hpp"
 #include <algorithm>
 #include <cassert>
+
+#include "../../../type-trait/integral.hpp"
 
 namespace aal {
 

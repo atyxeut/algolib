@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-operation/log10.hpp */
 
-#include "../../type-trait/integral.hpp"
 #include <cassert>
+
+#include "../../type-trait/integral.hpp"
 
 namespace aal {
 

@@ -3,11 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/io/int128/out.hpp */
 
-#include "../../alias/integral.hpp"
 #include <algorithm>
 #include <limits>
 #include <ostream>
 #include <string>
+
+#include "../../alias/integral.hpp"
 
 // to make the overload of operator << defined in range/out.hpp able to accept ranges that has i128, u128 as elements,
 //   this #include order is necessary:

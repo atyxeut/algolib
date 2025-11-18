@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/arithmetic-function/euler_totient.hpp */
 
-#include "../../type-trait/integral.hpp"
 #include <cassert>
+
+#include "../../type-trait/integral.hpp"
 
 // see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
 

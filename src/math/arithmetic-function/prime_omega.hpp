@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/arithmetic-function/prime_omega.hpp */
 
-#include "../../type-trait/integral.hpp"
 #include <cassert>
+
+#include "../../type-trait/integral.hpp"
 
 // see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 

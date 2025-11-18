@@ -1,8 +1,9 @@
 #ifndef AAL_SRC_MATH_INT_OPERATION_BIT_DETAIL_HPP
 #define AAL_SRC_MATH_INT_OPERATION_BIT_DETAIL_HPP
 
-#include "../../../type-trait/integral.hpp"
 #include <limits>
+
+#include "../../../type-trait/integral.hpp"
 
 namespace aal { namespace detail { namespace bit {
 

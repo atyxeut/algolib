@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/largest_prime_factor_list.hpp */
 
-#include "../../int-operation/conversion-helper/as_index.hpp"
 #include <vector>
+
+#include "../../int-operation/conversion-helper/as_index.hpp"
 
 namespace aal { namespace sieve { namespace linear {
 

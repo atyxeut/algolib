@@ -1,10 +1,11 @@
 #ifndef AAL_SRC_IO_TUPLE_DETAIL_HPP
 #define AAL_SRC_IO_TUPLE_DETAIL_HPP
 
-#include "../../misc/integer_sequence.hpp"
 #include <ostream>
 #include <string>
 #include <tuple>
+
+#include "../../misc/integer_sequence.hpp"
 
 namespace aal { namespace detail {
 

@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/io/range/out.hpp */
 
-#include "../../type-trait/io.hpp"
-#include "../../type-trait/range.hpp"
 #include <cstddef>
 #include <string>
+
+#include "../../type-trait/io.hpp"
+#include "../../type-trait/range.hpp"
 
 namespace aal {
 

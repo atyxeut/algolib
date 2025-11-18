@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/base.hpp */
 
-#include "../../int-operation/conversion-helper/as_index.hpp"
 #include <cassert>
 #include <utility>
 #include <vector>
+
+#include "../../int-operation/conversion-helper/as_index.hpp"
 
 // see note.md for extra information
 

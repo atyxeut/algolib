@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-operation/factorization/all.hpp */
 
-#include "../../../type-trait/integral.hpp"
 #include <cassert>
 #include <vector>
+
+#include "../../../type-trait/integral.hpp"
 
 namespace aal { namespace get_divisor {
 

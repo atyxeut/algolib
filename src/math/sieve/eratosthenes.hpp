@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/eratosthenes.hpp */
 
-#include "../int-operation/conversion-helper/as_index.hpp"
 #include <cassert>
 #include <vector>
+
+#include "../int-operation/conversion-helper/as_index.hpp"
 
 namespace aal { namespace sieve {
 

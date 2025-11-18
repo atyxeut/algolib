@@ -3,8 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/int-operation/bit/include.hpp */
 
-#include "detail.hpp"
 #include <cassert>
+
+#include "detail.hpp"
 
 namespace aal {
 

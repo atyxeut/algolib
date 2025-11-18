@@ -3,10 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/type-trait/io.hpp */
 
-#include "cvref.hpp"
-#include "sfinae.hpp"
 #include <ostream>
 #include <utility>
+
+#include "cvref.hpp"
+#include "sfinae.hpp"
 
 namespace aal {
 

@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/misc/md-array-vector/include.hpp */
 
+#include <utility>
+
 #include "../../type-trait/is_std_array.hpp"
 #include "detail.hpp"
-#include <utility>
 
 // provide type alias templates and helper function templates to ease the creation of multidimentional std::array and std::vector
 

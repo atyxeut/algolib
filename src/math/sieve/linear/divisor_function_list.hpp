@@ -3,9 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/sieve/linear/divisor_function_list.hpp */
 
+#include <vector>
+
 #include "../../int-operation/conversion-helper/as_index.hpp"
 #include "../../int-operation/pow/include.hpp"
-#include <vector>
 
 // see note.md for extra information
 
