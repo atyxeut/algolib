@@ -8,7 +8,7 @@
 
 namespace aal {
 
-template <typename T>
+template <typename>
 struct is_std_array : std::false_type
 {
 };

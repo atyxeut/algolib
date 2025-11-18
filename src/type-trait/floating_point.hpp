@@ -36,7 +36,7 @@ constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::val
 
 namespace detail {
 
-template <typename T, bool = is_floating_point_v<T>, typename TFloatingPoint = std::remove_cv_t<T>>
+template <typename T, bool = is_floating_point_v<T>, typename = std::remove_cv_t<T>>
 struct make_higher_precision_selector;
 
 template <typename T>

@@ -7,7 +7,7 @@
 
 namespace aal { namespace detail {
 
-template <typename T, std::size_t... Dims>
+template <typename, std::size_t...>
 struct array_impl;
 
 template <typename T, std::size_t Dim>

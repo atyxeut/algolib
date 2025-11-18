@@ -95,7 +95,7 @@ using make_unsigned_t = make_unsigned<T>::type;
 
 namespace detail {
 
-template <typename T, bool = is_integral_v<T>, std::size_t Width = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
+template <typename T, bool = is_integral_v<T>, std::size_t = sizeof(T) < sizeof(i32) ? 0 : sizeof(T)>
 struct make_larger_width_selector;
 
 template <typename T>

@@ -18,7 +18,7 @@ struct binary_operator_tag
 namespace detail {
 
 // follow the STL design, provide an empty class for invalid types, make it friendly to tag dispatch
-template <typename T, typename = void>
+template <typename, typename = void>
 struct operator_traits_impl
 {
 };

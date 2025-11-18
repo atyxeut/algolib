@@ -11,7 +11,7 @@ namespace aal {
 
 namespace detail {
 
-template <typename TChar, typename T, typename = void>
+template <typename, typename, typename = void>
 struct is_ostream_interactable_impl : std::false_type
 {
 };
