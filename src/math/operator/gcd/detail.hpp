@@ -2,7 +2,7 @@
 #define AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
 
 #include "../../../type-trait/operator.hpp"
-#include "../../int-operation/overflow-detection/include.hpp"
+#include "../../integral/basic-operation/overflow-detection/include.hpp"
 
 namespace aal { namespace op { namespace detail {
 
@@ -37,7 +37,7 @@ struct lcm_impl
 
   [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
-    assert(!ioverflows::mul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
+    assert(!overflows::imul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd_impl<T> {}(a, b) * b;
   }
 };

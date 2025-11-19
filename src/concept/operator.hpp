@@ -20,6 +20,11 @@ concept binary_operator = std::same_as<typename operator_traits<T>::operator_cat
                             { op(l, r) } -> std::same_as<typename T::operand_type>;
                           };
 
+template <typename T>
+concept multipliable = requires(T l, T r) {
+  { l * r } -> std::same_as<T>;
+};
+
 } // namespace aal
 
 #endif // AAL_SRC_CONCEPT_OPERATOR_HPP
