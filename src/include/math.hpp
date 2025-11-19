@@ -1,4 +1,4 @@
-#include "../math/operator/gcd/include.hpp"
+#include "../math/operator/gcd.hpp"
 
 #include "../math/integral/arithmetic-function/divisor.hpp"
 #include "../math/integral/arithmetic-function/euler_totient.hpp"

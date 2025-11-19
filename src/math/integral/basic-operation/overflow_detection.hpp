@@ -28,7 +28,7 @@ constexpr bool iadd_impl(T a, T b, T limit) noexcept
 template <typename T>
 constexpr bool imul_impl(T a, T b, T limit) noexcept
 {
-    // a * b <= c ==> a <= c / b = floor(c / b) + {c / b} ==> a <= floor(c / b)
+  // a * b <= c ==> a <= c / b = floor(c / b) + {c / b} ==> a <= floor(c / b)
   return b == 0 ? false : a > limit / b;
 }
 
