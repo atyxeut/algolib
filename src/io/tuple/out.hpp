@@ -3,16 +3,16 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/io/tuple/out.hpp */
 
+// to make the overload of operator << defined in range/out.hpp able to accept ranges that has std::pair, std::tuple as elements,
+//   this #include order is necessary:
+//   #include ".../tuple/out.hpp"
+//   #include ".../range/out.hpp"
+
 #include <concepts>
 #include <ostream>
 #include <string>
 #include <tuple>
 #include <utility>
-
-// to make the overload of operator << defined in range/out.hpp able to accept ranges that has std::pair, std::tuple as elements,
-//   this #include order is necessary:
-//   #include ".../tuple/out.hpp"
-//   #include ".../range/out.hpp"
 
 namespace aal {
 

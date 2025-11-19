@@ -5,7 +5,6 @@
 
 #include <cassert>
 #include <limits>
-#include <type_traits>
 
 #include "../../../concept/integral.hpp"
 
