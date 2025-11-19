@@ -8,8 +8,6 @@
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 #include "../../basic-operation/pow/include.hpp"
 
-// see note.md for extra information
-
 namespace aal { namespace sieve { namespace linear {
 
 // get the sgm list (sgm[i]: value of divisor function sigma_x(i))

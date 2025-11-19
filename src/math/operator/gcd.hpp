@@ -1,10 +1,14 @@
-#ifndef AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
-#define AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
+#ifndef AAL_SRC_MATH_OPERATOR_GCD_HPP
+#define AAL_SRC_MATH_OPERATOR_GCD_HPP
 
-#include "../../../type-trait/operator.hpp"
-#include "../../integral/basic-operation/overflow-detection/include.hpp"
+/* https://github.com/atyxeut/algolib/blob/main/src/math/operator/gcd.hpp */
 
-namespace aal { namespace op { namespace detail {
+#include "../../type-trait/operator.hpp"
+#include "../integral/basic-operation/overflow_detection.hpp"
+
+namespace aal { namespace op {
+
+namespace detail {
 
 template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>::value>::type>
 struct gcd_impl
@@ -42,6 +46,20 @@ struct lcm_impl
   }
 };
 
-}}} // namespace aal::op::detail
+} // namespace detail
 
-#endif // AAL_SRC_MATH_OPERATOR_GCD_DETAIL_HPP
+// class template representing operator gcd
+// auto gcd = aal::op::gcd<int> {};
+// int ans = gcd(3, 6);
+template <typename T>
+using gcd = detail::gcd_impl<T>;
+
+// class template representing operator lcm
+// auto lcm = aal::op::lcm<int> {};
+// int ans = lcm(3, 18);
+template <typename T>
+using lcm = detail::lcm_impl<T>;
+
+}} // namespace aal::op
+
+#endif // AAL_SRC_MATH_OPERATOR_GCD_HPP

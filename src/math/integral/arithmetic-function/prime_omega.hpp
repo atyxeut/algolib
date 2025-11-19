@@ -3,11 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/integral/arithmetic-function/prime_omega.hpp */
 
+// see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
+
 #include <cassert>
 
 #include "../../../type-trait/integral.hpp"
-
-// see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 
 namespace aal { namespace arith_func {
 

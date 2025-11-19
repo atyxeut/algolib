@@ -3,12 +3,39 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/gcd/include.hpp */
 
-#include "../../../operator/gcd/include.hpp"
-#include "detail.hpp"
-
-// see note.md for extra information
+#include "../../../operator/gcd.hpp"
+#include "../abs.hpp"
 
 namespace aal {
+
+namespace detail {
+
+template <typename TOp, typename... Ts>
+auto gcd_lcm_impl(Ts... nums) noexcept -> typename TOp::operand_type
+{
+  using result_type = typename TOp::operand_type;
+
+  make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
+#ifndef NDEBUG
+  for (auto i : mags)
+    assert(static_cast<result_type>(i) >= 0 && "some magnitudes cannot be represented in the common type");
+#endif // NDEBUG
+
+  TOp op;
+  result_type ans = *mags;
+
+  for (auto it = mags + 1, it_end = mags + sizeof...(Ts); it != it_end; ++it) {
+    if (*it == op.absorbing_elem)
+      return op.absorbing_elem;
+    if (*it == op.identity_elem)
+      continue;
+    ans = op(ans, *it);
+  }
+
+  return ans;
+}
+
+} // namespace detail
 
 // compute gcd(x_1, x_2, ..., x_n), can correctly handle operands that have different width and signedness
 // long long ans = aal::gcd(28, 21LL, -7, 0);

@@ -43,6 +43,5 @@
 !src/math/operator/**
 
 !src/misc
-!src/misc/md-array-vector
-!src/misc/md-array-vector/*
+!src/misc/md_array_vector.hpp
 !src/misc/integer_sequence.hpp

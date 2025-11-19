@@ -53,10 +53,7 @@ struct claim_cv_selector<TFrom, TTo, false, false>
 
 // extracts the cv-qualifiers of a TFrom and apply them to TTo
 template <typename TFrom, typename TTo>
-struct claim_cv
-{
-  using type = typename detail::claim_cv_selector<TFrom, TTo>::type;
-};
+using claim_cv = typename detail::claim_cv_selector<TFrom, TTo>;
 
 template <typename TFrom, typename TTo>
 using claim_cv_t = typename claim_cv<TFrom, TTo>::type;

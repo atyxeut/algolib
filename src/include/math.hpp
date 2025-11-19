@@ -1,11 +1,11 @@
-#include "../math/operator/gcd/include.hpp"
+#include "../math/operator/gcd.hpp"
 
 #include "../math/integral/arithmetic-function/divisor.hpp"
 #include "../math/integral/arithmetic-function/euler_totient.hpp"
 #include "../math/integral/arithmetic-function/prime_omega.hpp"
 
 #include "../math/integral/basic-operation/abs.hpp"
-#include "../math/integral/basic-operation/bit/include.hpp"
+#include "../math/integral/basic-operation/bit.hpp"
 #include "../math/integral/basic-operation/conversion-helper/as_index.hpp"
 #include "../math/integral/basic-operation/div/include.hpp"
 #include "../math/integral/basic-operation/factorization/all.hpp"
@@ -16,6 +16,6 @@
 #include "../math/integral/basic-operation/is-prime/trial_division.hpp"
 #include "../math/integral/basic-operation/is_palindrome.hpp"
 #include "../math/integral/basic-operation/log10.hpp"
-#include "../math/integral/basic-operation/overflow-detection/include.hpp"
+#include "../math/integral/basic-operation/overflow_detection.hpp"
 #include "../math/integral/basic-operation/pow/include.hpp"
 #include "../math/integral/basic-operation/sqrt/include.hpp"

@@ -3,9 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/integral/arithmetic-function/divisor.hpp */
 
-#include "../basic-operation/pow/include.hpp"
-
 // see https://en.wikipedia.org/wiki/Divisor_function#Formulas_at_prime_powers for extra information
+//
+#include "../basic-operation/pow/include.hpp"
 
 namespace aal { namespace arith_func {
 

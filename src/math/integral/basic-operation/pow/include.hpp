@@ -3,11 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/pow/include.hpp */
 
-#include "../overflow-detection/include.hpp"
+#include "../overflow_detection.hpp"
 
 namespace aal {
 
-// compute a^n in O(logn) time, see note.md for extra information
+// compute a^n in O(logn) time
 template <typename T1, typename T2>
 auto ipow(T1 a, T2 n) noexcept ->
   typename std::enable_if<conjunction<is_nonbool_integral<T1>, is_nonbool_integral<T2>>::value, typename std::common_type<T1, T2>::type>::type

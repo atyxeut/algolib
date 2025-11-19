@@ -9,8 +9,6 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-// see note.md for extra information
-
 namespace aal { namespace sieve { namespace linear {
 
 // get the prime list and the smallest prime factor list (minp[i]: the smallest prime divisor of i, minp[i] = i: i is a prime, otherwise not)

@@ -3,9 +3,9 @@
 
 /* https://github.com/atyxeut/algolib/blob/main/src/misc/integer_sequence.hpp */
 
-#include <cstddef>
+// backport C++14 std::integer_sequence and its helpers
 
-// backports C++14 std::integer_sequence and its helpers
+#include <cstddef>
 
 namespace aal {
 

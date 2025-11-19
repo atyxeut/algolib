@@ -7,8 +7,6 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-// see note.md for extra information
-
 namespace aal { namespace sieve { namespace linear {
 
 // get the phi list (phi[i]: value of Euler's totient function phi(i))

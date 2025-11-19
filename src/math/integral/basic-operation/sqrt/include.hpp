@@ -10,7 +10,7 @@
 
 namespace aal {
 
-// compute floor(sqrt(x)) without introducing floating-point numbers, see note.md for extra information
+// compute floor(sqrt(x)) without introducing floating-point numbers
 template <typename T>
 auto isqrt(T x) noexcept -> typename std::enable_if<is_nonbool_integral<T>::value, T>::type
 {
