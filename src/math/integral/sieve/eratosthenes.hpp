@@ -8,7 +8,7 @@
 
 #include "../basic-operation/conversion-helper/as_index.hpp"
 
-namespace aal { namespace sieve {
+namespace aal::sieve {
 
 // get a not_prime list (not_prime[i] = true/false means i is not/is a prime)
 // the behavior is undefined if not_prime[0], not_prime[1] are used
@@ -31,6 +31,6 @@ template <nonbool_integral T>
   return not_prime;
 }
 
-}} // namespace aal::sieve
+} // namespace aal::sieve
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_ERATOSTHENES_HPP

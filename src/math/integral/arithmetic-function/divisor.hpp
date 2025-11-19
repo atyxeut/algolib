@@ -3,11 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/arithmetic-function/divisor.hpp */
 
-#include "../basic-operation/pow/include.hpp"
-
 // see https://en.wikipedia.org/wiki/Divisor_function#Formulas_at_prime_powers for extra information
 
-namespace aal { namespace arith_func {
+#include "../basic-operation/pow/include.hpp"
+
+namespace aal::arith_func {
 
 template <int x = 1, nonbool_integral T>
 [[nodiscard]] constexpr auto sigma(T n) noexcept
@@ -28,6 +28,6 @@ template <int x = 1, nonbool_integral T>
   return ans;
 }
 
-}} // namespace aal::arith_func
+} // namespace aal::arith_func
 
 #endif // AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_DIVISOR_HPP

@@ -3,13 +3,13 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/arithmetic-function/euler_totient.hpp */
 
+// see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
+
 #include <cassert>
 
 #include "../../../concept/integral.hpp"
 
-// see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
-
-namespace aal { namespace arith_func {
+namespace aal::arith_func {
 
 template <nonbool_integral T>
 [[nodiscard]] constexpr auto euler_totient(T n) noexcept
@@ -26,6 +26,6 @@ template <nonbool_integral T>
   return n > 1 ? ans / n * (n - 1) : ans;
 }
 
-}} // namespace aal::arith_func
+} // namespace aal::arith_func
 
 #endif // AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_EULER_TOTIENT_HPP

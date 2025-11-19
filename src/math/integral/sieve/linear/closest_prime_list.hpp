@@ -7,7 +7,7 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-namespace aal { namespace sieve { namespace linear {
+namespace aal::sieve::linear {
 
 // get the closest prime list (clp[i]: the largest prime <= i)
 // the behavior is undefined if clp[0], clp[1] are used
@@ -23,6 +23,6 @@ template <typename T>
   return clp;
 }
 
-}}} // namespace aal::sieve::linear
+} // namespace aal::sieve::linear
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_CLOSEST_PRIME_LIST_HPP

@@ -7,7 +7,7 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-namespace aal { namespace sieve { namespace linear {
+namespace aal::sieve::linear {
 
 // get the largest prime factor list (maxp[i]: the largest prime divisor of i)
 // the behavior is undefined if maxp[0], maxp[1] are used
@@ -34,6 +34,6 @@ template <typename T>
   return maxp;
 }
 
-}}} // namespace aal::sieve::linear
+} // namespace aal::sieve::linear
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_LARGEST_PRIME_FACTOR_LIST_HPP

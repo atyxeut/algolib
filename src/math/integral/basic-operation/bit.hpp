@@ -1,13 +1,13 @@
-#ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_INCLUDE_HPP
-#define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_INCLUDE_HPP
+#ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_HPP
+#define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/bit/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/bit.hpp */
 
 #include <bit>
 #include <cassert>
 #include <limits>
 
-#include "../../../../concept/integral.hpp"
+#include "../../../concept/integral.hpp"
 
 namespace aal {
 
@@ -44,4 +44,4 @@ template <nonbool_integral T>
 
 } // namespace aal
 
-#endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_INCLUDE_HPP
+#endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_HPP

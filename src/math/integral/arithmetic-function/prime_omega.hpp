@@ -3,13 +3,13 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/arithmetic-function/prime_omega.hpp */
 
+// see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
+
 #include <cassert>
 
 #include "../../../concept/integral.hpp"
 
-// see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
-
-namespace aal { namespace arith_func {
+namespace aal::arith_func {
 
 template <nonbool_integral T>
 [[nodiscard]] constexpr auto little_omega(T n) noexcept
@@ -40,6 +40,6 @@ template <nonbool_integral T>
   return ans += n > 1;
 }
 
-}} // namespace aal::arith_func
+} // namespace aal::arith_func
 
 #endif // AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_PRIME_OMEGA_HPP

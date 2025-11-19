@@ -10,7 +10,7 @@
 
 namespace aal {
 
-// compute floor(sqrt(x)) without introducing floating-point numbers, see note.md for extra information
+// compute floor(sqrt(x)) without introducing floating-point numbers
 template <nonbool_integral T>
 [[nodiscard]] constexpr T isqrt(T x) noexcept
 {

@@ -8,9 +8,7 @@
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 #include "../../basic-operation/pow/include.hpp"
 
-// see note.md for extra information
-
-namespace aal { namespace sieve { namespace linear {
+namespace aal::sieve::linear {
 
 // get the sgm list (sgm[i]: value of divisor function sigma_x(i))
 // the behavior is undefined if sgm[0] is used
@@ -51,6 +49,6 @@ template <int x = 1, typename T>
   return sgm;
 }
 
-}}} // namespace aal::sieve::linear
+} // namespace aal::sieve::linear
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_DIVISOR_FUNCTION_LIST_HPP

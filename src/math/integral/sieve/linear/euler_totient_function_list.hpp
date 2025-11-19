@@ -7,9 +7,7 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-// see note.md for extra information
-
-namespace aal { namespace sieve { namespace linear {
+namespace aal::sieve::linear {
 
 // get the phi list (phi[i]: value of Euler's totient function phi(i))
 // the behavior is undefined if phi[0] is used
@@ -39,6 +37,6 @@ template <typename T>
   return phi;
 }
 
-}}} // namespace aal::sieve::linear
+} // namespace aal::sieve::linear
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_EULER_TOTIENT_FUNCTION_LIST_HPP

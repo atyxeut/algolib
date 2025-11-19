@@ -9,7 +9,7 @@
 
 #include "../../../../concept/integral.hpp"
 
-namespace aal { namespace get_divisor {
+namespace aal::get_divisor {
 
 // get the prime factorization of an integer n in O(sqrt(n)) time
 // int n = 36;
@@ -33,6 +33,6 @@ template <nonbool_integral T>
   return info;
 }
 
-}} // namespace aal::get_divisor
+} // namespace aal::get_divisor
 
 #endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_PRIME_HPP

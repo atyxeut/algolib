@@ -8,7 +8,7 @@
 
 #include "../../../../concept/integral.hpp"
 
-namespace aal { namespace get_divisor {
+namespace aal::get_divisor {
 
 // get all unique divisors of an integer
 // std::vector<int> ret = aal::get_divisor::all(36);
@@ -32,6 +32,6 @@ template <nonbool_integral T>
   return info;
 }
 
-}} // namespace aal::get_divisor
+} // namespace aal::get_divisor
 
 #endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_ALL_HPP

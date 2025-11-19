@@ -3,11 +3,11 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/pow/include.hpp */
 
-#include "../overflow-detection/include.hpp"
+#include "../overflow_detection.hpp"
 
 namespace aal {
 
-// compute a^n in O(logn) time, see note.md for extra information
+// compute a^n in O(logn) time
 template <nonbool_integral T1, nonbool_integral T2>
 [[nodiscard]] constexpr auto ipow(T1 a, T2 n) noexcept
 {

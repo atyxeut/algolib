@@ -5,7 +5,7 @@
 
 #include "../../../../concept/integral.hpp"
 
-namespace aal { namespace is_prime {
+namespace aal::is_prime {
 
 template <nonbool_integral T>
 [[nodiscard]] constexpr bool miller_rabin(T n) noexcept
@@ -16,6 +16,6 @@ template <nonbool_integral T>
   return true;
 }
 
-}} // namespace aal::is_prime
+} // namespace aal::is_prime
 
 #endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PRIME_MILLER_RABIN_HPP

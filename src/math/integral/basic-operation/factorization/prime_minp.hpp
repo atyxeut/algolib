@@ -9,7 +9,7 @@
 
 #include "../conversion-helper/as_index.hpp"
 
-namespace aal { namespace get_divisor {
+namespace aal::get_divisor {
 
 // O(logn) when the smallest prime divisor of every integer that <= n is known
 // because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
@@ -30,6 +30,6 @@ template <nonbool_integral T>
   return info;
 }
 
-}} // namespace aal::get_divisor
+} // namespace aal::get_divisor
 
 #endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_PRIME_MINP_HPP

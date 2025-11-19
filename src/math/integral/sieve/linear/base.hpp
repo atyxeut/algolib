@@ -9,9 +9,7 @@
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
 
-// see note.md for extra information
-
-namespace aal { namespace sieve { namespace linear {
+namespace aal::sieve::linear {
 
 // get the prime list and the smallest prime factor list (minp[i]: the smallest prime divisor of i, minp[i] = i: i is a prime, otherwise not)
 // the behavior is undefined if minp[0], minp[1] are used
@@ -43,6 +41,6 @@ template <nonbool_integral T>
   return std::make_pair(prime, minp);
 }
 
-}}} // namespace aal::sieve::linear
+} // namespace aal::sieve::linear
 
 #endif // AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_BASE_HPP
