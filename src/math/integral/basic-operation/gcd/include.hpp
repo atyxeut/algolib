@@ -25,9 +25,9 @@ constexpr auto gcd_lcm_impl(Ts... nums) noexcept
   result_type ans = *mags;
 
   for (auto it = mags + 1, it_end = mags + sizeof...(Ts); it != it_end; ++it) {
-    if (*it == op.absorbing_elem)
-      return op.absorbing_elem;
-    if (*it == op.identity_elem)
+    if (*it == op.absorbing_element)
+      return op.absorbing_element;
+    if (*it == op.neutral_element)
       continue;
     ans = op(ans, *it);
   }

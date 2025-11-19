@@ -19,8 +19,8 @@ struct gcd
   using operator_category = binary_operator_tag;
   using operand_type = std::tuple<T, T>;
 
-  static constexpr T identity_elem = 0; // gcd(0, a) = a
-  static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
+  static constexpr T neutral_element = 0; // gcd(0, a) = a
+  static constexpr T absorbing_element = 1; // gcd(1, a) = 1
 
   [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
@@ -42,8 +42,8 @@ struct lcm
   using operator_category = binary_operator_tag;
   using operand_type = std::tuple<T, T>;
 
-  static constexpr T identity_elem = 1; // lcm(1, a) = a
-  static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
+  static constexpr T neutral_element = 1; // lcm(1, a) = a
+  static constexpr T absorbing_element = 0; // lcm(0, a) = 0
 
   [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
