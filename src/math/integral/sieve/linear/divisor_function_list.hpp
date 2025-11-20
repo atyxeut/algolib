@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../basic-operation/conversion-helper/as_index.hpp"
-#include "../../basic-operation/pow/include.hpp"
+#include "../../basic-operation/pow.hpp"
 
 namespace aal::sieve::linear {
 
@@ -22,7 +22,7 @@ template <int x = 1, typename T>
 
   for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
     if (minp[as_index(i)] == i) {
-      assert(!overflows::iadd<T>(1, ipow(i, x)) && "the result cannot be represented");
+      assert(!ioverflows::general::add<T>(1, ipow(i, x)) && "the result cannot be represented");
       first[as_index(i)] = sgm[as_index(i)] = 1 + ipow(i, x);
     }
     for (T p : prime) {
@@ -32,16 +32,16 @@ template <int x = 1, typename T>
       if (composite > static_cast<limit_type>(n))
         break;
       if (i % p == 0) {
-        assert(!overflows::imul<T>(px, first[as_index(i)]) && "the result cannot be represented");
-        assert(!overflows::iadd<T>(1, px * first[as_index(i)]) && "the result cannot be represented");
+        assert(!ioverflows::general::mul<T>(px, first[as_index(i)]) && "the result cannot be represented");
+        assert(!ioverflows::general::add<T>(1, px * first[as_index(i)]) && "the result cannot be represented");
         first[as_index(composite)] = 1 + px * first[as_index(i)];
-        assert(!overflows::imul<T>(sgm[as_index(i)] / first[as_index(i)], first[as_index(composite)]) && "the result cannot be represented");
+        assert(!ioverflows::general::mul<T>(sgm[as_index(i)] / first[as_index(i)], first[as_index(composite)]) && "the result cannot be represented");
         sgm[as_index(composite)] = sgm[as_index(i)] / first[as_index(i)] * first[as_index(composite)];
         break;
       }
-      assert(!overflows::iadd<T>(1, px) && "the result cannot be represented");
+      assert(!ioverflows::general::add<T>(1, px) && "the result cannot be represented");
       first[as_index(composite)] = 1 + px;
-      assert(!overflows::imul<T>(first[as_index(composite)], sgm[as_index(i)]) && "the result cannot be represented");
+      assert(!ioverflows::general::mul<T>(first[as_index(composite)], sgm[as_index(i)]) && "the result cannot be represented");
       sgm[as_index(composite)] = first[as_index(composite)] * sgm[as_index(i)];
     }
   }

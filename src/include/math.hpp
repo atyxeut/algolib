@@ -1,4 +1,5 @@
 #include "../math/operator/gcd.hpp"
+#include "../math/operator/ipow/include.hpp"
 
 #include "../math/integral/arithmetic-function/divisor.hpp"
 #include "../math/integral/arithmetic-function/euler_totient.hpp"
@@ -16,6 +17,7 @@
 #include "../math/integral/basic-operation/is-prime/trial_division.hpp"
 #include "../math/integral/basic-operation/is_palindrome.hpp"
 #include "../math/integral/basic-operation/log10.hpp"
-#include "../math/integral/basic-operation/overflow_detection.hpp"
-#include "../math/integral/basic-operation/pow/include.hpp"
+#include "../math/integral/basic-operation/overflow-detection/general.hpp"
+#include "../math/integral/basic-operation/overflow-detection/nonnegative.hpp"
+#include "../math/integral/basic-operation/pow.hpp"
 #include "../math/integral/basic-operation/sqrt/include.hpp"

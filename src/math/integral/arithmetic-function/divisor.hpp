@@ -5,7 +5,7 @@
 
 // see https://en.wikipedia.org/wiki/Divisor_function#Formulas_at_prime_powers for extra information
 
-#include "../basic-operation/pow/include.hpp"
+#include "../basic-operation/pow.hpp"
 
 namespace aal::arith_func {
 
@@ -17,10 +17,10 @@ template <int x = 1, nonbool_integral T>
   T ans = 0;
   for (T i = 1; i <= n / i; ++i) {
     if (n % i == 0) {
-      assert(!overflows::iadd<T>(ans, ipow(i, x)) && "the result cannot be represented");
+      assert(!ioverflows::general::add<T>(ans, ipow(i, x)) && "the result cannot be represented");
       ans += ipow(i, x);
       if (n / i != i) {
-        assert(!overflows::iadd<T>(ans, ipow(n / i, x)) && "the result cannot be represented");
+        assert(!ioverflows::general::add<T>(ans, ipow(n / i, x)) && "the result cannot be represented");
         ans += ipow(n / i, x);
       }
     }

@@ -6,7 +6,7 @@
 #include <utility>
 
 #include "../abs.hpp"
-#include "../overflow_detection.hpp"
+#include "../overflow-detection/nonnegative.hpp"
 
 namespace aal::idiv {
 
@@ -57,9 +57,9 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_ans) { // r = 0, |ans| = q
       if (is_ans_negative) // ans = -q, so q must be <= result_max + 1
-        assert(!overflows::iadd<result_type>(q - 1, 0) && "the result cannot be represented");
+        assert(!ioverflows::nonnegative::add<result_type>(q - 1, 0) && "the result cannot be represented");
       else // ans = q, so q must be <= result_max
-        assert(!overflows::iadd<result_type>(q, 0) && "the result cannot be represented");
+        assert(!ioverflows::nonnegative::add<result_type>(q, 0) && "the result cannot be represented");
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
       if (is_ans_negative) {
@@ -76,7 +76,7 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
         }
         if (Mode == mode::ceil) {
           // ans = q + 1, so q + 1 must be <= result_max
-          assert(!overflows::iadd<result_type>(q, 1) && "the ceil div result cannot be represented");
+          assert(!ioverflows::nonnegative::add<result_type>(q, 1) && "the ceil div result cannot be represented");
         }
       }
     }

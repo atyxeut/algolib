@@ -6,9 +6,9 @@
 #include <tuple>
 
 #include "../../type-trait/operator.hpp"
-#include "../integral/basic-operation/overflow_detection.hpp"
+#include "../integral/basic-operation/overflow-detection/nonnegative.hpp"
 
-namespace aal { namespace op {
+namespace aal::op {
 
 // class template representing operator gcd
 // auto gcd = aal::op::gcd<int> {};
@@ -47,11 +47,11 @@ struct lcm
 
   [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
   {
-    assert(!overflows::imul<T>(a / gcd<T> {}(a, b), b) && "the lcm cannot be represented");
+    assert(!ioverflows::nonnegative::mul<T>(a / gcd<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd<T> {}(a, b) * b;
   }
 };
 
-}} // namespace aal::op
+} // namespace aal::op
 
 #endif // AAL_SRC_MATH_OPERATOR_GCD_HPP
