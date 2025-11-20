@@ -22,7 +22,7 @@ struct gcd
   static constexpr T neutral_element = 0; // gcd(0, a) = a
   static constexpr T absorbing_element = 1; // gcd(1, a) = 1
 
-  [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
+  [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
     for (T t; b != 0;) {
       t = a % b;
@@ -45,7 +45,7 @@ struct lcm
   static constexpr T neutral_element = 1; // lcm(1, a) = a
   static constexpr T absorbing_element = 0; // lcm(0, a) = 0
 
-  [[nodiscard]] constexpr T operator ()(T a, T b) const noexcept
+  [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
     assert(!ioverflows::nonnegative::mul<T>(a / gcd<T> {}(a, b), b) && "the lcm cannot be represented");
     return a / gcd<T> {}(a, b) * b;
