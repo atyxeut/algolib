@@ -53,10 +53,6 @@ AlignConsecutiveAssignments:
   AcrossComments: false
   AlignCompound: true
   PadOperators: true
-# IntegerLiteralSeparator:  # This is a C++14 feature
-#   Decimal: 3
-#   DecimalMinDigits: 9
-#   Binary: 4
 PointerAlignment: Left
 ReferenceAlignment: Left
 AlignArrayOfStructures: Right
