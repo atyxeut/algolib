@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PRIME_TRIAL_DIVISION_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PRIME_TRIAL_DIVISION_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/is-prime/trial_division.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/is-prime/trial_division.hpp */
 
 #include "../../../../concept/integral.hpp"
 

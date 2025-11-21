@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_CONCEPT_INTEGRAL_HPP
 #define AAL_SRC_CONCEPT_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/integral.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/concept/integral.hpp */
 
 #include <concepts>
 

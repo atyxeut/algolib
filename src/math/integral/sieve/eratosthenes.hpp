@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_SIEVE_ERATOSTHENES_HPP
 #define AAL_SRC_MATH_INTEGRAL_SIEVE_ERATOSTHENES_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/sieve/eratosthenes.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/sieve/eratosthenes.hpp */
 
 #include <cassert>
 #include <vector>

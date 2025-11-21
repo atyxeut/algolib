@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_OVERFLOW_DETECTION_NONNEGATIVE_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_OVERFLOW_DETECTION_NONNEGATIVE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/overflow-detection/nonnegative.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/overflow-detection/nonnegative.hpp */
 
 #include <limits>
 

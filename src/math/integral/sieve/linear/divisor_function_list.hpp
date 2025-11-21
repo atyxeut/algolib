@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_DIVISOR_FUNCTION_LIST_HPP
 #define AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_DIVISOR_FUNCTION_LIST_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/sieve/linear/divisor_function_list.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/sieve/linear/divisor_function_list.hpp */
 
 #include <vector>
 

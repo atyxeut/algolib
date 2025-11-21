@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_CONCEPT_OPERATOR_HPP
 #define AAL_SRC_CONCEPT_OPERATOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/operator.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/concept/operator.hpp */
 
 #include <concepts>
 #include <tuple>

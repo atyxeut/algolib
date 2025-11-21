@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAIT_INTEGRAL_HPP
 #define AAL_SRC_TYPE_TRAIT_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/type-trait/integral.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/type-trait/integral.hpp */
 
 #include "../alias/integral.hpp"
 #include "cvref.hpp"

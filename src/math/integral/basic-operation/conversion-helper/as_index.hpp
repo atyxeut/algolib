@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_CONVERSION_HELPER_AS_INDEX_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_CONVERSION_HELPER_AS_INDEX_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/conversion-helper/as_index.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/conversion-helper/as_index.hpp */
 
 #include "../../../../concept/integral.hpp"
 

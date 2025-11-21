@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_ALIAS_FLOATING_POINT_HPP
 #define AAL_SRC_ALIAS_FLOATING_POINT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/alias/floating_point.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/alias/floating_point.hpp */
 
 // precision (significant digits)
 // f32: 6 to 9, f64: 15 to 17, f80: 18 to 20, f128: 33 to 35

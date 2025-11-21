@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_PRIME_MINP_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_PRIME_MINP_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/factorization/prime_minp.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/factorization/prime_minp.hpp */
 
 #include <array>
 #include <cassert>

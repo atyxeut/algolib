@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_OPERATOR_GCD_HPP
 #define AAL_SRC_MATH_OPERATOR_GCD_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/operator/gcd.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/operator/gcd.hpp */
 
 #include <tuple>
 
@@ -19,8 +19,8 @@ struct gcd
   using operator_category = binary_operator_tag;
   using operand_type = std::tuple<T, T>;
 
-  static constexpr T neutral_element = 0; // gcd(0, a) = a
-  static constexpr T absorbing_element = 1; // gcd(1, a) = 1
+  static constexpr T neutral_element {0}; // gcd(0, a) = a
+  static constexpr T absorbing_element {1}; // gcd(1, a) = 1
 
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
@@ -42,13 +42,13 @@ struct lcm
   using operator_category = binary_operator_tag;
   using operand_type = std::tuple<T, T>;
 
-  static constexpr T neutral_element = 1; // lcm(1, a) = a
-  static constexpr T absorbing_element = 0; // lcm(0, a) = 0
+  static constexpr T neutral_element = {1}; // lcm(1, a) = a
+  static constexpr T absorbing_element = {0}; // lcm(0, a) = 0
 
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
-    assert(!ioverflows::nonnegative::mul<T>(a / gcd<T> {}(a, b), b) && "the lcm cannot be represented");
-    return a / gcd<T> {}(a, b) * b;
+    assert(!ioverflows::nonnegative::mul<T>(a / gcd<T>::operator ()(a, b), b) && "the lcm cannot be represented");
+    return a / gcd<T>::operator ()(a, b) * b;
   }
 };
 

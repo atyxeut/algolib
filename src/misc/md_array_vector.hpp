@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MISC_MD_ARRAY_VECTOR_HPP
 #define AAL_SRC_MISC_MD_ARRAY_VECTOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/misc/md_array_vector.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/misc/md_array_vector.hpp */
 
 // provide type alias templates and helper function templates to ease the creation of multidimentional std::array and std::vector
 

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAIT_OPERATOR_HPP
 #define AAL_SRC_TYPE_TRAIT_OPERATOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/type-trait/operator.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/type-trait/operator.hpp */
 
 #include <type_traits>
 

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_LOG10_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_LOG10_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/log10.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/log10.hpp */
 
 #include <cassert>
 

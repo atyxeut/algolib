@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_CONCEPT_FLOATING_POINT_HPP
 #define AAL_SRC_CONCEPT_FLOATING_POINT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/concept/floating_point.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/concept/floating_point.hpp */
 
 #include <concepts>
 

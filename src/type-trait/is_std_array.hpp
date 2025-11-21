@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_TYPE_TRAIT_IS_STD_ARRAY_HPP
 #define AAL_SRC_TYPE_TRAIT_IS_STD_ARRAY_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/type-trait/is_std_array.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/type-trait/is_std_array.hpp */
 
 #include <array>
 #include <type_traits>

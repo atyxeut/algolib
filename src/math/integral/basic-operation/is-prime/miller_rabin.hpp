@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PRIME_MILLER_RABIN_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PRIME_MILLER_RABIN_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/is-prime/miller_rabin.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/is-prime/miller_rabin.hpp */
 
 #include "../../../../concept/integral.hpp"
 

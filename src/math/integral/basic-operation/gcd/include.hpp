@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_GCD_INCLUDE_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_GCD_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/basic-operation/gcd/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/gcd/include.hpp */
 
 #include "../../../operator/gcd.hpp"
 #include "../abs.hpp"

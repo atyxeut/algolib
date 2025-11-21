@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_IO_INT128_FMT_HPP
 #define AAL_SRC_IO_INT128_FMT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/io/int128/fmt.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/io/int128/fmt.hpp */
 
 #include <algorithm>
 #include <format>

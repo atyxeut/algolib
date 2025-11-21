@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_BASE_HPP
 #define AAL_SRC_MATH_INTEGRAL_SIEVE_LINEAR_BASE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/sieve/linear/base.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/sieve/linear/base.hpp */
 
 #include <cassert>
 #include <utility>

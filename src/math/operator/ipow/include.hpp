@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_OPERATOR_IPOW_INCLUDE_HPP
 #define AAL_SRC_MATH_OPERATOR_IPOW_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/operator/ipow/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/operator/ipow/include.hpp */
 
 #include <cassert>
 

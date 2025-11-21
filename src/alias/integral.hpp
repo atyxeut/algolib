@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_ALIAS_INTEGRAL_HPP
 #define AAL_SRC_ALIAS_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/alias/integral.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/alias/integral.hpp */
 
 #include <cstddef>
 #include <cstdint>

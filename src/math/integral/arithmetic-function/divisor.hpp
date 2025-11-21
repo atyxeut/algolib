@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_DIVISOR_HPP
 #define AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_DIVISOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp20/src/math/integral/arithmetic-function/divisor.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/arithmetic-function/divisor.hpp */
 
 // see https://en.wikipedia.org/wiki/Divisor_function#Formulas_at_prime_powers for extra information
 
