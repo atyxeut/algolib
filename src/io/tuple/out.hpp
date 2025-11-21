@@ -25,8 +25,7 @@ void print(std::basic_ostream<TChar>& ostr, const std::pair<T1, T2>& p, TDelim&&
 template <typename TChar, typename... Ts, typename TDelim> requires std::convertible_to<TDelim, std::basic_string<TChar>>
 void print(std::basic_ostream<TChar>& ostr, const std::tuple<Ts...>& t, TDelim&& delim)
 {
-  [&]<std::size_t... Is>(std::index_sequence<Is...>)
-  {
+  [&]<std::size_t... Is>(std::index_sequence<Is...>) {
     ((ostr << std::get<Is>(t) << (Is + 1 == std::tuple_size_v<std::tuple<Ts...>> ? std::basic_string<TChar> {} : delim)), ...);
   }(std::index_sequence_for<Ts...> {});
 }

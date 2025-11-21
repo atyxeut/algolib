@@ -30,6 +30,6 @@ template <integral TResult, unsigned_integral T>
   return b == 0 ? false : a > max / b;
 }
 
-}// namespace aal::ioverflows::nonnegative
+} // namespace aal::ioverflows::general
 
 #endif // AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_OVERFLOW_DETECTION_GENERAL_HPP
