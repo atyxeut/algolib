@@ -16,16 +16,6 @@
 
 namespace aal {
 
-namespace io::tuple::detail {
-
-template <typename TChar, typename... Ts, typename TDelim, std::size_t... Is>
-void print_impl(std::basic_ostream<TChar>& ostr, const std::tuple<Ts...>& t, TDelim&& delim, std::index_sequence<Is...>)
-{
-  ((ostr << std::get<Is>(t) << (Is + 1 == std::tuple_size_v<std::tuple<Ts...>> ? std::basic_string<TChar> {} : delim)), ...);
-}
-
-} // namespace io::tuple::detail
-
 template <typename TChar, typename T1, typename T2, typename TDelim> requires std::convertible_to<TDelim, std::basic_string<TChar>>
 void print(std::basic_ostream<TChar>& ostr, const std::pair<T1, T2>& p, TDelim&& delim)
 {
@@ -35,7 +25,10 @@ void print(std::basic_ostream<TChar>& ostr, const std::pair<T1, T2>& p, TDelim&&
 template <typename TChar, typename... Ts, typename TDelim> requires std::convertible_to<TDelim, std::basic_string<TChar>>
 void print(std::basic_ostream<TChar>& ostr, const std::tuple<Ts...>& t, TDelim&& delim)
 {
-  io::tuple::detail::print_impl(ostr, t, std::forward<TDelim>(delim), std::index_sequence_for<Ts...> {});
+  [&]<std::size_t... Is>(std::index_sequence<Is...>)
+  {
+    ((ostr << std::get<Is>(t) << (Is + 1 == std::tuple_size_v<std::tuple<Ts...>> ? std::basic_string<TChar> {} : delim)), ...);
+  }(std::index_sequence_for<Ts...> {});
 }
 
 } // namespace aal
