@@ -5,9 +5,12 @@
 
 #include <vector>
 
-#include "../../basic-operation/conversion-helper/as_index.hpp"
+#include "../../../../macro/warning.hpp"
+#include "../../../../type-trait/integral.hpp"
 
 namespace aal { namespace sieve { namespace linear {
+
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
 // get the largest prime factor list (maxp[i]: the largest prime divisor of i)
 // the behavior is undefined if maxp[0], maxp[1] are used
@@ -17,22 +20,23 @@ auto maxp(const std::vector<T>& prime, const std::vector<T>& minp) -> std::vecto
 {
   std::vector<T> maxp(minp.size());
 
-  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
-    if (minp[as_index(i)] == i)
-      maxp[as_index(i)] = i;
+  for (T n = minp.size() - 1, i = 2; i <= n; ++i) {
+    if (minp[i] == i)
+      maxp[i] = i;
     for (T p : prime) {
       using limit_type = make_unsigned_t<make_larger_width_t<T>>;
       auto composite = static_cast<limit_type>(i) * static_cast<limit_type>(p);
-      if (composite > static_cast<limit_type>(n))
+      if (composite > n)
         break;
-      maxp[as_index(composite)] = std::max(maxp[as_index(i)], p);
+      maxp[composite] = std::max(maxp[i], p);
       if (i % p == 0)
         break;
     }
   }
-
   return maxp;
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 }}} // namespace aal::sieve::linear
 

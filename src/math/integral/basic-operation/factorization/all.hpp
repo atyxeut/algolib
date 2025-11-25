@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_ALL_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_FACTORIZATION_ALL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/factorization/all.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/factorization/all.hpp */
 
 #include <cassert>
 #include <vector>

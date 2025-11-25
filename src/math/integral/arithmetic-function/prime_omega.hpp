@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_PRIME_OMEGA_HPP
 #define AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_PRIME_OMEGA_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/arithmetic-function/prime_omega.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/arithmetic-function/prime_omega.hpp */
 
 // see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 

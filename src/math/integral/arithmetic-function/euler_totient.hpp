@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_EULER_TOTIENT_HPP
 #define AAL_SRC_MATH_INTEGRAL_ARITHMETIC_FUNCTION_EULER_TOTIENT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/arithmetic-function/euler_totient.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/arithmetic-function/euler_totient.hpp */
 
 // see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
 

@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_IO_INT128_IN_HPP
 #define AAL_SRC_IO_INT128_IN_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/in.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/io/int128/in.hpp */
 
 #include <istream>
 #include <limits>

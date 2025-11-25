@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_GCD_INCLUDE_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_GCD_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/gcd/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/gcd/include.hpp */
 
 #include "../../../operator/gcd.hpp"
 #include "../abs.hpp"
@@ -10,12 +10,14 @@ namespace aal {
 
 namespace detail {
 
-template <typename TOp, typename... Ts>
-auto gcd_lcm_impl(Ts... nums) noexcept -> typename TOp::operand_type
-{
-  using result_type = typename TOp::operand_type;
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
+template <typename TOp, typename... Ts>
+auto gcd_lcm_impl(Ts... nums) noexcept -> typename std::tuple_element<0, typename TOp::operand_type>::type
+{
+  using result_type = typename std::tuple_element<0, typename TOp::operand_type>::type;
   make_unsigned_t<result_type> mags[sizeof...(Ts)] {iabs(nums)...};
+
 #ifndef NDEBUG
   for (auto i : mags)
     assert(static_cast<result_type>(i) >= 0 && "some magnitudes cannot be represented in the common type");
@@ -27,13 +29,14 @@ auto gcd_lcm_impl(Ts... nums) noexcept -> typename TOp::operand_type
   for (auto it = mags + 1, it_end = mags + sizeof...(Ts); it != it_end; ++it) {
     if (*it == op.absorbing_elem)
       return op.absorbing_elem;
-    if (*it == op.identity_elem)
+    if (*it == op.neutral_elem)
       continue;
     ans = op(ans, *it);
   }
-
   return ans;
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace detail
 

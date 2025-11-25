@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_SQRT_INCLUDE_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_SQRT_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/sqrt/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/sqrt/include.hpp */
 
 #include <algorithm>
 #include <cassert>

@@ -1,10 +1,13 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_DIV_INCLUDE_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_DIV_INCLUDE_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/div/include.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/div/include.hpp */
 
+#include <cassert>
+#include <limits>
 #include <utility>
 
+#include "../../../../macro/warning.hpp"
 #include "../abs.hpp"
 #include "../overflow_detection.hpp"
 
@@ -38,6 +41,8 @@ struct final_result
 template <typename TDividend, typename TDivisor>
 using final_result_t = typename final_result<TDividend, TDividend>::type;
 
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
+
 template <mode Mode, typename T1, typename T2>
 auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
 {
@@ -46,39 +51,27 @@ auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
   // -0 = 0, so no need to consider lhs = 0, rhs < 0 and lhs < 0, rhs = 0 cases
   bool is_ans_negative = (lhs < 0) != (rhs < 0);
 
-  using op_common_type = typename std::common_type<decltype(iabs(lhs)), decltype(iabs(rhs))>::type;
-  auto lhs_abs = static_cast<op_common_type>(iabs(lhs));
-  auto rhs_abs = static_cast<op_common_type>(iabs(rhs));
+  auto lhs_abs = iabs(lhs);
+  auto rhs_abs = iabs(rhs);
 
   auto q = lhs_abs / rhs_abs;
   bool modify_ans = lhs_abs % rhs_abs != 0;
 
 #ifndef NDEBUG
+  constexpr auto res_max = std::numeric_limits<result_type>::max();
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_ans) { // r = 0, |ans| = q
       if (is_ans_negative) // ans = -q, so q must be <= result_max + 1
-        assert(!overflows::iadd<result_type>(q - 1, 0) && "the result cannot be represented");
+        assert(!ioverflows::add(q - 1, 0, res_max) && "the result cannot be represented");
       else // ans = q, so q must be <= result_max
-        assert(!overflows::iadd<result_type>(q, 0) && "the result cannot be represented");
+        assert(!ioverflows::add(q, 0, res_max) && "the result cannot be represented");
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
-      if (is_ans_negative) {
-        if (Mode == mode::floor) {
-          // ans = -q - 1, so q + 1 must be <= result_max + 1, which is always satisfied
-        }
-        if (Mode == mode::ceil) {
-          // ans = -q + 1, so q - 1 must be <= result_max + 1, which is always satisfied
-        }
-      }
-      else {
-        if (Mode == mode::floor) {
-          // ans = q, so q must be <= result_max, which is always satisfied
-        }
-        if (Mode == mode::ceil) {
-          // ans = q + 1, so q + 1 must be <= result_max
-          assert(!overflows::iadd<result_type>(q, 1) && "the ceil div result cannot be represented");
-        }
-      }
+      // neg + floor: ans = -q - 1, so q + 1 must be <= result_max + 1 (always satisfied)
+      // neg + ceil: ans = -q + 1, so q - 1 must be <= result_max + 1 (always satisfied)
+      // pos + floor: ans = q, so q must be <= result_max (always satisfied)
+      if (!is_ans_negative && Mode == mode::ceil) // ans = q + 1, so q + 1 must be <= result_max
+        assert(!ioverflows::add(q, 1, res_max) && "the ceil div result cannot be represented");
     }
   }
 #endif // NDEBUG
@@ -90,6 +83,8 @@ auto selector(T1 lhs, T2 rhs) noexcept -> final_result_t<T1, T2>
       return is_ans_negative ? -static_cast<result_type>(q) : static_cast<result_type>(q + modify_ans);
   }
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace detail
 

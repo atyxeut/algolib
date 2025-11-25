@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_BIT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/bit.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/bit.hpp */
 
 #include <cassert>
 #include <limits>

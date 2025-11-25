@@ -1,8 +1,14 @@
 #ifndef AAL_SRC_MATH_OPERATOR_GCD_HPP
 #define AAL_SRC_MATH_OPERATOR_GCD_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/operator/gcd.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/operator/gcd.hpp */
 
+#include <cassert>
+#include <limits>
+#include <tuple>
+
+#include "../../macro/warning.hpp"
+#include "../../type-trait/integral.hpp"
 #include "../../type-trait/operator.hpp"
 #include "../integral/basic-operation/overflow_detection.hpp"
 
@@ -14,14 +20,15 @@ template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>:
 struct gcd_impl
 {
   using operator_category = binary_operator_tag;
-  using operand_type = T;
+  using operand_type = std::tuple<T, T>;
 
-  static constexpr T identity_elem = 0; // gcd(0, a) = a
-  static constexpr T absorbing_elem = 1; // gcd(1, a) = 1
+  static constexpr T neutral_elem {0}; // gcd(0, a) = a
+  static constexpr T absorbing_elem {1}; // gcd(1, a) = 1
 
   T operator ()(T a, T b) const noexcept
   {
-    for (T t; b != 0;) {
+    T t;
+    while (b != 0) {
       t = a % b;
       a = b;
       b = t;
@@ -34,16 +41,20 @@ template <typename T, typename = typename std::enable_if<is_nonbool_integral<T>:
 struct lcm_impl
 {
   using operator_category = binary_operator_tag;
-  using operand_type = T;
+  using operand_type = std::tuple<T, T>;
 
-  static constexpr T identity_elem = 1; // lcm(1, a) = a
-  static constexpr T absorbing_elem = 0; // lcm(0, a) = 0
+  static constexpr T neutral_elem {1}; // lcm(1, a) = a
+  static constexpr T absorbing_elem {0}; // lcm(0, a) = 0
+
+  AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
   T operator ()(T a, T b) const noexcept
   {
-    assert(!overflows::imul<T>(a / gcd_impl<T> {}(a, b), b) && "the lcm cannot be represented");
+    assert(!ioverflows::mul(a / gcd_impl<T> {}(a, b), b, std::numeric_limits<T>::max()) && "the lcm cannot be represented");
     return a / gcd_impl<T> {}(a, b) * b;
   }
+
+  AAL_INT_WCONVERSION_WCOMPARE_POP
 };
 
 } // namespace detail

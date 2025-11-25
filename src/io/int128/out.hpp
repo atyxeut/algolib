@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_IO_INT128_OUT_HPP
 #define AAL_SRC_IO_INT128_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/int128/out.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/io/int128/out.hpp */
 
 // to make the overload of operator << defined in range/out.hpp able to accept ranges that has i128, u128 as elements,
 //   this #include order is necessary:

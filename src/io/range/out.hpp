@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_IO_RANGE_OUT_HPP
 #define AAL_SRC_IO_RANGE_OUT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/io/range/out.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/io/range/out.hpp */
 
 #include <cstddef>
 #include <string>
@@ -18,7 +18,7 @@ template <
   typename TVal = enable_if_t<is_range<TRange>::value, remove_cvref_t<decltype(*std::begin(std::declval<TRange&>()))>>
 >
 auto print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true)
-  -> enable_if_t<is_basic_ostream_interactable<TChar, TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, int>
+  -> enable_if_t<is_basic_ostream_interactable<TChar, TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, std::size_t>
 {
   auto cur_delim = never_second_case ? delim : std::basic_string<TChar>(1, static_cast<TChar>(' '));
   for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it)
@@ -33,12 +33,12 @@ template <
   typename TVal = enable_if_t<is_range<TRange>::value, remove_cvref_t<decltype(*std::begin(std::declval<TRange&>()))>>
 >
 auto print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = false)
-  -> enable_if_t<is_range<TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, int>
+  -> enable_if_t<is_range<TVal>::value && std::is_convertible<TDelim, std::basic_string<TChar>>::value, std::size_t>
 {
-  int reverse_dep = 0;
+  std::size_t reverse_dep = 0;
   for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it) {
     reverse_dep = print(ostr, *it, std::forward<TDelim>(delim), never_second_case);
-    auto cur_delim = std::basic_string<TChar>(static_cast<std::size_t>(reverse_dep), *std::begin(delim));
+    auto cur_delim = std::basic_string<TChar>(reverse_dep, *std::begin(delim));
     ostr << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
   }
   return reverse_dep + 1;

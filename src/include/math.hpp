@@ -4,7 +4,6 @@
 #include "../math/integral/arithmetic-function/euler_totient.hpp"
 #include "../math/integral/arithmetic-function/prime_omega.hpp"
 
-#include "../math/integral/basic-operation/conversion-helper/as_index.hpp"
 #include "../math/integral/basic-operation/overflow_detection.hpp"
 
 #include "../math/integral/basic-operation/abs.hpp"
@@ -13,7 +12,7 @@
 #include "../math/integral/basic-operation/gcd/include.hpp"
 #include "../math/integral/basic-operation/is_palindrome.hpp"
 #include "../math/integral/basic-operation/log10.hpp"
-#include "../math/integral/basic-operation/pow/include.hpp"
+#include "../math/integral/basic-operation/pow.hpp"
 #include "../math/integral/basic-operation/sqrt/include.hpp"
 
 #include "../math/integral/basic-operation/is-prime/miller_rabin.hpp"

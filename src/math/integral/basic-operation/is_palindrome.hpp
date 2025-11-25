@@ -1,7 +1,7 @@
 #ifndef AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PALINDROME_HPP
 #define AAL_SRC_MATH_INTEGRAL_BASIC_OPERATION_IS_PALINDROME_HPP
 
-/* https://github.com/atyxeut/algolib/blob/main/src/math/integral/basic-operation/is_palindrome.hpp */
+/* https://github.com/atyxeut/algolib/blob/cpp11/src/math/integral/basic-operation/is_palindrome.hpp */
 
 #include "../../../type-trait/integral.hpp"
 
@@ -22,7 +22,6 @@ auto is_palindrome(T n) noexcept -> typename std::enable_if<is_nonbool_integral<
     r = r * 10 + n % 10;
     n /= 10;
   }
-
   return r == n || r / 10 == n;
 }
 
