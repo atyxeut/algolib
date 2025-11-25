@@ -10,12 +10,6 @@
                                 _Pragma("GCC diagnostic ignored \"-Wsign-compare\"") \
                                 _Pragma("GCC diagnostic ignored \"-Wshorten-64-to-32\"")
   #define AAL_INT_WCONVERSION_WCOMPARE_POP _Pragma("GCC diagnostic pop")
-#elif defined(_MSC_VER)
-  #define AAL_INT_WCONVERSION_WCOMPARE_PUSH __pragma(warning(push)) \
-                               __pragma(warning(disable: 4018)) \
-                               __pragma(warning(disable: 4267)) \
-                               __pragma(warning(disable: 4389))
-  #define AAL_INT_WCONVERSION_WCOMPARE_POP __pragma(warning(pop))
 #else
   #define AAL_INT_WCONVERSION_WCOMPARE_PUSH
   #define AAL_INT_WCONVERSION_WCOMPARE_POP
