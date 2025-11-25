@@ -4,6 +4,7 @@
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/operator/gcd.hpp */
 
 #include <cassert>
+#include <limits>
 #include <tuple>
 
 #include "../../concept/integral.hpp"
@@ -49,14 +50,15 @@ struct lcm
   static constexpr T neutral_element = {1}; // lcm(1, a) = a
   static constexpr T absorbing_element = {0}; // lcm(0, a) = 0
 
+  AAL_INT_WCONVERSION_WCOMPARE_PUSH
+
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
-    AAL_INT_WCONVERSION_WCOMPARE_PUSH
     assert(!ioverflows::mul(a / gcd<T>::operator ()(a, b), b, std::numeric_limits<T>::max()) && "the lcm cannot be represented");
-    AAL_INT_WCONVERSION_WCOMPARE_POP
-
     return a / gcd<T>::operator ()(a, b) * b;
   }
+
+  AAL_INT_WCONVERSION_WCOMPARE_POP
 };
 
 } // namespace aal::op

@@ -21,7 +21,7 @@ template <typename T>
   std::vector<T> phi(minp.size());
   phi[1] = 1;
 
-  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
+  for (T n = minp.size() - 1, i = 2; i <= n; ++i) {
     if (minp[i] == i)
       phi[i] = i - 1;
     for (T p : prime) {

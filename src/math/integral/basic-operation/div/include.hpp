@@ -38,6 +38,8 @@ struct final_result
   using type = std::conditional_t<is_unsigned_v<type2>, type1, make_larger_width_t<make_signed_t<type1>>>;
 };
 
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
+
 template <mode Mode, typename T1, typename T2>
 constexpr auto selector(T1 lhs, T2 rhs) noexcept
 {
@@ -46,31 +48,29 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
   // -0 = 0, so no need to consider lhs = 0, rhs < 0 and lhs < 0, rhs = 0 cases
   bool is_ans_negative = (lhs < 0) != (rhs < 0);
 
-  using op_common_type = std::common_type_t<decltype(iabs(lhs)), decltype(iabs(rhs))>;
-  auto lhs_abs = static_cast<op_common_type>(iabs(lhs));
-  auto rhs_abs = static_cast<op_common_type>(iabs(rhs));
+  auto lhs_abs = iabs(lhs);
+  auto rhs_abs = iabs(rhs);
 
   auto q = lhs_abs / rhs_abs;
   bool modify_ans = lhs_abs % rhs_abs != 0;
 
 #ifndef NDEBUG
-  AAL_INT_WCONVERSION_WCOMPARE_PUSH
+  constexpr auto res_max = std::numeric_limits<result_type>::max();
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_ans) { // r = 0, |ans| = q
       if (is_ans_negative) // ans = -q, so q must be <= result_max + 1
-        assert(!ioverflows::add(q - 1, 0, std::numeric_limits<result_type>::max()) && "the result cannot be represented");
+        assert(!ioverflows::add(q - 1, 0, res_max) && "the result cannot be represented");
       else // ans = q, so q must be <= result_max
-        assert(!ioverflows::add(q, 0, std::numeric_limits<result_type>::max()) && "the result cannot be represented");
+        assert(!ioverflows::add(q, 0, res_max) && "the result cannot be represented");
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
       // neg + floor: ans = -q - 1, so q + 1 must be <= result_max + 1 (always satisfied)
       // neg + ceil: ans = -q + 1, so q - 1 must be <= result_max + 1 (always satisfied)
       // pos + floor: ans = q, so q must be <= result_max (always satisfied)
       if (!is_ans_negative && Mode == mode::ceil) // ans = q + 1, so q + 1 must be <= result_max
-        assert(!ioverflows::add(q, 1, std::numeric_limits<result_type>::max()) && "the ceil div result cannot be represented");
+        assert(!ioverflows::add(q, 1, res_max) && "the ceil div result cannot be represented");
     }
   }
-  AAL_INT_WCONVERSION_WCOMPARE_POP
 #endif // NDEBUG
 
   if constexpr (Mode == mode::floor)
@@ -78,6 +78,8 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
   else
     return is_ans_negative ? -static_cast<result_type>(q) : static_cast<result_type>(q + modify_ans);
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace detail
 

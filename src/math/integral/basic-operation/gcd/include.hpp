@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/gcd/include.hpp */
 
-#include "../../../../macro/warning.hpp"
 #include "../../../operator/gcd.hpp"
 #include "../abs.hpp"
 

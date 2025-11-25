@@ -20,7 +20,7 @@ template <typename T>
 {
   std::vector<T> maxp(minp.size());
 
-  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i) {
+  for (T n = minp.size() - 1, i = 2; i <= n; ++i) {
     if (minp[i] == i)
       maxp[i] = i;
     for (T p : prime) {

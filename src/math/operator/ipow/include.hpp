@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "../../../concept/operator.hpp"
+#include "../../../macro/warning.hpp"
 #include "../../integral/basic-operation/abs.hpp"
 #include "../../integral/basic-operation/overflow_detection.hpp"
 
@@ -20,6 +21,8 @@ struct ipow
   // a multipliable type must provide a constructor that transform 1 into the multiplication neutral element,
   //   otherwise, the behavior is undefined
   static constexpr T neutral_element {1};
+
+  AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
   [[nodiscard]] static constexpr T operator ()(T a, TExponent exp) noexcept
   {
@@ -46,6 +49,8 @@ struct ipow
     }
     return ans;
   }
+
+  AAL_INT_WCONVERSION_WCOMPARE_POP
 };
 
 } // namespace aal::op
