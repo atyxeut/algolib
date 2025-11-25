@@ -3,7 +3,6 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/pow.hpp */
 
-#include "../../../macro/warning.hpp"
 #include "../../operator/ipow/include.hpp"
 
 namespace aal {

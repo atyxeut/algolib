@@ -93,6 +93,7 @@ int main()
 
   std::cout << aal::idiv::floor(-2'147'483'647 - 1, 1) << "\n";
   std::cout << aal::idiv::ceil(5, 2) << "\n";
+  std::cout << aal::ipow(-2, 33) << "\n";
 }
 
 AAL_INT_WCONVERSION_WCOMPARE_POP
