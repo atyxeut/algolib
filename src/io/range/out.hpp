@@ -13,7 +13,7 @@
 namespace aal {
 
 template <typename TChar, std::ranges::input_range TRange, typename TDelim> requires std::convertible_to<TDelim, std::basic_string<TChar>>
-int print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true)
+std::size_t print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool never_second_case = true)
 {
   using value_type = std::ranges::range_value_t<TRange>;
 
@@ -29,10 +29,10 @@ int print(std::basic_ostream<TChar>& ostr, TRange&& range, TDelim&& delim, bool 
   // element type of the range is non-default-printable range
   // e.g. std::vector<std::array<int, 4>>
   if constexpr (std::ranges::input_range<value_type>) {
-    int reverse_dep = 0;
+    std::size_t reverse_dep = 0;
     for (auto it = std::begin(range), it_end = std::end(range); it != it_end; ++it) {
       reverse_dep = print(ostr, *it, std::forward<TDelim>(delim), false);
-      auto cur_delim = std::basic_string<TChar>(static_cast<std::size_t>(reverse_dep), *std::begin(delim));
+      auto cur_delim = std::basic_string<TChar>(reverse_dep, *std::begin(delim));
       ostr << (std::next(it) == it_end ? std::basic_string<TChar> {} : cur_delim);
     }
     return reverse_dep + 1;

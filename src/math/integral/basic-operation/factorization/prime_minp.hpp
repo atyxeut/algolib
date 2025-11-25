@@ -7,9 +7,12 @@
 #include <cassert>
 #include <vector>
 
-#include "../conversion-helper/as_index.hpp"
+#include "../../../../concept/integral.hpp"
+#include "../../../../macro/warning.hpp"
 
 namespace aal::get_divisor {
+
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
 // O(logn) when the smallest prime divisor of every integer that <= n is known
 // because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
@@ -17,18 +20,19 @@ namespace aal::get_divisor {
 template <nonbool_integral T>
 [[nodiscard]] constexpr auto prime(T n, const std::vector<T>& minp)
 {
-  assert(n > 0 && "the first argument must be positive");
-  assert(static_cast<std::size_t>(n) < minp.size() && "the first argument is too large");
+  assert(0 < n && n < minp.size() && "the first argument is invalid");
 
   std::vector<std::array<T, 2>> info;
   while (n > 1) {
-    T p = minp[as_index(n)], cnt = 0;
+    T p = minp[n], cnt = 0;
     for (; n % p == 0; n /= p)
       ++cnt;
     info.push_back({p, cnt});
   }
   return info;
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace aal::get_divisor
 

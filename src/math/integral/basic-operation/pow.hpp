@@ -3,9 +3,12 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/pow.hpp */
 
+#include "../../../macro/warning.hpp"
 #include "../../operator/ipow/include.hpp"
 
 namespace aal {
+
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
 template <nonbool_integral T1, nonbool_integral T2>
 [[nodiscard]] constexpr T1 ipow(T1 a, T2 n) noexcept
@@ -13,6 +16,8 @@ template <nonbool_integral T1, nonbool_integral T2>
   assert(n >= 0 && "exponent must be nonnegative");
   return op::ipow<T1, make_unsigned_t<T2>>::operator ()(a, n);
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace aal
 

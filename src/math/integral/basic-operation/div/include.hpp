@@ -3,10 +3,13 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/integral/basic-operation/div/include.hpp */
 
+#include <cassert>
+#include <limits>
 #include <utility>
 
+#include "../../../../macro/warning.hpp"
 #include "../abs.hpp"
-#include "../overflow-detection/nonnegative.hpp"
+#include "../overflow_detection.hpp"
 
 namespace aal::idiv {
 
@@ -32,16 +35,13 @@ struct final_result
   //   e.g. 4294967295 (unsigned int) / -1 = -4294967295 (requires long long)
 
   // obtains a type that guarantees to be able to represent the result, unless there is no such type
-  using type = typename std::conditional<is_unsigned<type2>::value, type1, make_larger_width_t<make_signed_t<type1>>>::type;
+  using type = std::conditional_t<is_unsigned_v<type2>, type1, make_larger_width_t<make_signed_t<type1>>>;
 };
-
-template <typename TDividend, typename TDivisor>
-using final_result_t = typename final_result<TDividend, TDividend>::type;
 
 template <mode Mode, typename T1, typename T2>
 constexpr auto selector(T1 lhs, T2 rhs) noexcept
 {
-  using result_type = final_result_t<T1, T2>;
+  using result_type = final_result<T1, T2>::type;
 
   // -0 = 0, so no need to consider lhs = 0, rhs < 0 and lhs < 0, rhs = 0 cases
   bool is_ans_negative = (lhs < 0) != (rhs < 0);
@@ -54,33 +54,23 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
   bool modify_ans = lhs_abs % rhs_abs != 0;
 
 #ifndef NDEBUG
+  AAL_INT_WCONVERSION_WCOMPARE_PUSH
   if (q > 0) { // no way to overflow if q = 0
     if (!modify_ans) { // r = 0, |ans| = q
       if (is_ans_negative) // ans = -q, so q must be <= result_max + 1
-        assert(!ioverflows::nonnegative::add<result_type>(q - 1, 0) && "the result cannot be represented");
+        assert(!ioverflows::add(q - 1, 0, std::numeric_limits<result_type>::max()) && "the result cannot be represented");
       else // ans = q, so q must be <= result_max
-        assert(!ioverflows::nonnegative::add<result_type>(q, 0) && "the result cannot be represented");
+        assert(!ioverflows::add(q, 0, std::numeric_limits<result_type>::max()) && "the result cannot be represented");
     }
     else { // r != 0, so |rhs| >= 2, so q is at most floor(unsigned_result_max / 2) = result_max
-      if (is_ans_negative) {
-        if (Mode == mode::floor) {
-          // ans = -q - 1, so q + 1 must be <= result_max + 1, which is always satisfied
-        }
-        if (Mode == mode::ceil) {
-          // ans = -q + 1, so q - 1 must be <= result_max + 1, which is always satisfied
-        }
-      }
-      else {
-        if (Mode == mode::floor) {
-          // ans = q, so q must be <= result_max, which is always satisfied
-        }
-        if (Mode == mode::ceil) {
-          // ans = q + 1, so q + 1 must be <= result_max
-          assert(!ioverflows::nonnegative::add<result_type>(q, 1) && "the ceil div result cannot be represented");
-        }
-      }
+      // neg + floor: ans = -q - 1, so q + 1 must be <= result_max + 1 (always satisfied)
+      // neg + ceil: ans = -q + 1, so q - 1 must be <= result_max + 1 (always satisfied)
+      // pos + floor: ans = q, so q must be <= result_max (always satisfied)
+      if (!is_ans_negative && Mode == mode::ceil) // ans = q + 1, so q + 1 must be <= result_max
+        assert(!ioverflows::add(q, 1, std::numeric_limits<result_type>::max()) && "the ceil div result cannot be represented");
     }
   }
+  AAL_INT_WCONVERSION_WCOMPARE_POP
 #endif // NDEBUG
 
   if constexpr (Mode == mode::floor)

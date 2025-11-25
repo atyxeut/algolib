@@ -16,7 +16,7 @@ template <nonbool_integral T>
 [[nodiscard]] constexpr int countl_zero(T x) noexcept
 {
   assert(x >= 0 && "argument must be nonnegative");
-  if constexpr (is_standard_integral_v<T>) {
+  if constexpr (standard_integral<T>) {
     return std::countl_zero<make_unsigned_t<T>>(x);
   }
   else {

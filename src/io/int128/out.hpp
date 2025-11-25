@@ -16,7 +16,7 @@
 #include "../../alias/integral.hpp"
 
 template <typename TChar>
-auto operator <<(std::basic_ostream<TChar>& ostr, u128 n)
+decltype(auto) operator <<(std::basic_ostream<TChar>& ostr, u128 n)
 {
   if (n == 0)
     return ostr << 0;
@@ -30,7 +30,7 @@ auto operator <<(std::basic_ostream<TChar>& ostr, u128 n)
 }
 
 template <typename TChar>
-auto operator <<(std::basic_ostream<TChar>& ostr, i128 n)
+decltype(auto) operator <<(std::basic_ostream<TChar>& ostr, i128 n)
 {
   if (n == std::numeric_limits<i128>::min())
     return ostr << '-' << static_cast<u128>(n);

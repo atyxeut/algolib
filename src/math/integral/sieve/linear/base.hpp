@@ -7,9 +7,12 @@
 #include <utility>
 #include <vector>
 
-#include "../../basic-operation/conversion-helper/as_index.hpp"
+#include "../../../../concept/integral.hpp"
+#include "../../../../macro/warning.hpp"
 
 namespace aal::sieve::linear {
+
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
 // get the prime list and the smallest prime factor list (minp[i]: the smallest prime divisor of i, minp[i] = i: i is a prime, otherwise not)
 // the behavior is undefined if minp[0], minp[1] are used
@@ -19,27 +22,28 @@ template <nonbool_integral T>
   assert(n > 0 && "the argument must be positive");
 
   std::vector<T> prime;
-  std::vector<T> minp(as_index(n) + 1);
+  std::vector<T> minp(n + 1);
 
   for (T i = 2; i <= n; ++i) {
-    if (!minp[as_index(i)]) {
+    if (!minp[i]) {
       prime.push_back(i);
-      minp[as_index(i)] = i;
+      minp[i] = i;
     }
     for (T p : prime) {
       // i * p may still overflow, but it takes forever to reach such a case
       using limit_type = make_unsigned_t<make_larger_width_t<T>>;
       auto composite = static_cast<limit_type>(i) * static_cast<limit_type>(p);
-      if (composite > static_cast<limit_type>(n))
+      if (composite > n)
         break;
-      minp[as_index(composite)] = p;
+      minp[composite] = p;
       if (i % p == 0)
         break;
     }
   }
-
   return std::make_pair(prime, minp);
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace aal::sieve::linear
 

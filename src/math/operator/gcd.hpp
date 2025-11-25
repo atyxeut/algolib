@@ -3,10 +3,13 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/math/operator/gcd.hpp */
 
+#include <cassert>
 #include <tuple>
 
+#include "../../concept/integral.hpp"
+#include "../../macro/warning.hpp"
 #include "../../type-trait/operator.hpp"
-#include "../integral/basic-operation/overflow-detection/nonnegative.hpp"
+#include "../integral/basic-operation/overflow_detection.hpp"
 
 namespace aal::op {
 
@@ -24,7 +27,8 @@ struct gcd
 
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
-    for (T t; b != 0;) {
+    T t;
+    while (b != 0) {
       t = a % b;
       a = b;
       b = t;
@@ -47,7 +51,10 @@ struct lcm
 
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
-    assert(!ioverflows::nonnegative::mul<T>(a / gcd<T>::operator ()(a, b), b) && "the lcm cannot be represented");
+    AAL_INT_WCONVERSION_WCOMPARE_PUSH
+    assert(!ioverflows::mul(a / gcd<T>::operator ()(a, b), b, std::numeric_limits<T>::max()) && "the lcm cannot be represented");
+    AAL_INT_WCONVERSION_WCOMPARE_POP
+
     return a / gcd<T>::operator ()(a, b) * b;
   }
 };

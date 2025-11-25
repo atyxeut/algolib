@@ -21,7 +21,6 @@ template <nonbool_integral T>
     r = r * 10 + n % 10;
     n /= 10;
   }
-
   return r == n || r / 10 == n;
 }
 

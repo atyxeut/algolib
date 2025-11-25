@@ -6,7 +6,8 @@
 #include <cassert>
 
 #include "../../../concept/operator.hpp"
-#include "../../integral/basic-operation/overflow-detection/general.hpp"
+#include "../../integral/basic-operation/abs.hpp"
+#include "../../integral/basic-operation/overflow_detection.hpp"
 
 namespace aal::op {
 
@@ -28,15 +29,19 @@ struct ipow
     T ans = neutral_element;
     while (true) {
       if (exp & 1) {
-        if constexpr (integral<T>) // user defined types should assert overflow directly inside the operator overloads
-          assert(ioverflows::general::mul<T>(ans, a) && "the result cannot be represented");
+        if constexpr (integral<T>) { // user defined types should assert overflow directly inside the operator overloads
+          if ((ans < 0) != (a < 0))
+            assert(!ioverflows::mul(iabs(ans), iabs(a), iabs(std::numeric_limits<T>::min())) && "the result cannot be represented");
+          else
+            assert(!ioverflows::mul(iabs(ans), iabs(a), std::numeric_limits<T>::max()) && "the result cannot be represented");
+        }
         ans *= a;
       }
       exp >>= 1;
       if (exp == 0)
         break;
       if constexpr (integral<T>)
-        assert(ioverflows::general::mul<T>(a, a) && "the result cannot be represented");
+        assert(!ioverflows::mul(iabs(a), iabs(a), std::numeric_limits<T>::max()) && "the result cannot be represented");
       a *= a;
     }
     return ans;

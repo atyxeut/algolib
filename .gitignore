@@ -6,6 +6,7 @@
 
 !.clang-format
 !fmt.py
+!src_test.cpp
 
 !notes
 !notes/divisibility.md
@@ -13,6 +14,8 @@
 
 !src
 !src/.clangd
+!src/macro
+!src/macro/*
 !src/alias
 !src/alias/*
 !src/type-trait

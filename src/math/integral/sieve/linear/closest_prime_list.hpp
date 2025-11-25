@@ -5,9 +5,11 @@
 
 #include <vector>
 
-#include "../../basic-operation/conversion-helper/as_index.hpp"
+#include "../../../../macro/warning.hpp"
 
 namespace aal::sieve::linear {
+
+AAL_INT_WCONVERSION_WCOMPARE_PUSH
 
 // get the closest prime list (clp[i]: the largest prime <= i)
 // the behavior is undefined if clp[0], clp[1] are used
@@ -17,11 +19,12 @@ template <typename T>
 {
   std::vector<T> clp(minp.size());
 
-  for (T n = static_cast<T>(minp.size() - 1), i = 2; i <= n; ++i)
-    clp[as_index(i)] = minp[as_index(i)] == i ? i : clp[as_index(i - 1)];
-
+  for (T n = minp.size() - 1, i = 2; i <= n; ++i)
+    clp[i] = minp[i] == i ? i : clp[i - 1];
   return clp;
 }
+
+AAL_INT_WCONVERSION_WCOMPARE_POP
 
 } // namespace aal::sieve::linear
 

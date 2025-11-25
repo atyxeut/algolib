@@ -10,7 +10,7 @@
 #include "../../alias/integral.hpp"
 
 template <typename TChar>
-auto operator >>(std::basic_istream<TChar>& istr, u128& n)
+decltype(auto) operator >>(std::basic_istream<TChar>& istr, u128& n)
 {
   std::string buffer;
   istr >> buffer;
@@ -23,7 +23,7 @@ auto operator >>(std::basic_istream<TChar>& istr, u128& n)
 }
 
 template <typename TChar>
-auto operator >>(std::basic_istream<TChar>& istr, i128& n)
+decltype(auto) operator >>(std::basic_istream<TChar>& istr, i128& n)
 {
   std::string buffer;
   istr >> buffer;

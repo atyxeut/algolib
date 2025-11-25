@@ -5,9 +5,7 @@
 #include "../math/integral/arithmetic-function/euler_totient.hpp"
 #include "../math/integral/arithmetic-function/prime_omega.hpp"
 
-#include "../math/integral/basic-operation/conversion-helper/as_index.hpp"
-#include "../math/integral/basic-operation/overflow-detection/general.hpp"
-#include "../math/integral/basic-operation/overflow-detection/nonnegative.hpp"
+#include "../math/integral/basic-operation/overflow_detection.hpp"
 
 #include "../math/integral/basic-operation/abs.hpp"
 #include "../math/integral/basic-operation/bit.hpp"
