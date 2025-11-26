@@ -8,7 +8,7 @@
 #include <ranges>
 #include <string>
 
-#include "../../type-trait/io.hpp"
+#include "../../type_trait/io.hpp"
 
 namespace aal {
 

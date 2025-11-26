@@ -5,7 +5,7 @@
 
 #include <concepts>
 
-#include "../type-trait/floating_point.hpp"
+#include "../type_trait/floating_point.hpp"
 
 namespace aal {
 

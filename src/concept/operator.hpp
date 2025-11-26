@@ -6,7 +6,7 @@
 #include <concepts>
 #include <tuple>
 
-#include "../type-trait/operator.hpp"
+#include "../type_trait/operator.hpp"
 
 namespace aal {
 

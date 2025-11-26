@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "../concept/integral.hpp"
-#include "../type-trait/is_std_array.hpp"
+#include "../type_trait/is_std_array.hpp"
 
 namespace aal {
 

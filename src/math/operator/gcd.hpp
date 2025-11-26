@@ -9,8 +9,8 @@
 
 #include "../../concept/integral.hpp"
 #include "../../macro/warning.hpp"
-#include "../../type-trait/operator.hpp"
-#include "../integral/basic-operation/overflow_detection.hpp"
+#include "../../type_trait/operator.hpp"
+#include "../integral/basic_operation/overflow_detection.hpp"
 
 namespace aal::op {
 

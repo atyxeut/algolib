@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../../../macro/warning.hpp"
-#include "../../basic-operation/pow.hpp"
+#include "../../basic_operation/pow.hpp"
 
 namespace aal::sieve::linear {
 

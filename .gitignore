@@ -18,8 +18,8 @@
 !src/macro/*
 !src/alias
 !src/alias/*
-!src/type-trait
-!src/type-trait/*
+!src/type_trait
+!src/type_trait/*
 !src/concept
 !src/concept/*
 
@@ -36,12 +36,12 @@
 
 !src/math
 !src/math/integral
-!src/math/integral/arithmetic-function
-!src/math/integral/arithmetic-function/divisor.hpp
-!src/math/integral/arithmetic-function/euler_totient.hpp
-!src/math/integral/arithmetic-function/prime_omega.hpp
-!src/math/integral/basic-operation
-!src/math/integral/basic-operation/**
+!src/math/integral/arithmetic_function
+!src/math/integral/arithmetic_function/divisor.hpp
+!src/math/integral/arithmetic_function/euler_totient.hpp
+!src/math/integral/arithmetic_function/prime_omega.hpp
+!src/math/integral/basic_operation
+!src/math/integral/basic_operation/**
 !src/math/integral/sieve
 !src/math/integral/sieve/**
 

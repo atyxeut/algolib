@@ -5,7 +5,7 @@
 
 #include <concepts>
 
-#include "../type-trait/integral.hpp"
+#include "../type_trait/integral.hpp"
 
 namespace aal {
 
