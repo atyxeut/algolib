@@ -3,8 +3,10 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/operator.hpp */
 
+#include <concepts>
 #include <tuple>
-#include <type_traits>
+
+#include "enum.hpp"
 
 namespace aal {
 
@@ -12,41 +14,16 @@ namespace op {
 
 enum class property
 {
-  associative = 0x00'00'00'01,
-  commutative = 0x00'00'00'02
-};
-
-constexpr auto operator &(property a, property b) noexcept
-{
-  return static_cast<property>(static_cast<int>(a) & static_cast<int>(b));
-};
-
-constexpr decltype(auto) operator &=(property& a, property b) noexcept
-{
-  return a = a & b;
-};
-
-constexpr auto operator ^(property a, property b) noexcept
-{
-  return static_cast<property>(static_cast<int>(a) ^ static_cast<int>(b));
-};
-
-constexpr decltype(auto) operator ^=(property& a, property b) noexcept
-{
-  return a = a ^ b;
-};
-
-constexpr auto operator |(property a, property b) noexcept
-{
-  return static_cast<property>(static_cast<int>(a) | static_cast<int>(b));
-};
-
-constexpr decltype(auto) operator |=(property& a, property b) noexcept
-{
-  return a = a | b;
+  associative = 1 << 0,
+  commutative = 1 << 1
 };
 
 } // namespace op
+
+template <>
+struct is_enum_flag<op::property> : std::true_type
+{
+};
 
 struct unary_operator_tag
 {
@@ -70,6 +47,26 @@ struct operator_traits<T>
 {
   using operator_category = T::operator_category;
   using operand_type = T::operand_type;
+};
+
+template <typename T>
+concept unary_operator = requires(const T op, std::tuple_element_t<0, typename T::operand_type> a) {
+  requires std::same_as<typename T::operator_category, unary_operator_tag>;
+  requires (std::tuple_size_v<typename T::operand_type> == 1);
+  { op(a) };
+};
+
+template <typename T>
+concept binary_operator = requires(const T op, std::tuple_element_t<0, typename T::operand_type> a, std::tuple_element_t<1, typename T::operand_type> b) {
+  requires std::same_as<typename T::operator_category, binary_operator_tag>;
+  requires (std::tuple_size_v<typename T::operand_type> == 2);
+  requires (requires { op(a, b); } || requires { op(b, a); });
+};
+
+template <typename T>
+concept multipliable = requires(T a, T b) {
+  { a * b } -> std::same_as<T>;
+  { a *= b } -> std::same_as<T&>;
 };
 
 } // namespace aal

@@ -3,8 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/lib/math/operator/gcd/include.hpp */
 
-#include "../../../../fundamental/concept/integral.hpp"
 #include "../../../../fundamental/macro/warning.hpp"
+#include "../../../../fundamental/type_trait/integral.hpp"
 #include "../../../../fundamental/type_trait/operator.hpp"
 
 namespace aal::op {

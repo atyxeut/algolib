@@ -6,8 +6,8 @@
 #include <array>
 #include <vector>
 
-#include "../../../../../fundamental/concept/integral.hpp"
 #include "../../../../../fundamental/macro/warning.hpp"
+#include "../../../../../fundamental/type_trait/integral.hpp"
 
 namespace aal::get_divisor {
 

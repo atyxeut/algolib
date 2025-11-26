@@ -4,6 +4,7 @@
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/integral.hpp */
 
 #include <cassert>
+#include <concepts>
 #include <limits>
 
 #include "../alias/integral.hpp"
@@ -36,6 +37,9 @@ struct is_integral : std::disjunction<std::is_integral<T>, is_int128<T>>
 template <typename T>
 constexpr bool is_integral_v = is_integral<T>::value;
 
+template <typename T>
+concept integral = is_integral_v<T>;
+
 // std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
 struct is_standard_integral : std::conjunction<std::is_integral<T>, std::negation<is_int128<T>>>
@@ -46,12 +50,18 @@ template <typename T>
 constexpr bool is_standard_integral_v = is_standard_integral<T>::value;
 
 template <typename T>
+concept standard_integral = is_standard_integral_v<T>;
+
+template <typename T>
 struct is_nonbool_integral : std::conjunction<is_integral<T>, std::negation<is_bool<T>>>
 {
 };
 
 template <typename T>
 constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
+
+template <typename T>
+concept nonbool_integral = is_nonbool_integral_v<T>;
 
 template <typename T>
 struct is_signed : std::bool_constant<(is_int128_v<T> && !std::is_same_v<std::remove_cv_t<T>, u128>) || std::is_signed_v<T>>
@@ -62,6 +72,9 @@ template <typename T>
 constexpr bool is_signed_v = is_signed<T>::value;
 
 template <typename T>
+concept signed_integral = integral<T> && is_signed_v<T>;
+
+template <typename T>
 struct is_unsigned : std::bool_constant<is_integral_v<T> && !is_signed_v<T>>
 {
 };
@@ -70,12 +83,18 @@ template <typename T>
 constexpr bool is_unsigned_v = is_unsigned<T>::value;
 
 template <typename T>
+concept unsigned_integral = integral<T> && !signed_integral<T>;
+
+template <typename T>
 struct is_nonbool_unsigned : std::conjunction<std::negation<is_bool<T>>, is_unsigned<T>>
 {
 };
 
 template <typename T>
 constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
+
+template <typename T>
+concept nonbool_unsigned = nonbool_integral<T> && unsigned_integral<T>;
 
 template <typename T>
 struct make_signed

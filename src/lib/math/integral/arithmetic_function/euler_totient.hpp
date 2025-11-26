@@ -5,7 +5,7 @@
 
 // see https://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler's_totient_function for extra information
 
-#include "../../../../fundamental/concept/integral.hpp"
+#include "../../../../fundamental/type_trait/integral.hpp"
 
 namespace aal::arith_func {
 

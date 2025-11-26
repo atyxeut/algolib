@@ -3,6 +3,8 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/floating_point.hpp */
 
+#include <concepts>
+
 #include "../alias/floating_point.hpp"
 #include "cvref.hpp"
 
@@ -25,6 +27,9 @@ struct is_floating_point : std::disjunction<std::is_floating_point<T>, is_f128<T
 template <typename T>
 constexpr bool is_floating_point_v = is_floating_point<T>::value;
 
+template <typename T>
+concept floating_point = is_floating_point_v<T>;
+
 // std::is_floating_point_v<f128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
 struct is_standard_floating_point : std::conjunction<std::is_floating_point<T>, std::negation<is_f128<T>>>
@@ -33,6 +38,9 @@ struct is_standard_floating_point : std::conjunction<std::is_floating_point<T>, 
 
 template <typename T>
 constexpr bool is_standard_floating_point_v = is_standard_floating_point<T>::value;
+
+template <typename T>
+concept standard_floating_point = is_standard_floating_point_v<T>;
 
 namespace detail {
 

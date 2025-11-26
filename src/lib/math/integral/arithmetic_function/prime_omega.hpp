@@ -5,7 +5,7 @@
 
 // see https://en.wikipedia.org/wiki/Prime_omega_function#Properties_and_relations for extra information
 
-#include "../../../../fundamental/concept/integral.hpp"
+#include "../../../../fundamental/type_trait/integral.hpp"
 
 namespace aal::arith_func {
 

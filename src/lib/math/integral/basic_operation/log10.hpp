@@ -3,7 +3,7 @@
 
 /* https://github.com/atyxeut/algolib/blob/cpp23/src/lib/math/integral/basic_operation/log10.hpp */
 
-#include "../../../../fundamental/concept/integral.hpp"
+#include "../../../../fundamental/type_trait/integral.hpp"
 
 namespace aal {
 
