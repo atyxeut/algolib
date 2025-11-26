@@ -6,7 +6,6 @@
 
 !.clang-format
 !fmt.py
-!src_test.cpp
 
 !notes
 !notes/divisibility.md
@@ -14,39 +13,38 @@
 
 !src
 !src/.clangd
-!src/macro
-!src/macro/*
-!src/alias
-!src/alias/*
-!src/type_trait
-!src/type_trait/*
-!src/concept
-!src/concept/*
+
+!src/test
+!src/test/*.cpp
 
 !src/include
 !src/include/*
 
-!src/io
-!src/io/int128
-!src/io/int128/*
-!src/io/range
-!src/io/range/*
-!src/io/tuple
-!src/io/tuple/*
+!src/fundamental
+!src/fundamental/**
 
-!src/math
-!src/math/integral
-!src/math/integral/arithmetic_function
-!src/math/integral/arithmetic_function/divisor.hpp
-!src/math/integral/arithmetic_function/euler_totient.hpp
-!src/math/integral/arithmetic_function/prime_omega.hpp
-!src/math/integral/basic_operation
-!src/math/integral/basic_operation/**
-!src/math/integral/sieve
-!src/math/integral/sieve/**
+!src/lib
+!src/lib/io
+!src/lib/io/int128
+!src/lib/io/int128/*
+!src/lib/io/range
+!src/lib/io/range/*
+!src/lib/io/tuple
+!src/lib/io/tuple/*
 
-!src/math/operator
-!src/math/operator/**
+!src/lib/math
+!src/lib/math/integral
+!src/lib/math/integral/arithmetic_function
+!src/lib/math/integral/arithmetic_function/divisor.hpp
+!src/lib/math/integral/arithmetic_function/euler_totient.hpp
+!src/lib/math/integral/arithmetic_function/prime_omega.hpp
+!src/lib/math/integral/basic_operation
+!src/lib/math/integral/basic_operation/**
+!src/lib/math/integral/sieve
+!src/lib/math/integral/sieve/**
 
-!src/misc
-!src/misc/md_array_vector.hpp
+!src/lib/math/operator
+!src/lib/math/operator/**
+
+!src/lib/misc
+!src/lib/misc/md_array_vector.hpp

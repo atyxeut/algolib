@@ -65,7 +65,7 @@ AlignArrayOfStructures: Right
 # operator
 AlignOperands: Align
 BreakBinaryOperations: Never
-BreakBeforeBinaryOperators: None
+BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeTernaryOperators: true
 
 # control statement
