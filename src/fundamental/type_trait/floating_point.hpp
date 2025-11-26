@@ -20,7 +20,7 @@ constexpr bool is_f128_v = is_f128<T>::value;
 
 // f128 is considered floating-point
 template <typename T>
-struct is_floating_point : std::disjunction<std::is_floating_point<T>, is_f128<T>>
+struct is_floating_point : std::bool_constant<std::is_floating_point_v<T> || is_f128_v<T>>
 {
 };
 
@@ -32,7 +32,7 @@ concept floating_point = is_floating_point_v<T>;
 
 // std::is_floating_point_v<f128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_floating_point : std::conjunction<std::is_floating_point<T>, std::negation<is_f128<T>>>
+struct is_standard_floating_point : std::bool_constant<std::is_floating_point_v<T> && !is_f128_v<T>>
 {
 };
 
