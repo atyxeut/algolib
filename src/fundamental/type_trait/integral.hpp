@@ -12,6 +12,15 @@
 
 namespace aal {
 
+struct integral_tag
+{
+};
+
+template <typename T>
+concept integral_tagged = requires {
+  { T::type_category } -> std::same_as<integral_tag>;
+};
+
 template <typename T>
 struct is_bool : std::is_same<std::remove_cv_t<T>, bool>
 {
@@ -21,8 +30,23 @@ template <typename T>
 constexpr bool is_bool_v = is_bool<T>::value;
 
 template <typename T>
-struct is_int128
-  : std::bool_constant<!std::is_same_v<std::remove_cv_t<T>, void> && (std::is_same_v<std::remove_cv_t<T>, i128> || std::is_same_v<std::remove_cv_t<T>, u128>)>
+struct is_i128 : std::bool_constant<!std::is_void_v<T> && std::is_same_v<std::remove_cv_t<T>, i128>>
+{
+};
+
+template <typename T>
+constexpr bool is_i128_v = is_i128<T>::value;
+
+template <typename T>
+struct is_u128 : std::bool_constant<!std::is_void_v<T> && std::is_same_v<std::remove_cv_t<T>, u128>>
+{
+};
+
+template <typename T>
+constexpr bool is_u128_v = is_u128<T>::value;
+
+template <typename T>
+struct is_int128 : std::bool_constant<is_i128_v<T> || is_u128_v<T>>
 {
 };
 
@@ -30,7 +54,7 @@ template <typename T>
 constexpr bool is_int128_v = is_int128<T>::value;
 
 template <typename T>
-struct is_integral : std::disjunction<std::is_integral<T>, is_int128<T>>
+struct is_integral : std::bool_constant<std::is_integral_v<T> || is_int128_v<T> || integral_tagged<T>>
 {
 };
 
@@ -42,7 +66,7 @@ concept integral = is_integral_v<T>;
 
 // std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_integral : std::conjunction<std::is_integral<T>, std::negation<is_int128<T>>>
+struct is_standard_integral : std::bool_constant<std::is_integral_v<T> && !is_int128_v<T>>
 {
 };
 
@@ -53,7 +77,7 @@ template <typename T>
 concept standard_integral = is_standard_integral_v<T>;
 
 template <typename T>
-struct is_nonbool_integral : std::conjunction<is_integral<T>, std::negation<is_bool<T>>>
+struct is_nonbool_integral : std::bool_constant<integral<T> && !is_bool_v<T>>
 {
 };
 
@@ -64,7 +88,7 @@ template <typename T>
 concept nonbool_integral = is_nonbool_integral_v<T>;
 
 template <typename T>
-struct is_signed : std::bool_constant<(is_int128_v<T> && !std::is_same_v<std::remove_cv_t<T>, u128>) || std::is_signed_v<T>>
+struct is_signed : std::bool_constant<is_i128_v<T> || std::is_signed_v<T>>
 {
 };
 
@@ -72,10 +96,10 @@ template <typename T>
 constexpr bool is_signed_v = is_signed<T>::value;
 
 template <typename T>
-concept signed_integral = integral<T> && is_signed_v<T>;
+concept signed_integral = is_signed_v<T>;
 
 template <typename T>
-struct is_unsigned : std::bool_constant<is_integral_v<T> && !is_signed_v<T>>
+struct is_unsigned : std::bool_constant<is_u128_v<T> || std::is_unsigned_v<T>>
 {
 };
 
@@ -83,10 +107,10 @@ template <typename T>
 constexpr bool is_unsigned_v = is_unsigned<T>::value;
 
 template <typename T>
-concept unsigned_integral = integral<T> && !signed_integral<T>;
+concept unsigned_integral = is_unsigned_v<T>;
 
 template <typename T>
-struct is_nonbool_unsigned : std::conjunction<std::negation<is_bool<T>>, is_unsigned<T>>
+struct is_nonbool_unsigned : std::bool_constant<nonbool_integral<T> && unsigned_integral<T>>
 {
 };
 
@@ -94,7 +118,7 @@ template <typename T>
 constexpr bool is_nonbool_unsigned_v = is_nonbool_unsigned<T>::value;
 
 template <typename T>
-concept nonbool_unsigned = nonbool_integral<T> && unsigned_integral<T>;
+concept nonbool_unsigned = is_nonbool_unsigned_v<T>;
 
 template <typename T>
 struct make_signed

@@ -11,7 +11,7 @@
 namespace aal {
 
 template <typename T>
-struct is_f128 : std::bool_constant<!std::is_same_v<std::remove_cv_t<T>, void> && std::is_same_v<std::remove_cv_t<T>, f128>>
+struct is_f128 : std::bool_constant<!std::is_void_v<T> && std::is_same_v<std::remove_cv_t<T>, f128>>
 {
 };
 
