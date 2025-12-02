@@ -9,7 +9,7 @@
 
 namespace aal::sieve::linear {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get the closest prime list (clp[i]: the largest prime <= i)
 // the behavior is undefined if clp[0], clp[1] are used
@@ -24,7 +24,7 @@ template <typename T>
   return clp;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve::linear
 

@@ -11,7 +11,7 @@
 
 namespace aal::sieve::linear {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get the prime list and the smallest prime factor list (minp[i]: the smallest prime divisor of i, minp[i] = i: i is a prime, otherwise not)
 // the behavior is undefined if minp[0], minp[1] are used
@@ -42,7 +42,7 @@ template <nonbool_integral T>
   return std::make_pair(prime, minp);
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve::linear
 

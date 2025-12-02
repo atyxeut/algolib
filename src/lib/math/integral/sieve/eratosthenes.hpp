@@ -10,7 +10,7 @@
 
 namespace aal::sieve {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get a not_prime list (not_prime[i] = true/false means i is not/is a prime)
 // the behavior is undefined if not_prime[0], not_prime[1] are used
@@ -33,7 +33,7 @@ template <nonbool_integral T>
   return not_prime;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve
 

@@ -8,7 +8,7 @@
 
 namespace aal {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 template <nonbool_integral T1, nonbool_integral T2>
 [[nodiscard]] constexpr T1 ipow(T1 a, T2 n) noexcept
@@ -17,7 +17,7 @@ template <nonbool_integral T1, nonbool_integral T2>
   return op::iexp_pow<builtin_integral_wrapper<T1>, make_unsigned_t<T2>>::operator ()(a, n);
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal
 

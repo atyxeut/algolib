@@ -10,7 +10,7 @@
 
 namespace aal::sieve::linear {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get the phi list (phi[i]: value of Euler's totient function phi(i))
 // the behavior is undefined if phi[0] is used
@@ -39,7 +39,7 @@ template <typename T>
   return phi;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve::linear
 

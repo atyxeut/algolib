@@ -9,7 +9,7 @@
 
 namespace aal::sieve::linear {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get the sgm list (sgm[i]: value of divisor function sigma_x(i))
 // the behavior is undefined if sgm[0] is used
@@ -50,7 +50,7 @@ template <int x = 1, typename T>
   return sgm;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve::linear
 

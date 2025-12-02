@@ -35,7 +35,7 @@ struct final_result
   using type = std::conditional_t<is_unsigned_v<type2>, type1, make_larger_width_t<make_signed_t<type1>>>;
 };
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 template <mode Mode, typename T1, typename T2>
 constexpr auto selector(T1 lhs, T2 rhs) noexcept
@@ -76,7 +76,7 @@ constexpr auto selector(T1 lhs, T2 rhs) noexcept
     return is_ans_negative ? -static_cast<result_type>(q) : static_cast<result_type>(q + modify_ans);
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace detail
 

@@ -9,7 +9,7 @@
 
 namespace aal::arith_func {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 template <int x = 1, nonbool_integral T>
 [[nodiscard]] constexpr auto sigma(T n) noexcept
@@ -30,7 +30,7 @@ template <int x = 1, nonbool_integral T>
   return ans;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::arith_func
 

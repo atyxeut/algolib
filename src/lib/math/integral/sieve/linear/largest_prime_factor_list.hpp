@@ -10,7 +10,7 @@
 
 namespace aal::sieve::linear {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // get the largest prime factor list (maxp[i]: the largest prime divisor of i)
 // the behavior is undefined if maxp[0], maxp[1] are used
@@ -36,7 +36,7 @@ template <typename T>
   return maxp;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::sieve::linear
 

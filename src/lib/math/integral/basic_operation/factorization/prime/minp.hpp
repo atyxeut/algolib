@@ -11,7 +11,7 @@
 
 namespace aal::get_divisor::prime {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 // O(log n) when the smallest prime divisor of every integer that <= n is known
 // because the worst case is n = 2^k, where k = log_2 n, any other case costs less computations
@@ -31,7 +31,7 @@ template <nonbool_integral T>
   return info;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace aal::get_divisor::prime
 

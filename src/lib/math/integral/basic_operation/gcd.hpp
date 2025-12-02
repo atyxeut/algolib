@@ -9,7 +9,7 @@ namespace aal {
 
 namespace detail {
 
-AAL_INT_WCONVERSION_WCOMPARE_PUSH
+AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
 template <typename TOp, typename... Ts>
 constexpr auto gcd_lcm_impl(Ts... nums) noexcept
@@ -33,7 +33,7 @@ constexpr auto gcd_lcm_impl(Ts... nums) noexcept
   return ans;
 }
 
-AAL_INT_WCONVERSION_WCOMPARE_POP
+AAL_INT_WCONVERSION_WCOMPARE_POP()
 
 } // namespace detail
 

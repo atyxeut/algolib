@@ -45,7 +45,7 @@ struct lcm
   static constexpr T neutral_element {1}; // lcm(1, a) = a
   static constexpr T absorbing_element {0}; // lcm(0, a) = 0
 
-  AAL_INT_WCONVERSION_WCOMPARE_PUSH
+  AAL_INT_WCONVERSION_WCOMPARE_PUSH()
 
   [[nodiscard]] static constexpr T operator ()(T a, T b) noexcept
   {
@@ -53,7 +53,7 @@ struct lcm
     return a / gcd<T>::operator ()(a, b) * b;
   }
 
-  AAL_INT_WCONVERSION_WCOMPARE_POP
+  AAL_INT_WCONVERSION_WCOMPARE_POP()
 };
 
 } // namespace aal::op
