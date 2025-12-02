@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_INTEGRAL_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/integral.hpp */
-
 #include <cassert>
 #include <concepts>
 #include <limits>

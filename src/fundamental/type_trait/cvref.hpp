@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_CVREF_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_CVREF_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/cvref.hpp */
-
 #include <type_traits>
 
 namespace aal {

@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_OPERATOR_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_OPERATOR_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/operator.hpp */
-
 #include <concepts>
 #include <tuple>
 

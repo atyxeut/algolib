@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_IS_STD_ARRAY_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_IS_STD_ARRAY_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/is_std_array.hpp */
-
 #include <array>
 #include <type_traits>
 

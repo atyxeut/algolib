@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_ALIAS_FLOATING_POINT_HPP
 #define AAL_SRC_FUNDAMENTAL_ALIAS_FLOATING_POINT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/alias/floating_point.hpp */
-
 #include <type_traits>
 
 // precision (significant digits)

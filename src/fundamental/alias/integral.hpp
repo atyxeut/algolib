@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_ALIAS_INTEGRAL_HPP
 #define AAL_SRC_FUNDAMENTAL_ALIAS_INTEGRAL_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/alias/integral.hpp */
-
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>

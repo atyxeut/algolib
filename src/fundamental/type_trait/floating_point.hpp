@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_FLOATING_POINT_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_FLOATING_POINT_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/floating_point.hpp */
-
 #include <concepts>
 
 #include "../alias/floating_point.hpp"

@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_IO_HPP
 #define AAL_SRC_FUNDAMENTAL_TYPE_TRAIT_IO_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/type_trait/io.hpp */
-
 #include <ostream>
 #include <type_traits>
 #include <utility>

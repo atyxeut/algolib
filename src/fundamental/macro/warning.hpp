@@ -1,8 +1,6 @@
 #ifndef AAL_SRC_FUNDAMENTAL_MACRO_WARNING_HPP
 #define AAL_SRC_FUNDAMENTAL_MACRO_WARNING_HPP
 
-/* https://github.com/atyxeut/algolib/blob/cpp23/src/fundamental/macro/warning.hpp */
-
 // clang-format off
 
 #if defined(_MSC_VER)
