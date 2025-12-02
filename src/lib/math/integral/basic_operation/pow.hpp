@@ -14,7 +14,7 @@ template <nonbool_integral T1, nonbool_integral T2>
 [[nodiscard]] constexpr T1 ipow(T1 a, T2 n) noexcept
 {
   assert(n >= 0 && "exponent must be nonnegative");
-  return op::iexp_pow<integral_wrapper<T1>, make_unsigned_t<T2>>::operator ()(a, n);
+  return op::iexp_pow<builtin_integral_wrapper<T1>, make_unsigned_t<T2>>::operator ()(a, n);
 }
 
 AAL_INT_WCONVERSION_WCOMPARE_POP
