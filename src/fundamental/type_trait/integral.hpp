@@ -64,9 +64,20 @@ constexpr bool is_integral_v = is_integral<T>::value;
 template <typename T>
 concept integral = is_integral_v<T>;
 
+template <typename T>
+struct is_builtin_integral : std::bool_constant<std::is_integral_v<T> || is_int128_v<T>>
+{
+};
+
+template <typename T>
+constexpr bool is_builtin_integral_v = is_builtin_integral<T>::value;
+
+template <typename T>
+concept builtin_integral = is_builtin_integral_v<T>;
+
 // std::is_integral_v<i/u128> is true in -std=gnu++ mode, which may not always be the desired result
 template <typename T>
-struct is_standard_integral : std::bool_constant<std::is_integral_v<T> && !is_int128_v<T>>
+struct is_standard_integral : std::bool_constant<builtin_integral<T> && !is_int128_v<T>>
 {
 };
 
@@ -86,6 +97,17 @@ constexpr bool is_nonbool_integral_v = is_nonbool_integral<T>::value;
 
 template <typename T>
 concept nonbool_integral = is_nonbool_integral_v<T>;
+
+template <typename T>
+struct is_nonbool_builtin_integral : std::bool_constant<builtin_integral<T> && !is_bool_v<T>>
+{
+};
+
+template <typename T>
+constexpr bool is_nonbool_builtin_integral_v = is_nonbool_builtin_integral<T>::value;
+
+template <typename T>
+concept nonbool_builtin_integral = is_nonbool_builtin_integral_v<T>;
 
 template <typename T>
 struct is_signed : std::bool_constant<is_i128_v<T> || std::is_signed_v<T>>
@@ -110,7 +132,7 @@ template <typename T>
 concept unsigned_integral = is_unsigned_v<T>;
 
 template <typename T>
-struct is_nonbool_unsigned : std::bool_constant<nonbool_integral<T> && unsigned_integral<T>>
+struct is_nonbool_unsigned : std::bool_constant<nonbool_builtin_integral<T> && unsigned_integral<T>>
 {
 };
 
@@ -172,7 +194,7 @@ struct make_larger_width_selector<T, true, sizeof(i128)>
 } // namespace detail
 
 // for the given integer type, obtains i32 if its width is smaller than the width of i32,
-// otherwise obtains an integer type with double width, if there is no such a type, obtains the given type
+// otherwise obtains a built-in integer type with double width, if there is no such a type, obtains the given type
 // cv-qualifiers and signedness are kept
 template <typename T>
 using make_larger_width = detail::make_larger_width_selector<T>;
@@ -207,17 +229,17 @@ template <typename T> requires is_nonbool_integral_v<T>
 };
 
 template <typename>
-struct integral_wrapper;
+struct builtin_integral_wrapper;
 
-template <typename T> requires is_nonbool_integral_v<T>
-struct integral_wrapper<T>
+template <nonbool_builtin_integral T>
+struct builtin_integral_wrapper<T>
 {
   T val;
 
-  integral_wrapper() = default;
+  builtin_integral_wrapper() = default;
 
   // enable implicit conversion from T
-  constexpr integral_wrapper(T other) noexcept : val {other} {}
+  constexpr builtin_integral_wrapper(T other) noexcept : val {other} {}
 
   // enable implicit conversion to T
   constexpr operator T() const noexcept
@@ -225,7 +247,7 @@ struct integral_wrapper<T>
     return val;
   }
 
-  constexpr integral_wrapper& operator +=(integral_wrapper other) noexcept
+  constexpr builtin_integral_wrapper& operator +=(builtin_integral_wrapper other) noexcept
   {
 #ifndef NDEBUG
     if ((val < 0) == (other.val < 0))
@@ -237,12 +259,12 @@ struct integral_wrapper<T>
     return *this;
   }
 
-  [[nodiscard]] friend constexpr auto operator +(integral_wrapper a, integral_wrapper b) noexcept
+  [[nodiscard]] friend constexpr auto operator +(builtin_integral_wrapper a, builtin_integral_wrapper b) noexcept
   {
     return a += b;
   }
 
-  constexpr integral_wrapper& operator *=(integral_wrapper other) noexcept
+  constexpr builtin_integral_wrapper& operator *=(builtin_integral_wrapper other) noexcept
   {
 #ifndef NDEBUG
     assert(
@@ -254,7 +276,7 @@ struct integral_wrapper<T>
     return *this;
   }
 
-  [[nodiscard]] friend constexpr auto operator *(integral_wrapper a, integral_wrapper b) noexcept
+  [[nodiscard]] friend constexpr auto operator *(builtin_integral_wrapper a, builtin_integral_wrapper b) noexcept
   {
     return a *= b;
   }
@@ -262,23 +284,23 @@ struct integral_wrapper<T>
 
 // clang-format off
 
-using i8_t   = integral_wrapper<i8>;
-using u8_t   = integral_wrapper<u8>;
-using i16_t  = integral_wrapper<i16>;
-using u16_t  = integral_wrapper<u16>;
-using i32_t  = integral_wrapper<i32>;
-using u32_t  = integral_wrapper<u32>;
-using i64_t  = integral_wrapper<i64>;
-using u64_t  = integral_wrapper<u64>;
-using i128_t = integral_wrapper<i128>;
-using u128_t = integral_wrapper<u128>;
-using imax_t = integral_wrapper<imax>;
-using umax_t = integral_wrapper<umax>;
+using i8_t   = builtin_integral_wrapper<i8>;
+using u8_t   = builtin_integral_wrapper<u8>;
+using i16_t  = builtin_integral_wrapper<i16>;
+using u16_t  = builtin_integral_wrapper<u16>;
+using i32_t  = builtin_integral_wrapper<i32>;
+using u32_t  = builtin_integral_wrapper<u32>;
+using i64_t  = builtin_integral_wrapper<i64>;
+using u64_t  = builtin_integral_wrapper<u64>;
+using i128_t = builtin_integral_wrapper<i128>;
+using u128_t = builtin_integral_wrapper<u128>;
+using imax_t = builtin_integral_wrapper<imax>;
+using umax_t = builtin_integral_wrapper<umax>;
 
 // clang-format on
 
-using isize_t = integral_wrapper<isize>;
-using usize_t = integral_wrapper<usize>;
+using isize_t = builtin_integral_wrapper<isize>;
+using usize_t = builtin_integral_wrapper<usize>;
 
 } // namespace aal
 
