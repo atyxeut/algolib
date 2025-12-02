@@ -37,8 +37,8 @@ using u64 = std::uint64_t;
 
 // clang-format on
 
-using imax = std::conditional_t<std::is_same_v<i128, void>, i64, i128>;
-using umax = std::conditional_t<std::is_same_v<u128, void>, u64, u128>;
+using imx = std::conditional_t<std::is_same_v<i128, void>, i64, i128>;
+using umx = std::conditional_t<std::is_same_v<u128, void>, u64, u128>;
 
 using isize = std::ptrdiff_t;
 using usize = std::size_t;

@@ -26,7 +26,7 @@ using f80 = long double;
   __extension__ using f128 = __float128;
 #endif // msvc or not x86(_64)
 
-using fmax = std::conditional_t<std::is_same_v<f128, void>, f80, f128>;
+using fmx = std::conditional_t<std::is_same_v<f128, void>, f80, f128>;
 
 // clang-format on
 

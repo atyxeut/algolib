@@ -62,7 +62,7 @@ struct make_higher_precision_selector<T, true, f64>
 template <typename T>
 struct make_higher_precision_selector<T, true, f80>
 {
-  using type = claim_cv_t<T, fmax>;
+  using type = claim_cv_t<T, fmx>;
 };
 
 template <typename T>

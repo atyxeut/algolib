@@ -182,7 +182,7 @@ struct make_larger_width_selector<T, true, sizeof(i32)>
 template <typename T>
 struct make_larger_width_selector<T, true, sizeof(i64)>
 {
-  using type = std::conditional_t<is_signed_v<T>, claim_cv_t<T, imax>, claim_cv_t<T, umax>>;
+  using type = std::conditional_t<is_signed_v<T>, claim_cv_t<T, imx>, claim_cv_t<T, umx>>;
 };
 
 template <typename T>
@@ -204,12 +204,12 @@ using make_larger_width_t = make_larger_width<T>::type;
 
 namespace ioverflows {
 
-[[nodiscard]] constexpr bool add(umax a, umax b, umax limit) noexcept
+[[nodiscard]] constexpr bool add(umx a, umx b, umx limit) noexcept
 {
   return b > limit || a > limit - b;
 }
 
-[[nodiscard]] constexpr bool mul(umax a, umax b, umax limit) noexcept
+[[nodiscard]] constexpr bool mul(umx a, umx b, umx limit) noexcept
 {
   // a * b <= c ==> a <= c / b = floor(c / b) + {c / b} ==> a <= floor(c / b)
   return b == 0 ? false : a > limit / b;
@@ -294,8 +294,8 @@ using i64_t  = builtin_integral_wrapper<i64>;
 using u64_t  = builtin_integral_wrapper<u64>;
 using i128_t = builtin_integral_wrapper<i128>;
 using u128_t = builtin_integral_wrapper<u128>;
-using imax_t = builtin_integral_wrapper<imax>;
-using umax_t = builtin_integral_wrapper<umax>;
+using imx_t = builtin_integral_wrapper<imx>;
+using umx_t = builtin_integral_wrapper<umx>;
 
 // clang-format on
 
