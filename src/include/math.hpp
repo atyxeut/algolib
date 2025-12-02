@@ -14,8 +14,8 @@
 #include "../lib/math/integral/basic_operation/is_prime/trial_division.hpp"
 
 #include "../lib/math/integral/basic_operation/factorization/all.hpp"
-#include "../lib/math/integral/basic_operation/factorization/prime.hpp"
-#include "../lib/math/integral/basic_operation/factorization/prime_minp.hpp"
+#include "../lib/math/integral/basic_operation/factorization/prime/minp.hpp"
+#include "../lib/math/integral/basic_operation/factorization/prime/trial_division.hpp"
 
 #include "../lib/math/integral/sieve/eratosthenes.hpp"
 #include "../lib/math/integral/sieve/linear/base.hpp"
